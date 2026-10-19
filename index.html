@@ -76,8 +76,9 @@ svg.sc{border:3px solid #17352a}.inp{border-color:#17352a}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 @media(min-width:700px){body{font-size:22px}}
 </style></head><body dir="ltr" class="t"><div id="bg" aria-hidden="true"><i class="sk"></i><i class="sk"></i><i class="sk"></i><i class="sk"></i><i class="sk"></i><div class="mt m1"></div><div class="mt m2"></div><i class="cl c1"></i><i class="cl c2"></i><i class="cl c3"></i></div>
+<audio id="bgm" src="musik.mp3" loop preload="none"></audio>
 <header><h1>⛰️ لُغْزُ القِمَّة</h1>
-<div class="tools"><button id="bt" class="on" onclick="tg('t')">Terjemah</button><button id="bh" class="on" onclick="tg('h')">Harakat</button><button onclick="easy=!easy;this.classList.toggle('on');bar()">Santai</button><button onclick="nbo()">📓 <span id="cnt">0</span></button></div><div class="stat"><span id="lv"></span><span id="tm"></span></div>
+<div class="tools"><button id="bt" class="on" onclick="tg('t')">Terjemah</button><button id="bh" class="on" onclick="tg('h')">Harakat</button><button onclick="easy=!easy;this.classList.toggle('on');bar()">Santai</button><button id="bs" onclick="mus()" aria-label="Musik">🔊</button><button onclick="nbo()">📓 <span id="cnt">0</span></button></div><div class="stat"><span id="lv"></span><span id="tm"></span></div>
 <div class="steps" id="steps"></div></header>
 <main id="main"></main>
 <aside id="nb"><button class="btn" onclick="nbo()">✕ Tutup</button><div id="nbc"></div></aside>
@@ -162,12 +163,16 @@ function save(){try{localStorage.setItem('lq1',JSON.stringify({st,got,solved,hin
 function load(){try{const d=JSON.parse(localStorage.getItem('lq1'));if(d){st=d.st;got=d.got;solved=d.solved;hint=d.hint;notes=d.notes;vocab=new Map(d.v);won=d.won;lives=d.lives==null?3:d.lives}}catch(e){}}
 let ac;function beep(f){try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.value=.08;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.15)}catch(e){}}
 function vib(p){navigator.vibrate&&navigator.vibrate(p)}
+let mOn=true;try{mOn=localStorage.getItem('lqm')!='0'}catch(e){}
+function mus(t){const a=$('#bgm');if(t===undefined)mOn=!mOn;try{localStorage.setItem('lqm',mOn?1:0)}catch(e){}$('#bs').textContent=mOn?'🔊':'🔇';if(mOn){a.volume=.4;a.play().catch(()=>{})}else a.pause()}
+document.addEventListener('visibilitychange',()=>{const a=$('#bgm');if(document.hidden)a.pause();else if(mOn&&st>0)a.play().catch(()=>{})});
+document.addEventListener('click',()=>{const a=$('#bgm');if(mOn&&st>0&&a.paused)a.play().catch(()=>{})});
 let stars=0;
 function qz(){const e=$('#qz');if(!e)return;const V=[...vocab.values()];if(V.length<3){e.innerHTML='<p>اِفْحَصْ أَدِلَّةً أَكْثَرَ لِتَبْدَأَ التَّحَدِّي.</p>';return}
 const c=V[Math.random()*V.length|0],o=[c,...V.filter(x=>x!=c).sort(()=>Math.random()-.5).slice(0,2)].sort(()=>Math.random()-.5);
 e.innerHTML=`<p>⭐ ${stars}</p><p class="ar" data-o="${c[0]}" style="font-size:1.4em"></p><div class="chips">${o.map(x=>`<button data-k="${x==c?1:0}">${x[1]}</button>`).join('')}</div>`;applyH();
 e.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(b.dataset.k==1){stars++;beep(880);vib(40)}else beep(220);qz()})}
-function nx(){st++;sel=null;lastD='';lives=Math.min(3,lives+1);tl=st==4?150:180;render()}
+function nx(){st++;sel=null;lastD='';lives=Math.min(3,lives+1);tl=st==4?150:180;if(st==1)mus(1);render()}
 function reset(){lives=3;tl=180;dead=0;st=0;got={};solved={};hint={};notes=[];vocab=new Map();sel=null;lastD='';won=0;wrong='';render()}
 function render(k){const y=scrollY;$('#main').innerHTML=dead?over():scene(st)+(st==0?base():st<4?post(st):summit());applyH();bar();save();k?scrollTo(0,y):scrollTo(0,0)}
 function nbo(){const e=$('#nb');e.classList.toggle('on');$('#nbc').innerHTML=`<h2>📓 Buku detektif</h2>`+(notes.length?notes.map(c=>`<div class="box"><p class="who"><span data-o="${c.k}"></span> – <span data-o="${c.w}"></span></p>${A(c.ar,c.id,1)}</div>`).join(''):'<p>لا تُوجَدُ أَدِلَّةٌ بَعْدُ.</p>')+`<h2>Kosakata</h2>`+[...vocab.values()].map(v=>`<span class="voc"><span data-o="${v[0]}"></span><small>${v[1]}</small></span>`).join('')+'<h2>🎯 تَحَدِّي الكَلِمات</h2><div id="qz"></div>';applyH();qz()}
@@ -193,5 +198,5 @@ const KR=["ضصثقفغعهخحجد","شسيبلاتنمكط","ئءؤرىةوز�
 function kb(){const k=$('#kb');if(!k.innerHTML)k.innerHTML=KR.map(r=>'<div>'+[...r].map(c=>`<button data-c="${c}">${c}</button>`).join('')+'</div>').join('')+'<div><button data-c=" " style="max-width:140px">␣</button><button data-c="⌫">⌫</button></div>';k.classList.toggle('on')}
 $('#kb').addEventListener('mousedown',e=>e.preventDefault());
 $('#kb').addEventListener('click',e=>{const c=e.target.dataset&&e.target.dataset.c;if(c==null||!c&&c!==' ')return;const el=focus||$('#ans');if(!el)return;el.value=c=='⌫'?el.value.slice(0,-1):el.value+c;el.focus()});
-load();tl=180;render();setInterval(()=>{if(easy||dead||st==0||won||(st<4&&solved[st])||$('#nb').classList.contains('on'))return;tl--;tmShow();if(tl<=0)end('Waktu habis!')},1000);if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+load();tl=180;$('#bs').textContent=mOn?'🔊':'🔇';render();setInterval(()=>{if(easy||dead||st==0||won||(st<4&&solved[st])||$('#nb').classList.contains('on'))return;tl--;tmShow();if(tl<=0)end('Waktu habis!')},1000);if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script></body></html>
