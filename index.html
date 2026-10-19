@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<html lang="id" dir="ltr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>لغز القمة – محقق الجبل</title>
 <link rel="manifest" href="manifest.json"><meta name="theme-color" content="#12291f"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">
@@ -22,7 +22,7 @@ h2{font:900 26px Cairo,sans-serif;margin:8px 0;color:var(--o2)}
 .box.m{border-right:6px solid var(--o)}
 .ln{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
 .ar{margin:0;font-size:1.05em}.tr{display:none;margin:0 0 6px;font:14px/1.5 system-ui,sans-serif;color:var(--mut);direction:ltr;text-align:left}
-body.t .tr{display:block}
+body.t .tr{display:block;font-size:17px;color:var(--ink)}
 .sp{background:none;border:0;font-size:20px;cursor:pointer}
 .btn{font:700 17px Cairo,sans-serif;background:var(--o);color:#1a1208;border:0;border-radius:10px;padding:8px 16px;cursor:pointer}
 .btn.s{background:var(--g3);color:var(--ink)}.btn:disabled{opacity:.35;cursor:not-allowed}
@@ -54,14 +54,15 @@ body.t .tr{display:block}
 .dr{animation:dr 14s ease-in-out infinite alternate}@keyframes dr{to{transform:translateX(-90px)}}
 .sun{animation:su 6s ease-out forwards}@keyframes su{from{transform:translateY(50px)}}
 .hs{cursor:pointer}.hs circle{animation:pl 1.4s infinite;transform-box:fill-box;transform-origin:center}.hs text{font-size:15px;pointer-events:none}@keyframes pl{50%{transform:scale(1.3);opacity:.5}}
+.ar{direction:rtl;text-align:right;flex:1}.ln{direction:ltr}.stat{font:700 16px Cairo,sans-serif;display:flex;gap:10px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 @media(min-width:700px){body{font-size:22px}}
-</style></head><body dir="rtl">
+</style></head><body dir="ltr" class="t">
 <header><h1>⛰️ لُغْزُ القِمَّة</h1>
-<div class="tools"><button id="bt" onclick="tg('t')">ترجمة</button><button id="bh" class="on" onclick="tg('h')">حَرَكات</button><button onclick="nbo()">📓 <span id="cnt">0</span></button></div>
+<div class="tools"><button id="bt" class="on" onclick="tg('t')">Terjemah</button><button id="bh" class="on" onclick="tg('h')">Harakat</button><button onclick="easy=!easy;this.classList.toggle('on');bar()">Santai</button><button onclick="nbo()">📓 <span id="cnt">0</span></button></div><div class="stat"><span id="lv"></span><span id="tm"></span></div>
 <div class="steps" id="steps"></div></header>
 <main id="main"></main>
-<aside id="nb"><button class="btn" onclick="nbo()">✕ إغلاق</button><div id="nbc"></div></aside>
+<aside id="nb"><button class="btn" onclick="nbo()">✕ Tutup</button><div id="nbc"></div></aside>
 <div class="dock">
 <div id="vs"><div class="wave" id="wv"><i></i><i style="animation-delay:.1s"></i><i style="animation-delay:.2s"></i><i style="animation-delay:.3s"></i><i style="animation-delay:.15s"></i><i style="animation-delay:.25s"></i><i style="animation-delay:.05s"></i></div><div id="vm"></div><audio id="au" controls></audio></div>
 <div id="kb"></div>
@@ -95,10 +96,10 @@ q:["مَعَ مَنْ كانَ يُوسُفُ عِنْدَ النَّهْر؟","
 {w:"يُوسُف",k:"شَهادَة",ar:"قالَ لِي ماجِد: سَأُرْسِلُ الصُّورَةَ إِلَى القائِد.",id:"Majid berkata: Aku akan kirim foto itu ke pemimpin.",v:[["أَرْسَلَ","mengirim"],["القائِد","pemimpin"]]}],
 q:["مَنْ يَمْلِكُ الحَقِيبَةَ الزَّرْقاء؟","Siapa pemilik tas biru?",["عمر","لعمر","عمر يملكها","يملكها عمر","الحقيبه لعمر","هي لعمر"],[["هُوَ حامِلُ الأَمْتِعَة.","Dia pembawa barang."],["اِسْمُهُ يَبْدَأُ بِحَرْفِ العَيْن.","Namanya dimulai huruf ain."]]]}];
 const END=[["عُمَرُ هُوَ الفاعِل!","Umar pelakunya!"],["صَوَّرَ ماجِدٌ عُمَرَ وَهُوَ يَتْرُكُ النّارَ مُشْتَعِلَة.","Majid memotret Umar yang meninggalkan api menyala."],["خافَ عُمَرُ مِنَ القائِد، فَأَخَذَ الهاتِفَ مِنَ الخَيْمَة.","Umar takut pada pemimpin, lalu mengambil HP dari tenda."],["تَرَكَ خَيْطاً أَزْرَقَ وَآثارَ حِذاءٍ كَبِيرٍ.","Ia meninggalkan benang biru dan jejak sepatu besar."],["كَلامُ خالِدٍ كانَ مُضَلِّلاً، فَيُوسُفُ كانَ مَعَ لَيْلَى عِنْدَ النَّهْر.","Ucapan Khalid menyesatkan; Yusuf bersama Laila di sungai."]];
-const NAMES=["القاعِدَة","المَحَطَّة ١","المَحَطَّة ٢","المَحَطَّة ٣","القِمَّة"];
+const NAMES=["Basecamp","Pos 1","Pos 2","Pos 3","Puncak"];
 let st=0,H=1,got={},solved={},hint={},notes=[],vocab=new Map(),sel=null,lastD='',won=0,wrong='',focus=null;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-const A=(ar,id,sp)=>`<div class="ln"><p class="ar" data-o="${ar}"></p>${sp?`<button class="sp" data-t="${ar}" aria-label="استماع">🔊</button>`:''}</div><p class="tr">${id}</p>`;
+const A=(ar,id,sp)=>`<div class="ln"><p class="ar" lang="ar" dir="rtl" data-o="${ar}"></p>${sp?`<button class="sp" data-t="${ar}" aria-label="استماع">🔊</button>`:''}</div><p class="tr">${id}</p>`;
 function applyH(){document.querySelectorAll('[data-o]').forEach(e=>e.textContent=H?e.dataset.o:strip(e.dataset.o))}
 function tg(k){if(k=='t'){document.body.classList.toggle('t');$('#bt').classList.toggle('on')}else{H=!H;$('#bh').classList.toggle('on',H);applyH()}}
 function scene(i){const sky=['#2a6a8f,#f6c98a','#1f5a45,#8fc7a0','#5d7a82,#c9d6d6','#d4622b,#4a2f5c','#f6a65a,#5aa7d6'][i];
@@ -113,28 +114,34 @@ if(i==4)b=`<g class="sun"><circle cx="200" cy="100" r="34" fill="#ffd36e"/></g><
 const [c1,c2]=sky.split(',');return `<svg class="sc" viewBox="0 0 400 160" role="img"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs><rect width="400" height="160" fill="url(#g${i})"/>${b}${hs(i)}</svg>`}
 const HP=[[70,128],[200,138],[335,118]];
 function hs(i){if(i<1||i>3)return'';return HP.map((p,j)=>got[i+'_'+j]?'':`<g class="hs" onclick="rv(${i},${j})" role="button"><circle cx="${p[0]}" cy="${p[1]}" r="15" fill="#f08a3c" stroke="#fff" stroke-width="2"/><text x="${p[0]}" y="${p[1]+6}" text-anchor="middle">🔍</text></g>`).join('')}
-function dlg(){let h=`<div class="box"><h2>🗣️ حِوار</h2><div class="chips">${SU.map((s,i)=>`<button class="${sel==i?'on':''}" onclick="sel=${i};lastD='';render(1)">${strip(s.n)==s.n?s.n:s.n}</button>`).join('')}</div>`;
-if(sel!=null){h+=`<div class="chips">${QS.map((q,i)=>`<button onclick="ask(${i})">${q[0]}</button>`).join('')}</div><div class="row"><input class="inp" id="dq" placeholder="أَيْنَ / رَأَيْتَ …"><button class="btn s" onclick="mic('dq')">🎤</button><button class="btn" onclick="askT()">❓</button></div><div id="dout">${lastD}</div>`}
+function dlg(){let h=`<div class="box"><h2>🗣️ Wawancara tersangka</h2><div class="chips">${SU.map((s,i)=>`<button class="${sel==i?'on':''}" onclick="sel=${i};lastD='';render(1)">${strip(s.n)==s.n?s.n:s.n}</button>`).join('')}</div>`;
+if(sel!=null){h+=`<div class="chips">${QS.map((q,i)=>`<button onclick="ask(${i})">${q[0]}</button>`).join('')}</div><div class="row"><input class="inp" id="dq" dir="rtl" placeholder="أَيْنَ / رَأَيْتَ …"><button class="btn s" onclick="mic('dq')">🎤</button><button class="btn" onclick="askT()">❓</button></div><div id="dout">${lastD}</div>`}
 return h+'</div>'}
 function ask(i){const s=SU[sel],a=s.a[i];lastD=`<p class="who" data-o="${s.n}"></p>`+A(a[0],a[1],1);render(1)}
 function askT(){const n=norm($('#dq').value);if(/(اين|مكان)/.test(n))ask(0);else if(/(رايت|ماذا|شاهد)/.test(n))ask(1);else{lastD=A("لا أَفْهَمُ. جَرِّبْ: أَيْنَ؟ أَوْ ماذا رَأَيْتَ؟","Saya tidak paham. Coba: أين؟ atau ماذا رأيت؟");render(1)}}
-function base(){return `<h2>القاعِدَة</h2><div class="box">${A("سِتَّةُ مُتَسَلِّقِينَ يَصْعَدُونَ الجَبَل. في المَحَطَّةِ الثّانِيَةِ اِخْتَفَى هاتِفُ ماجِد. الفاعِلُ واحِدٌ مِنَ الخَمْسَة. أَنْتَ المُحَقِّق!","Enam pendaki naik gunung. Di Pos 2 HP Majid hilang. Pelakunya salah satu dari lima orang. Kamu detektifnya!",1)}</div><h2>المُشْتَبَه بِهِمْ</h2>`+SU.map(s=>`<div class="box"><p class="who" data-o="${s.n}"></p>${A(s.ar,s.id,1)}</div>`).join('')+dlg()}
+function base(){return `<h2>Basecamp</h2><div class="box m"><p class="who">Aturan main</p><p style="font:16px/1.6 Cairo,sans-serif;margin:0">❤️❤️❤️ Kamu punya 3 nyawa. Jawaban atau tuduhan yang salah = −1 nyawa. Tiap pos dibatasi 3 menit (mode Santai mematikan waktu). Nyawa pulih +1 di setiap pos. Jawab pertanyaan dalam bahasa Arab: ketik, pakai keyboard ⌨️, atau ucapkan 🎤.</p></div><div class="box">${A("سِتَّةُ مُتَسَلِّقِينَ يَصْعَدُونَ الجَبَل. في المَحَطَّةِ الثّانِيَةِ اِخْتَفَى هاتِفُ ماجِد. الفاعِلُ واحِدٌ مِنَ الخَمْسَة. أَنْتَ المُحَقِّق!","Enam pendaki naik gunung. Di Pos 2 HP Majid hilang. Pelakunya salah satu dari lima orang. Kamu detektifnya!",1)}</div><h2>Lima tersangka</h2>`+SU.map(s=>`<div class="box"><p class="who" data-o="${s.n}"></p>${A(s.ar,s.id,1)}</div>`).join('')+dlg()}
 function post(i){const P=POS[i-1];let n=0,h=`<h2 data-o="${P.t}"></h2>`;
-P.c.forEach((c,j)=>{const k=i+'_'+j;if(got[k]){n++;h+=`<div class="box${c.m?' m':''}"><p class="who"><span data-o="${c.k}"></span> – <span data-o="${c.w}"></span></p>${A(c.ar,c.id,1)}</div>`}else h+=`<button class="btn s" style="width:100%;margin:5px 0" onclick="rv(${i},${j})">🔍 اِفْحَصْ دَلِيلاً</button>`});
-if(n>=2){const q=P.q;h+=`<div class="box"><p class="who">❓ سُؤالُ المُحَقِّق</p>${A(q[0],q[1],1)}<div class="row"><input class="inp" id="ans" autocomplete="off" placeholder="اُكْتُبْ بِالعَرَبِيَّة"><button class="btn s" onclick="mic('ans')">🎤</button><button class="btn s" onclick="kb()">⌨️</button><button class="btn" onclick="sub()">✔</button></div><div id="fb">${solved[i]?'<span class="ok">✅ أَحْسَنْتَ! اِنْتَقِلْ إِلَى المَحَطَّةِ التّالِيَة.</span>':''}</div></div>`}
+P.c.forEach((c,j)=>{const k=i+'_'+j;if(got[k]){n++;h+=`<div class="box${c.m?' m':''}"><p class="who"><span data-o="${c.k}"></span> – <span data-o="${c.w}"></span></p>${A(c.ar,c.id,1)}</div>`}else h+=`<button class="btn s" style="width:100%;margin:5px 0" onclick="rv(${i},${j})">🔍 Periksa petunjuk</button>`});
+if(n>=2){const q=P.q;h+=`<div class="box"><p class="who">❓ Pertanyaan detektif</p>${A(q[0],q[1],1)}<div class="row"><input class="inp" id="ans" autocomplete="off" dir="rtl" placeholder="Tulis jawaban dalam bahasa Arab"><button class="btn s" onclick="mic('ans')">🎤</button><button class="btn s" onclick="kb()">⌨️</button><button class="btn" onclick="sub()">✔</button></div><div id="fb">${solved[i]?'<span class="ok">✅ Benar! Lanjut ke pos berikutnya.</span>':''}</div></div>`}
 return h+dlg()}
-function summit(){if(won)return `<h2>🏆 حَلَلْتَ اللُّغْز!</h2>`+END.map((e,i)=>`<div class="box${i?'':' m'}">${A(e[0],e[1],1)}</div>`).join('');
-return `<h2>مَنْ هُوَ الفاعِل؟</h2><div class="box">${A("اِخْتَرِ المُشْتَبَهَ بِهِ الَّذِي أَخَذَ هاتِفَ ماجِد.","Pilih tersangka yang mengambil HP Majid.",1)}</div><div class="chips">${SU.map((s,i)=>`<button onclick="acc(${i})">${s.n}</button>`).join('')}</div><div id="fb">${wrong}</div>`+dlg()}
-function acc(i){if(i==4){won=1}else{wrong=`<div class="box m no">${A("لَيْسَ هذا هُوَ الفاعِل. اِرْجِعْ إِلَى دَفْتَرِ المُحَقِّقِ وَحاوِلْ مَرَّةً أُخْرَى!","Bukan dia. Periksa buku detektif dan coba lagi!")}</div>`}render(1)}
+function summit(){if(won)return `<h2>🏆 Kasus terpecahkan!</h2>`+END.map((e,i)=>`<div class="box${i?'':' m'}">${A(e[0],e[1],1)}</div>`).join('');
+return `<h2>Siapa pelakunya?</h2><div class="box">${A("اِخْتَرِ المُشْتَبَهَ بِهِ الَّذِي أَخَذَ هاتِفَ ماجِد.","Pilih tersangka yang mengambil HP Majid.",1)}</div><div class="chips">${SU.map((s,i)=>`<button onclick="acc(${i})">${s.n}</button>`).join('')}</div><div id="fb">${wrong}</div>`+dlg()}
+function acc(i){if(i==4){won=1}else{wrong=`<div class="box m no">${A("لَيْسَ هذا هُوَ الفاعِل. اِرْجِعْ إِلَى دَفْتَرِ المُحَقِّقِ وَحاوِلْ مَرَّةً أُخْرَى!","Bukan dia. Periksa buku detektif dan coba lagi!")}</div>`}if(i!=4)hurt();if(!dead)render(1)}
 function rv(i,j){const c=POS[i-1].c[j];got[i+'_'+j]=1;beep(660);vib(40);notes.push(c);c.v.forEach(v=>vocab.set(strip(v[0]),v));render(1)}
 function check(v){const n=norm(v);if(!n)return 0;const a=POS[st-1].q[2].map(norm);return a.some(x=>n==x||sim(n,x)>=.85||(n.split(' ').length<=4&&(' '+n+' ').includes(' '+x+' ')))}
 function sub(){const v=$('#ans').value;if(check(v)){solved[st]=1;beep(880);vib([60,40,60]);render(1);return}
-const n=hint[st]=(hint[st]||0)+1,H2=POS[st-1].q[3];
-$('#fb').innerHTML=n<3?`<div class="no">💡 تَلْمِيح ${n}</div>`+A(H2[n-1][0],H2[n-1][1]):`<div class="no">${A("حاوِلْ مَرَّةً أُخْرَى! اِقْرَأِ الأَدِلَّةَ ثانِيَةً.","Coba lagi! Baca ulang petunjuknya.")}</div>`;applyH()}
+const n=hint[st]=(hint[st]||0)+1,H2=POS[st-1].q[3];hurt();tl=Math.max(5,tl-10);if(dead)return;
+$('#fb').innerHTML=n<3?`<div class="no">💡 Hint ${n} (−10 detik)</div>`+A(H2[n-1][0],H2[n-1][1]):`<div class="no">${A("حاوِلْ مَرَّةً أُخْرَى! اِقْرَأِ الأَدِلَّةَ ثانِيَةً.","Coba lagi! Baca ulang petunjuknya.")}</div>`;applyH()}
 function bar(){$('#steps').innerHTML=NAMES.map((n,i)=>`<span class="${i<st?'d':i==st?'c':''}">${n}</span>`).join('');$('#cnt').textContent=notes.length;
-const b=$('#nx');b.style.display=st==4?'none':'';b.textContent=st==0?'اِبْدَأِ الصُّعُود ◀':'المَحَطَّةُ التّالِيَة ◀';b.disabled=st>0&&!solved[st]}
-function save(){try{localStorage.setItem('lq1',JSON.stringify({st,got,solved,hint,notes,v:[...vocab],won}))}catch(e){}}
-function load(){try{const d=JSON.parse(localStorage.getItem('lq1'));if(d){st=d.st;got=d.got;solved=d.solved;hint=d.hint;notes=d.notes;vocab=new Map(d.v);won=d.won}}catch(e){}}
+const b=$('#nx');b.style.display=st==4?'none':'';b.textContent=st==0?'Mulai mendaki ▶':'Pos berikutnya ▶';b.disabled=dead||(st>0&&!solved[st]);const L=Math.max(lives,0);$('#lv').textContent='❤️'.repeat(L)+'🖤'.repeat(3-L);tmShow()}
+let lives=3,tl=180,easy=false,dead=0,msg='';
+function tmShow(){const e=$('#tm');if(e)e.textContent=easy||st==0?'':'⏱ '+Math.floor(tl/60)+':'+String(tl%60).padStart(2,'0')}
+function end(m){dead=1;msg=m;render()}
+function hurt(){lives--;beep(180);vib(250);bar();if(lives<=0)end('Nyawa habis!')}
+function over(){return `<div class="box m"><h2>💔 ${msg}</h2><p style="font:17px/1.6 Cairo,sans-serif">Ayo ulangi pos ini dengan 3 nyawa dan waktu penuh. Petunjuk yang sudah ditemukan tetap tersimpan.</p><button class="btn" onclick="retry()">Ulangi pos</button></div>`}
+function retry(){dead=0;lives=3;tl=st==4?150:180;render()}
+function save(){try{localStorage.setItem('lq1',JSON.stringify({st,got,solved,hint,notes,v:[...vocab],won,lives}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem('lq1'));if(d){st=d.st;got=d.got;solved=d.solved;hint=d.hint;notes=d.notes;vocab=new Map(d.v);won=d.won;lives=d.lives==null?3:d.lives}}catch(e){}}
 let ac;function beep(f){try{ac=ac||new AudioContext();const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;g.gain.value=.08;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.15)}catch(e){}}
 function vib(p){navigator.vibrate&&navigator.vibrate(p)}
 let stars=0;
@@ -142,10 +149,10 @@ function qz(){const e=$('#qz');if(!e)return;const V=[...vocab.values()];if(V.len
 const c=V[Math.random()*V.length|0],o=[c,...V.filter(x=>x!=c).sort(()=>Math.random()-.5).slice(0,2)].sort(()=>Math.random()-.5);
 e.innerHTML=`<p>⭐ ${stars}</p><p class="ar" data-o="${c[0]}" style="font-size:1.4em"></p><div class="chips">${o.map(x=>`<button data-k="${x==c?1:0}">${x[1]}</button>`).join('')}</div>`;applyH();
 e.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(b.dataset.k==1){stars++;beep(880);vib(40)}else beep(220);qz()})}
-function nx(){st++;sel=null;lastD='';render()}
-function reset(){st=0;got={};solved={};hint={};notes=[];vocab=new Map();sel=null;lastD='';won=0;wrong='';render()}
-function render(k){const y=scrollY;$('#main').innerHTML=scene(st)+(st==0?base():st<4?post(st):summit());applyH();bar();save();k?scrollTo(0,y):scrollTo(0,0)}
-function nbo(){const e=$('#nb');e.classList.toggle('on');$('#nbc').innerHTML=`<h2>📓 دَفْتَرُ المُحَقِّق</h2>`+(notes.length?notes.map(c=>`<div class="box"><p class="who"><span data-o="${c.k}"></span> – <span data-o="${c.w}"></span></p>${A(c.ar,c.id,1)}</div>`).join(''):'<p>لا تُوجَدُ أَدِلَّةٌ بَعْدُ.</p>')+`<h2>المُفْرَدات</h2>`+[...vocab.values()].map(v=>`<span class="voc"><span data-o="${v[0]}"></span><small>${v[1]}</small></span>`).join('')+'<h2>🎯 تَحَدِّي الكَلِمات</h2><div id="qz"></div>';applyH();qz()}
+function nx(){st++;sel=null;lastD='';lives=Math.min(3,lives+1);tl=st==4?150:180;render()}
+function reset(){lives=3;tl=180;dead=0;st=0;got={};solved={};hint={};notes=[];vocab=new Map();sel=null;lastD='';won=0;wrong='';render()}
+function render(k){const y=scrollY;$('#main').innerHTML=dead?over():scene(st)+(st==0?base():st<4?post(st):summit());applyH();bar();save();k?scrollTo(0,y):scrollTo(0,0)}
+function nbo(){const e=$('#nb');e.classList.toggle('on');$('#nbc').innerHTML=`<h2>📓 Buku detektif</h2>`+(notes.length?notes.map(c=>`<div class="box"><p class="who"><span data-o="${c.k}"></span> – <span data-o="${c.w}"></span></p>${A(c.ar,c.id,1)}</div>`).join(''):'<p>لا تُوجَدُ أَدِلَّةٌ بَعْدُ.</p>')+`<h2>Kosakata</h2>`+[...vocab.values()].map(v=>`<span class="voc"><span data-o="${v[0]}"></span><small>${v[1]}</small></span>`).join('')+'<h2>🎯 تَحَدِّي الكَلِمات</h2><div id="qz"></div>';applyH();qz()}
 function say(t){if(!window.speechSynthesis)return vm("المُتَصَفِّحُ لا يَدْعَمُ النُّطْق.","Browser tidak mendukung suara.");speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(strip(t));u.lang='ar-SA';u.rate=.85;speechSynthesis.speak(u)}
 document.addEventListener('click',e=>{const b=e.target.closest('.sp');if(b)say(b.dataset.t)});
 document.addEventListener('focusin',e=>{if(e.target.classList.contains('inp'))focus=e.target});
@@ -168,5 +175,5 @@ const KR=["ضصثقفغعهخحجد","شسيبلاتنمكط","ئءؤرىةوز�
 function kb(){const k=$('#kb');if(!k.innerHTML)k.innerHTML=KR.map(r=>'<div>'+[...r].map(c=>`<button data-c="${c}">${c}</button>`).join('')+'</div>').join('')+'<div><button data-c=" " style="max-width:140px">␣</button><button data-c="⌫">⌫</button></div>';k.classList.toggle('on')}
 $('#kb').addEventListener('mousedown',e=>e.preventDefault());
 $('#kb').addEventListener('click',e=>{const c=e.target.dataset&&e.target.dataset.c;if(c==null||!c&&c!==' ')return;const el=focus||$('#ans');if(!el)return;el.value=c=='⌫'?el.value.slice(0,-1):el.value+c;el.focus()});
-load();render();if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+load();tl=180;render();setInterval(()=>{if(easy||dead||st==0||won||(st<4&&solved[st])||$('#nb').classList.contains('on'))return;tl--;tmShow();if(tl<=0)end('Waktu habis!')},1000);if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script></body></html>
