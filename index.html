@@ -2,10 +2,10 @@
 <html lang="id" dir="ltr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>لغز القمة – محقق الجبل</title>
-<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#12291f"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#f4fbf5"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--g:#12291f;--g2:#1d4030;--g3:#2d5c46;--o:#f08a3c;--o2:#ffc58a;--ink:#eef4ee;--mut:#a9c0b2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+:root{--g:#f4fbf5;--g2:#ffffff;--g3:#bfe3c9;--o:#ff8a2b;--o2:#d9600a;--ink:#17352a;--mut:#4f6f5e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}html,body{margin:0}
 body{background:var(--g);color:var(--ink);font-family:'Noto Naskh Arabic','Cairo',serif;font-size:21px;line-height:1.9;padding-bottom:300px}
 button,input{font:inherit;color:inherit}
@@ -31,10 +31,10 @@ body.t .tr{display:block;font-size:17px;color:var(--ink)}
 .chips button{background:var(--g3);border:0;border-radius:20px;padding:2px 14px;font:700 16px Cairo,sans-serif;cursor:pointer}
 .chips button.on{background:var(--o);color:#1a1208}
 .row{display:flex;gap:6px;margin:8px 0}
-.inp{flex:1;min-width:0;background:#0b1a13;border:2px solid var(--g3);border-radius:10px;padding:6px 12px;font-size:22px}
+.inp{flex:1;min-width:0;background:#fff;border:2px solid var(--g3);border-radius:10px;padding:6px 12px;font-size:22px}
 .inp:focus,button:focus-visible{outline:3px solid var(--o2)}
-#fb{min-height:30px}.ok{color:#8fe3a6}.no{color:var(--o2)}
-.dock{position:fixed;inset:auto 0 0 0;background:#0b1a13;border-top:2px solid var(--g3);padding:6px 10px calc(8px + env(safe-area-inset-bottom,0px));z-index:6}
+#fb{min-height:30px}.ok{color:#1b8a43}.no{color:var(--o2)}
+.dock{position:fixed;inset:auto 0 0 0;background:#fff;border-top:3px solid #17352a;padding:6px 10px calc(8px + env(safe-area-inset-bottom,0px));z-index:6}
 .dock>*{max-width:760px;margin-inline:auto}
 #vs{font:14px/1.5 Cairo,sans-serif;display:none;margin-bottom:6px}#vs.on{display:block}
 .wave{display:none;gap:4px;height:26px;align-items:center}.wave.on{display:flex}
@@ -55,9 +55,27 @@ body.t .tr{display:block;font-size:17px;color:var(--ink)}
 .sun{animation:su 6s ease-out forwards}@keyframes su{from{transform:translateY(50px)}}
 .hs{cursor:pointer}.hs circle{animation:pl 1.4s infinite;transform-box:fill-box;transform-origin:center}.hs text{font-size:15px;pointer-events:none}@keyframes pl{50%{transform:scale(1.3);opacity:.5}}
 .ar{direction:rtl;text-align:right;flex:1}.ln{direction:ltr}.stat{font:700 16px Cairo,sans-serif;display:flex;gap:10px}
+html{background:#eaf6ee}body{background:transparent}
+#bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.sk{position:absolute;inset:0;opacity:0;transition:opacity 1.6s}.sk.on{opacity:1}
+.sk:nth-child(1){background:linear-gradient(#bfe6ff,#fff4d6)}.sk:nth-child(2){background:linear-gradient(#c8f0d2,#f1fbe9)}.sk:nth-child(3){background:linear-gradient(#dbe6ea,#f4f7f8)}.sk:nth-child(4){background:linear-gradient(#ffe3bd,#ffd0b0)}.sk:nth-child(5){background:linear-gradient(#ffe9a8,#bfe6ff)}
+.mt{position:absolute;bottom:0;left:-10%;width:130%;height:38%;background:#8cc9a0;opacity:.55;clip-path:polygon(0 100%,0 60%,12% 30%,25% 62%,38% 20%,52% 58%,66% 28%,80% 60%,92% 35%,100% 55%,100% 100%);animation:drift 40s ease-in-out infinite alternate}
+.m2{height:26%;background:#5fae7f;opacity:.5;animation-duration:28s;animation-direction:alternate-reverse}
+@keyframes drift{to{transform:translateX(-6%)}}
+.cl{position:absolute;height:26px;width:90px;background:#fff;border-radius:30px;opacity:.85;animation:cf 50s linear infinite}
+.c1{top:12%}.c2{top:26%;width:130px;animation-duration:70s;animation-delay:-20s}.c3{top:6%;width:70px;animation-duration:60s;animation-delay:-40s}
+@keyframes cf{from{transform:translateX(-200px)}to{transform:translateX(110vw)}}
+body.low #bg::after{content:'';position:absolute;inset:0;background:rgba(110,130,140,.4);animation:pu 1s infinite alternate}@keyframes pu{to{opacity:.3}}
+header{background:rgba(255,255,255,.88);backdrop-filter:blur(6px);border-bottom:3px solid #17352a}
+.box{border:2.5px solid #17352a;box-shadow:0 4px 0 #17352a}
+.btn{border:3px solid #17352a;box-shadow:0 4px 0 #17352a;border-radius:14px;transition:transform .08s,box-shadow .08s}
+.btn:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 #17352a}
+.chips button,.tools button{border:2px solid #17352a;box-shadow:0 3px 0 #17352a}
+.chips button:active,.tools button:active{transform:translateY(2px);box-shadow:0 1px 0 #17352a}
+svg.sc{border:3px solid #17352a}.inp{border-color:#17352a}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 @media(min-width:700px){body{font-size:22px}}
-</style></head><body dir="ltr" class="t">
+</style></head><body dir="ltr" class="t"><div id="bg" aria-hidden="true"><i class="sk"></i><i class="sk"></i><i class="sk"></i><i class="sk"></i><i class="sk"></i><div class="mt m1"></div><div class="mt m2"></div><i class="cl c1"></i><i class="cl c2"></i><i class="cl c3"></i></div>
 <header><h1>⛰️ لُغْزُ القِمَّة</h1>
 <div class="tools"><button id="bt" class="on" onclick="tg('t')">Terjemah</button><button id="bh" class="on" onclick="tg('h')">Harakat</button><button onclick="easy=!easy;this.classList.toggle('on');bar()">Santai</button><button onclick="nbo()">📓 <span id="cnt">0</span></button></div><div class="stat"><span id="lv"></span><span id="tm"></span></div>
 <div class="steps" id="steps"></div></header>
@@ -132,10 +150,10 @@ function check(v){const n=norm(v);if(!n)return 0;const a=POS[st-1].q[2].map(norm
 function sub(){const v=$('#ans').value;if(check(v)){solved[st]=1;beep(880);vib([60,40,60]);render(1);return}
 const n=hint[st]=(hint[st]||0)+1,H2=POS[st-1].q[3];hurt();tl=Math.max(5,tl-10);if(dead)return;
 $('#fb').innerHTML=n<3?`<div class="no">💡 Hint ${n} (−10 detik)</div>`+A(H2[n-1][0],H2[n-1][1]):`<div class="no">${A("حاوِلْ مَرَّةً أُخْرَى! اِقْرَأِ الأَدِلَّةَ ثانِيَةً.","Coba lagi! Baca ulang petunjuknya.")}</div>`;applyH()}
-function bar(){$('#steps').innerHTML=NAMES.map((n,i)=>`<span class="${i<st?'d':i==st?'c':''}">${n}</span>`).join('');$('#cnt').textContent=notes.length;
+function bar(){$('#steps').innerHTML=NAMES.map((n,i)=>`<span class="${i<st?'d':i==st?'c':''}">${n}</span>`).join('');$('#cnt').textContent=notes.length;document.querySelectorAll('.sk').forEach((e,i)=>e.classList.toggle('on',i==st));
 const b=$('#nx');b.style.display=st==4?'none':'';b.textContent=st==0?'Mulai mendaki ▶':'Pos berikutnya ▶';b.disabled=dead||(st>0&&!solved[st]);const L=Math.max(lives,0);$('#lv').textContent='❤️'.repeat(L)+'🖤'.repeat(3-L);tmShow()}
 let lives=3,tl=180,easy=false,dead=0,msg='';
-function tmShow(){const e=$('#tm');if(e)e.textContent=easy||st==0?'':'⏱ '+Math.floor(tl/60)+':'+String(tl%60).padStart(2,'0')}
+function tmShow(){document.body.classList.toggle('low',!easy&&st>0&&tl<=30&&!dead);const e=$('#tm');if(e)e.textContent=easy||st==0?'':'⏱ '+Math.floor(tl/60)+':'+String(tl%60).padStart(2,'0')}
 function end(m){dead=1;msg=m;render()}
 function hurt(){lives--;beep(180);vib(250);bar();if(lives<=0)end('Nyawa habis!')}
 function over(){return `<div class="box m"><h2>💔 ${msg}</h2><p style="font:17px/1.6 Cairo,sans-serif">Ayo ulangi pos ini dengan 3 nyawa dan waktu penuh. Petunjuk yang sudah ditemukan tetap tersimpan.</p><button class="btn" onclick="retry()">Ulangi pos</button></div>`}
