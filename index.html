@@ -44,6 +44,27 @@ input.t{flex:1;min-width:0;padding:10px 12px;border:1.5px solid var(--ln);border
 .hk{position:absolute;transform:translate(8%,-92%);font-size:34px;transition:left 2.2s ease-in-out,top 2.2s ease-in-out;pointer-events:none;z-index:2}.hk span{display:block;animation:bn .5s infinite alternate}
 @keyframes bn{to{transform:translateY(-6px)}}
 .cl{position:absolute;top:6%;left:-30%;width:26%;height:3%;border-radius:99px;background:rgba(255,255,255,.65);animation:cd 40s linear infinite}@keyframes cd{to{left:110%}}
+body{background:radial-gradient(circle at 100% 0,#2E9E5B33,transparent 45%),radial-gradient(circle at 0 65%,#E8832A2B,transparent 45%),var(--bg) fixed}
+.hd{background:linear-gradient(135deg,transparent,#0005),var(--ac);color:#fff;border-radius:16px;padding:12px 16px;margin-top:10px;display:flex;align-items:center;gap:12px;animation:up .5s both}
+.hd h1{margin:0;font-size:22px}.hd .tr{color:var(--ink)}
+.nm{width:46px;height:46px;border-radius:50%;background:#fff;color:var(--ac);display:grid;place-items:center;font-weight:700;font-size:24px;flex:none}
+.stg .cd{border-right:6px solid var(--ac);animation:up .5s both}.stg .cd.lk{border-style:dashed;border-right-style:solid}
+.stg .cd.q{background:var(--tint);border:2px solid var(--ac);box-shadow:0 5px 0 var(--ac)}
+.stg .b{background:var(--ac);color:#fff}.stg .b.g{background:transparent;color:var(--ac);border:1.5px solid var(--ac)}
+.stg .kb button{border-color:var(--ac)}.stg .kb button:active{background:var(--ac);color:#fff}
+.stg h2{color:var(--ac)}.stg input.t{border-color:var(--ac)}
+.fb{animation:up .4s both}.fb.hn{background:#FFE9A8;color:#5A4300}
+.sc{display:flex;gap:12px;align-items:center;border-right:6px solid var(--ac)}.av{width:52px;height:52px;border-radius:50%;background:var(--ac);display:grid;place-items:center;font-size:28px;flex:none}
+.stp{display:flex;gap:6px;margin:4px 0 8px}.stp i{flex:1;height:9px;border-radius:9px;background:var(--ln)}.stp i.d{background:var(--c)}.stp i.c{background:var(--c);animation:pl 1s infinite alternate}
+@keyframes pl{from{opacity:.45}}@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.ph{position:relative;overflow:hidden;border-radius:16px;border-bottom:5px solid var(--or);aspect-ratio:3/2;margin-top:6px}
+.ph .in{position:absolute;inset:0;transform-origin:60% 40%;animation:kb 18s ease-in-out infinite alternate}.ph img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes kb{to{transform:scale(1.12) translate(-2%,1%)}}
+.ph .ms{position:absolute;left:-40%;top:28%;width:60%;height:18%;border-radius:50%;background:radial-gradient(closest-side,#fffa,#fff0);animation:ms 24s linear infinite}@keyframes ms{to{left:110%}}
+.ph .ry{position:absolute;inset:0;background:linear-gradient(115deg,#fff0 30%,#fff5 45%,#fff0 60%);mix-blend-mode:screen;animation:ry 7s ease-in-out infinite alternate}@keyframes ry{from{opacity:.15}to{opacity:.9}}
+.ph .lt{position:absolute;width:12%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#ffd27add,#ffd27a00 70%);transform:translate(-50%,-50%);animation:lt .9s infinite alternate}@keyframes lt{to{opacity:.35;transform:translate(-50%,-50%) scale(.8)}}
+.ph .wt{position:absolute;right:0;bottom:0;width:50%;height:40%;background:repeating-linear-gradient(100deg,#fff0 0 18px,#fff4 24px,#fff0 32px);mix-blend-mode:screen;clip-path:polygon(25% 0,100% 20%,100% 100%,0 100%);animation:wt 2.4s linear infinite}@keyframes wt{to{background-position:64px 0}}
+.ph .pt{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;opacity:.8;animation:pt 8s linear infinite}@keyframes pt{to{transform:translateY(-130px);opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
@@ -77,6 +98,9 @@ const P=[
  {ar:'قَالَ خَالِدٌ: الْحَقِيبَةُ الْخَضْرَاءُ لِيُوسُفَ.',i:'Khalid: tas hijau itu milik Yusuf.',v:[['لِ','milik / untuk']]}],
  q:'أَيْنَ وَجَدَتْ هِنْدُ الْهَاتِفَ؟',qi:'Di mana Hind menemukan ponsel itu?',ok:['حقيبه خضراء','الحقيبه الخضراء'],h:['اللَّوْنُ أَخْضَرُ.','وَجَدَتْهُ فِي ... خَضْرَاءَ (حَقِيبَةٍ).']}];
 const END=[['كَانَ هَاتِفُ سَلْمَى فِي الْحَقِيبَةِ الْحَمْرَاءِ.','Ponsel Salma ada di tas merah.'],['أَرَادَ يُوسُفُ الْهَاتِفَ لِأَنَّ بَطَّارِيَّةَ هَاتِفِهِ فَارِغَةٌ.','Yusuf menginginkan ponsel itu karena baterai ponselnya kosong.'],['ذَهَبَ لَيْلًا بِحِذَائِهِ الْأَزْرَقِ وَأَخَذَ الْهَاتِفَ.','Malam hari ia pergi dengan sepatu birunya dan mengambil ponsel.'],['أَحْمَدُ كَانَ مَعَ هِنْدٍ، وَمَرْيَمُ كَانَتْ مَعَ خَالِدٍ.','Ahmad bersama Hind, Maryam bersama Khalid.'],['وَجَدَتْ هِنْدُ الْهَاتِفَ فِي حَقِيبَةِ يُوسُفَ الْخَضْرَاءِ.','Hind menemukan ponsel di tas hijau Yusuf.']];
+const PC=['#2E9E5B','#1F8FD6','#E8832A','#8B5CF6'],SC=['#E8832A','#1F8FD6','#E5508F','#8B5CF6','#2E9E5B'],EM=['📸','🧭','🩺','🎮','🌸'];
+const stp=()=>`<div class="stp">${[1,2,3,4,5].map(i=>`<i class="${i<S.s?'d':i==S.s?'c':''}" style="--c:${i<5?PC[i-1]:'#E5484D'}"></i>`).join('')}</div>`;
+const ph=(s,k)=>`<div class="ph"><div class="in"><img src="${s}" alt="">${k==0?'<i class="lt" style="left:28%;top:48%"></i><i class="lt" style="left:79%;top:55%;width:7%"></i>':'<i class="wt"></i>'}</div><div class="ms"></div><div class="ms" style="top:10%;animation-duration:34s;animation-delay:-12s"></div><div class="ry"></div>${[12,30,52,70,86].map((x,i)=>`<i class="pt" style="left:${x}%;top:${70+i*4}%;animation-delay:${-i*1.6}s"></i>`).join('')}</div>`;
 const K='ابتثجحخدذرزسشصضطظعغفقكلمنهوي'.split('').concat(['ء','أ','ؤ','ئ','ى','ة']);
 let S={v:'map',from:0,s:0,rev:{},hint:{},done:{},voc:[],tr:false,h:true,nb:false,talk:{},acc:null,msg:{}};
 const $=s=>document.querySelector(s),A=t=>S.h?t:t.replace(H,'');
@@ -90,7 +114,7 @@ const sv=i=>{const sky=['#F6C28B','#9CC7A6','#B9C6CC','#E9885A','#FFD27A'][i];le
 const sp=t=>{try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(H,''));u.lang='ar-SA';u.rate=.8;speechSynthesis.speak(u)}catch(e){}};
 const bar=()=>`<div class="bar">${S.s>0?'<button class="pill" data-a="map">🗺️ الخريطة</button>':''}<button class="pill ${S.tr?'on':''}" data-a="tr">ترجمة</button><button class="pill ${S.h?'on':''}" data-a="hk">الحركات</button><button class="pill" data-a="nb">📓 دفتر المحقق (${S.voc.length})</button></div>`;
 const tx=(a,i)=>`<span class="ar" lang="ar">${A(a)}</span> <button class="pill" data-a="say" data-v="${a}" aria-label="استمع">🔊</button>${S.tr&&i?`<div class="tr">${i}</div>`:''}`;
-function r(){let h=bar();
+function r(){let h=bar()+(S.s>0?stp():'');
  if(S.nb)h+=nbk();else if(S.s==0)h+=base();else if(S.v=='map')h+=mp();else if(S.s<5)h+=pos(S.s-1);else h+=sm();
  $('#app').innerHTML=h;window.scrollTo(0,0);if(S.v=='map'&&!S.nb&&S.s>0)anim()}
 const C={map:'peta-kasus1.jpg',pts:[[46.7,88],[64.9,66.1],[44.1,52.4],[72.3,35.2],[54.2,24.7],[64.3,9.8]],nm:['القاعدة','١','٢','٣','٤','القمة']};
@@ -100,18 +124,18 @@ function mp(){const o=C.pts.map((q,i)=>`<button class="pn ${i<S.s?'dn':i==S.s?'c
 function anim(){const h=$('#hk'),t=C.pts[S.s];if(h)setTimeout(()=>{h.style.left=t[0]+'%';h.style.top=t[1]+'%'},300)}
 
 function nbk(){return`<button class="b g" data-a="nb">رجوع</button><h1>دفتر المحقق</h1><h2>المفردات</h2>`+(S.voc.length?S.voc.map(v=>`<div class="cd"><b class="ar">${A(v[0])}</b>${S.tr?` <span class="mu">— ${v[1]}</span>`:' <span class="mu">(ترجمة ← أنشط)</span>'}</div>`).join(''):'<div class="cd mu">لا توجد مفردات بعد.</div>')+'<h2>الأقوال</h2>'+Object.keys(S.talk).map(k=>{const[a,b]=k.split('_');const u=SU[a];return`<div class="cd"><b>${A(u.n)}</b><div class="ar">${A(u.a[b])}</div>${S.tr?`<div class="tr">${u.ai[b]}</div>`:''}</div>`}).join('')}
-function base(){return sv(0)+`<h1>لغز الجبل</h1><p>${tx('سِتَّةُ أَصْدِقَاءَ صَعِدُوا الْجَبَلَ. فِي الْمَحَطَّةِ الثَّانِيَةِ اخْتَفَى هَاتِفُ سَلْمَى. السَّارِقُ وَاحِدٌ مِنَ الْخَمْسَةِ. أَنْتَ الْمُحَقِّقُ!','Enam sahabat mendaki gunung. Di Pos 2 ponsel Salma hilang. Pencurinya salah satu dari lima orang. Kamu detektifnya!')}</p><h2>الْمُشْتَبَهُ بِهِمْ</h2>`+SU.map(u=>`<div class="cd"><b style="font-size:22px">${A(u.n)}</b><div class="ar">${tx(u.d,u.i)}</div></div>`).join('')+`<div class="row"><button class="b" data-a="go">ابْدَأِ الصُّعُودَ ←</button></div>`}
-function pos(p){const d=P[p],cl=d.c.map((c,k)=>{const key=p+'_'+k;return S.rev[key]?`<div class="cd">${tx(c.ar,c.i)}</div>`:`<div class="cd lk"><button class="b g" data-a="rev" data-v="${key}">🔍 افْحَصْ دَلِيلًا</button></div>`}).join('');
+function base(){return ph('basecamp-kasus1.jpg',0)+`<div class="hd" style="--ac:#2E9E5B"><span class="nm">⛰️</span><h1>لغز الجبل</h1></div><p>${tx('سِتَّةُ أَصْدِقَاءَ صَعِدُوا الْجَبَلَ. فِي الْمَحَطَّةِ الثَّانِيَةِ اخْتَفَى هَاتِفُ سَلْمَى. السَّارِقُ وَاحِدٌ مِنَ الْخَمْسَةِ. أَنْتَ الْمُحَقِّقُ!','Enam sahabat mendaki gunung. Di Pos 2 ponsel Salma hilang. Pencurinya salah satu dari lima orang. Kamu detektifnya!')}</p><h2>الْمُشْتَبَهُ بِهِمْ</h2>`+SU.map((u,k)=>`<div class="cd sc" style="--ac:${SC[k]}"><span class="av">${EM[k]}</span><div><b style="font-size:22px">${A(u.n)}</b><div class="ar">${tx(u.d,u.i)}</div></div></div>`).join('')+`<div class="row"><button class="b" data-a="go">ابْدَأِ الصُّعُودَ ←</button></div>`}
+function pos(p){const d=P[p],cl=d.c.map((c,k)=>{const key=p+'_'+k;return S.rev[key]?`<div class="cd"><b>${c.ar.startsWith('قَال')?'🗣️':'🔎'}</b> ${tx(c.ar,c.i)}</div>`:`<div class="cd lk"><button class="b g" data-a="rev" data-v="${key}">🔍 افْحَصْ دَلِيلًا</button></div>`}).join('');
  const all=d.c.every((c,k)=>S.rev[p+'_'+k]),ok=S.done[p],hn=S.hint[p]||0;
- let q='';if(all){q=`<h2>سُؤَالُ الْمُحَقِّقِ</h2><div class="cd"><b>${tx(d.q,d.qi)}</b><div class="row"><input class="t" id="inp" lang="ar" dir="rtl" placeholder="اُكْتُبْ جَوَابَكَ" ${ok?'disabled':''}></div>
+ let q='';if(all){q=`<h2>❓ سُؤَالُ الْمُحَقِّقِ</h2><div class="cd q"><b>${tx(d.q,d.qi)}</b><div class="row"><input class="t" id="inp" lang="ar" dir="rtl" placeholder="اُكْتُبْ جَوَابَكَ" ${ok?'disabled':''}></div>
  ${ok?'':`<div class="kb">${K.map(k=>`<button data-a="k" data-v="${k}">${k}</button>`).join('')}<button data-a="k" data-v=" ">␣</button><button data-a="k" data-v="⌫">⌫</button></div>
  <div class="row"><button class="b" data-a="chk">إِرْسَال</button><button class="b g" data-a="mic" id="mic">🎤 تَحَدَّثْ</button><div class="wave" id="wv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div id="vn" class="mu"></div>`}
- ${S.msg[p]||''}${[...Array(hn)].map((_,k)=>`<div class="fb no">💡 ${tx(d.h[k])}</div>`).join('')}</div>`}
- const people=`<h2>حِوَار</h2><div class="row">`+SU.map((u,k)=>`<button class="pill" data-a="ask" data-v="${k}">${A(u.n)}</button>`).join('')+`</div><div id="dlg">${S.dl!=null?dlg(S.dl):''}</div>`;
- return sv(p+1)+`<h1>${A(d.t)}</h1>${S.tr?`<div class="tr">${d.ti}</div>`:''}${cl}${q}${people}<div class="row"><button class="b" data-a="next" ${ok&&all?'':'disabled'}>${p<3?'الْمَحَطَّةُ التَّالِيَةُ ←':'إِلَى الْقِمَّةِ ←'}</button></div>`}
+ ${S.msg[p]||''}${[...Array(hn)].map((_,k)=>`<div class="fb hn">💡 ${tx(d.h[k])}</div>`).join('')}</div>`}
+ const people=`<h2>💬 حِوَار</h2><div class="row">`+SU.map((u,k)=>`<button class="pill" style="border-color:${SC[k]};background:${SC[k]}33" data-a="ask" data-v="${k}">${A(u.n)}</button>`).join('')+`</div><div id="dlg">${S.dl!=null?dlg(S.dl):''}</div>`;
+ return`<div class="stg" style="--ac:${PC[p]}">`+(p==0?ph('pos1-kasus1.jpg',1):sv(p+1))+`<div class="hd"><span class="nm">${p+1}</span><div><h1>${A(d.t)}</h1>${S.tr?`<div class="tr">${d.ti}</div>`:''}</div></div>${cl}${q}${people}<div class="row"><button class="b" data-a="next" ${ok&&all?'':'disabled'}>${p<3?'الْمَحَطَّةُ التَّالِيَةُ ←':'إِلَى الْقِمَّةِ ←'}</button></div></div>`}
 function dlg(k){const u=SU[k],f=u.m?'كُنْتَ':'كُنْتِ',rv=u.m?'رَأَيْتَ':'رَأَيْتِ';return`<div class="cd"><b>${A(u.n)}</b><div class="row"><button class="pill" data-a="say2" data-v="${k}_0">${A('أَيْنَ '+f+'؟')}</button><button class="pill" data-a="say2" data-v="${k}_1">${A('مَاذَا '+rv+'؟')}</button></div>${[0,1].filter(j=>S.talk[k+'_'+j]).map(j=>`<div class="ar">${A(u.a[j])}</div>${S.tr?`<div class="tr">${u.ai[j]}</div>`:''}`).join('')}</div>`}
 function sm(){if(S.acc==='win')return sv(4)+`<h1>تَمَّ الْحَلُّ! 🎉</h1><div class="fb ok ar">${A('الْفَاعِلُ: يُوسُفُ')}</div><h2>الْقِصَّةُ كَامِلَةً</h2>`+END.map(e=>`<div class="cd">${tx(e[0],e[1])}</div>`).join('')+`<div class="row"><button class="b" data-a="again">الْعَبْ مِنْ جَدِيدٍ</button></div>`;
- return sv(4)+`<h1>الْقِمَّةُ</h1><p>${tx('مَنِ السَّارِقُ؟ اخْتَرْ بِعِنَايَةٍ.','Siapa pencurinya? Pilih dengan hati-hati.')}</p>`+SU.map((u,k)=>`<button class="pk" data-a="acc" data-v="${k}"><b>${A(u.n)}</b> <span class="mu">${u.i}</span></button>`).join('')+(S.acc!=null?`<div class="fb no">${tx('لَيْسَ هَذَا هُوَ السَّارِقُ. اقْرَأْ دَفْتَرَ الْمُحَقِّقِ وَحَاوِلْ مَرَّةً أُخْرَى.','Bukan dia pelakunya. Baca buku catatan dan coba lagi.')}</div>`:'')}
+ return sv(4)+`<div class="hd" style="--ac:#E5484D"><span class="nm">🚩</span><h1>الْقِمَّةُ</h1></div><p>${tx('مَنِ السَّارِقُ؟ اخْتَرْ بِعِنَايَةٍ.','Siapa pencurinya? Pilih dengan hati-hati.')}</p>`+SU.map((u,k)=>`<button class="pk" style="border-right:6px solid ${SC[k]}" data-a="acc" data-v="${k}"><b>${A(u.n)}</b> <span class="mu">${u.i}</span></button>`).join('')+(S.acc!=null?`<div class="fb no">${tx('لَيْسَ هَذَا هُوَ السَّارِقُ. اقْرَأْ دَفْتَرَ الْمُحَقِّقِ وَحَاوِلْ مَرَّةً أُخْرَى.','Bukan dia pelakunya. Baca buku catatan dan coba lagi.')}</div>`:'')}
 function chk(t){const p=S.s-1,d=P[p],n=nz(t);if(!n)return;if(d.ok.some(o=>n.includes(nz(o)))){S.done[p]=1;S.msg[p]='<div class="fb ok">✅ '+A('أَحْسَنْتَ! جَوَابٌ صَحِيحٌ.')+'</div>'}else{S.hint[p]=Math.min((S.hint[p]||0)+1,2);S.msg[p]='<div class="fb no">'+A('لَيْسَ صَحِيحًا. حَاوِلْ مَرَّةً أُخْرَى.')+'</div>'}r()}
 let rec=null,mr=null;
 function mic(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition,vn=$('#vn'),wv=$('#wv');
