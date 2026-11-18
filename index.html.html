@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e1621">
+<title>لُغْزُ الْجَبَلِ – Misteri di Gunung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* Detektif Bahasa Arab – tampilan */
+:root{
+  --bg:#0e1621;--card:#1a2b40;--line:#2b4262;
+  --paper:#f5f0e4;--paper2:#e7dfca;--ink:#1c1f24;
+  --amber:#f0b84f;--red:#e5533a;--green:#45a67a;
+  --mute:#9db0c4;--text:#eaf0f6;
+  --r:14px;--shadow:0 10px 26px #0007;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font:500 16px/1.65 'Bricolage Grotesque',system-ui,sans-serif;
+  background:radial-gradient(900px 420px at 50% -100px,#2c4668,transparent 70%),linear-gradient(#0e1621,#0a1019);
+  background-attachment:fixed;
+}
+main{max-width:720px;margin:0 auto;padding:max(20px,env(safe-area-inset-top)) 18px 80px}
+.ar{font-family:'Amiri',serif;direction:rtl;line-height:1.9}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+
+/* Kepala halaman */
+.brand{text-align:center;padding:18px 0 6px}
+.brand h1{margin:0;font-size:clamp(2.8rem,12vw,4.4rem);line-height:1.25;font-weight:700;color:var(--amber);text-shadow:0 0 30px #f0b84f40}
+.sub{margin:4px auto 14px;max-width:520px;color:var(--mute);font-size:.95rem}
+.switch{display:inline-flex;align-items:center;gap:8px;color:var(--mute);font-size:.88rem}
+.switch input{width:18px;height:18px;accent-color:var(--amber)}
+
+/* HUD */
+.hud{
+  position:sticky;top:max(8px,env(safe-area-inset-top));z-index:5;
+  display:flex;justify-content:space-between;align-items:center;gap:8px 14px;flex-wrap:wrap;
+  margin:16px 0 22px;padding:10px 16px;font-weight:700;font-size:.95rem;
+  background:#0b1320e6;backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);
+}
+.hud .h{font-size:1.15rem;letter-spacing:3px}
+.hud.hit{animation:hit .5s}
+@keyframes hit{0%,100%{background:#0b1320e6}30%{background:#7a1f12}}
+
+/* Judul bagian */
+h2{display:flex;align-items:center;gap:10px;margin:30px 0 12px;font-size:1.15rem;font-weight:800}
+h2::before{content:"";width:5px;height:1.2em;border-radius:3px;background:var(--amber)}
+.story{padding:16px 18px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--red);border-radius:var(--r);box-shadow:var(--shadow)}
+.hint{color:var(--mute);font-size:.9rem}
+
+/* Progres */
+.bar{height:10px;margin:6px 0 4px;background:#13202f;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),#ffd98a);border-radius:999px;transition:width .4s}
+
+/* Kartu petunjuk */
+.clues{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:10px}
+.clue{
+  position:relative;padding:14px;text-align:left;border:0;border-radius:var(--r);
+  background:var(--paper);color:var(--ink);box-shadow:0 4px 0 #0008,var(--shadow);
+  transition:transform .15s,box-shadow .15s;
+}
+.clue:hover:not(:disabled){transform:translateY(-3px)}
+.clue b{display:block;line-height:1.3}
+.clue small{color:#6a6556}
+.clue.done{background:var(--paper2)}
+.clue.done::after{content:"TERBUKTI";position:absolute;right:8px;top:10px;padding:0 5px;color:var(--green);border:2px solid var(--green);border-radius:3px;font-size:.6rem;font-weight:800;transform:rotate(8deg)}
+.clue.open{outline:3px solid var(--amber);outline-offset:2px}
+.clue:disabled{background:#26384f;color:#7f93aa;box-shadow:none;cursor:not-allowed}
+.clue:disabled small{color:#7f93aa}
+
+/* Panel petunjuk */
+.panel{counter-reset:o;margin-top:16px;padding:20px;color:var(--ink);background:var(--paper);border-top:5px solid var(--amber);border-radius:var(--r);box-shadow:var(--shadow)}
+.tbar{height:10px;margin:10px 0;background:#d8d0ba;border-radius:999px;overflow:hidden}
+.tbar i{display:block;height:100%;width:100%;background:var(--green);border-radius:999px}
+.tbar.low i{background:var(--red)}
+.say{margin:12px 0;padding:12px 18px;font-size:2rem;text-align:center;background:var(--paper2);border-radius:10px;border-right:5px solid var(--amber)}
+.say.h2{padding:12px 16px;font:500 .95rem/1.5 'Bricolage Grotesque',sans-serif;direction:ltr;color:#5c5748;border-right:0;border-left:5px solid #b9b19a}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.mini{padding:8px 16px;font-weight:700;background:transparent;border:2px solid var(--ink);border-radius:999px;transition:background .15s}
+.mini:hover:not(:disabled){background:#e7dfca}
+.mini:disabled{opacity:.4;cursor:not-allowed}
+.tr{color:#4a4638;font-style:italic}
+
+/* Pilihan jawaban */
+.opt{
+  display:flex;align-items:center;gap:12px;width:100%;min-height:54px;margin:8px 0;padding:10px 14px;
+  text-align:left;color:var(--ink);background:#fff;border:2px solid #d3caae;border-radius:12px;
+  transition:border-color .15s,transform .1s;
+}
+.opt::before{counter-increment:o;content:counter(o,upper-alpha);flex:none;display:grid;place-items:center;width:30px;height:30px;font-size:.85rem;font-weight:800;color:#6a6556;border:2px solid #d3caae;border-radius:50%}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:active:not(:disabled){transform:scale(.99)}
+.opt.ok{background:#d9efe2;border-color:var(--green)}
+.opt.no{background:#f6dad3;border-color:var(--red);text-decoration:line-through;color:#7a4a40}
+.ti{flex:1;min-width:0;padding:11px 14px;font:inherit;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:12px}
+.note{margin-top:12px;padding:12px 14px;background:#fff4d6;border-left:5px solid var(--amber);border-radius:8px}
+
+/* Tersangka */
+.sus{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:12px}
+.s{padding:14px 12px;text-align:center;background:var(--card);border:2px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);transition:border-color .15s,transform .15s}
+.s .em{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 4px;font-size:2rem;background:#0f1b2b;border-radius:50%}
+.s .ar{display:block;font-size:1.7rem}
+.s:not(:disabled):hover{border-color:var(--amber);transform:translateY(-3px)}
+.s:disabled{cursor:not-allowed}
+.s.clear{opacity:.55}.s.clear .ar{text-decoration:line-through}
+.s.warn{border-color:var(--red)}
+.tag{display:block;margin-top:2px;color:var(--mute);font-size:.8rem;line-height:1.4}
+
+/* Kartu hasil, tombol, pop up */
+.end{margin-top:18px;padding:22px;color:var(--ink);background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow)}
+.end h3{margin:0 0 8px;font-size:1.3rem}
+.go{margin-top:10px;padding:12px 24px;font-weight:800;color:#2a2008;background:var(--amber);border:0;border-radius:12px;box-shadow:0 4px 0 #b88a2c}
+.go:active{transform:translateY(3px);box-shadow:0 1px 0 #b88a2c}
+.modal{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:18px;background:#000d;animation:fade .3s}
+.box{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;max-width:520px;min-height:75vh;padding:28px 22px;text-align:center;color:var(--ink);background:var(--paper);border:4px solid var(--red);border-radius:20px;box-shadow:0 0 60px #e5533a66;animation:pop .35s}
+.box.win{border-color:var(--green);box-shadow:0 0 60px #45a67a66}
+.box h3{margin:4px 0;font-size:2.4rem;line-height:1.1;color:var(--red)}
+.box.win h3{color:var(--green)}
+.box .go{padding:14px 30px;font-size:1.1rem}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+
+/* Efek kejutan */
+.scare{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000;animation:flash .5s steps(1) 3}
+.scare span{font-size:70vmin;line-height:1;animation:zoom 1.4s ease-in forwards,jit .08s infinite}
+.scare img{width:100%;height:100%;object-fit:cover;animation:zoom 1.4s ease-in forwards,jit .08s infinite}
+@keyframes zoom{from{transform:scale(.2)}to{transform:scale(1.15)}}
+@keyframes jit{25%{translate:-10px 6px}75%{translate:10px -6px}}
+@keyframes flash{50%{background:#a00}}
+.shake{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+@media (max-width:420px){.hud{border-radius:18px}.say{font-size:1.7rem}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.mapw{position:relative;border-radius:16px;overflow:hidden;border-bottom:5px solid var(--or)}.mapw img{display:block;width:100%;height:auto}
+.pn{position:absolute;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;border:3px solid #fff;background:var(--pr);color:#fff;font-weight:700;font-size:16px;padding:0;line-height:1}
+.pn.lk{background:#555;opacity:.7}.pn.dn{background:#146B45}.pn.cu{background:var(--or);animation:pu 1.4s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(217,98,43,.8)}100%{box-shadow:0 0 0 20px rgba(217,98,43,0)}}
+.hk{position:absolute;transform:translate(-50%,-88%);font-size:34px;transition:left 2.2s ease-in-out,top 2.2s ease-in-out,margin-left 2.2s ease-in-out;pointer-events:none;z-index:2}.hk svg{display:block;width:64px;height:92px;overflow:visible;filter:drop-shadow(0 0 2px #fff) drop-shadow(0 3px 3px #0009)}.lg,.pl,.bd{transform-box:view-box}.lg{transform-origin:20px 33px}.pl{transform-origin:24px 18px}
+.hk.wk .bd{animation:bn .3s infinite alternate}.hk.wk .lg{animation:lg .6s infinite alternate ease-in-out}.hk.wk .lg.b{animation-direction:alternate-reverse}.hk.wk .pl{animation:pl2 .6s infinite alternate ease-in-out}
+@keyframes lg{from{transform:rotate(-28deg)}to{transform:rotate(28deg)}}@keyframes pl2{from{transform:rotate(18deg)}to{transform:rotate(-18deg)}}
+@keyframes bn{to{transform:translateY(-6px)}}
+.cl{position:absolute;top:6%;left:-30%;width:26%;height:3%;border-radius:99px;background:rgba(255,255,255,.65);animation:cd 40s linear infinite}@keyframes cd{to{left:110%}}
+.ph{position:relative;overflow:hidden;border-radius:16px;border-bottom:5px solid var(--or);aspect-ratio:3/2;margin-top:6px}
+.ph .in{position:absolute;inset:0;transform-origin:60% 40%;animation:kb 18s ease-in-out infinite alternate}.ph img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes kb{to{transform:scale(1.12) translate(-2%,1%)}}
+.ph .ms{position:absolute;left:-40%;top:28%;width:60%;height:18%;border-radius:50%;background:radial-gradient(closest-side,#fffa,#fff0);animation:ms 24s linear infinite}@keyframes ms{to{left:110%}}
+.ph .ry{position:absolute;inset:0;background:linear-gradient(115deg,#fff0 30%,#fff5 45%,#fff0 60%);mix-blend-mode:screen;animation:ry 7s ease-in-out infinite alternate}@keyframes ry{from{opacity:.15}to{opacity:.9}}
+.ph .lt{position:absolute;width:12%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#ffd27add,#ffd27a00 70%);transform:translate(-50%,-50%);animation:lt .9s infinite alternate}@keyframes lt{to{opacity:.35;transform:translate(-50%,-50%) scale(.8)}}
+.ph .wt{position:absolute;right:0;bottom:0;width:50%;height:40%;background:repeating-linear-gradient(100deg,#fff0 0 18px,#fff4 24px,#fff0 32px);mix-blend-mode:screen;clip-path:polygon(25% 0,100% 20%,100% 100%,0 100%);animation:wt 2.4s linear infinite}@keyframes wt{to{background-position:64px 0}}
+.ph .pt{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;opacity:.8;animation:pt 8s linear infinite}@keyframes pt{to{transform:translateY(-130px);opacity:0}}
+:root{--pr:#2E9E5B;--or:#E8832A}.pn{display:grid;place-items:center}#scr{position:fixed;inset:0;z-index:40;overflow:auto;background:linear-gradient(#0e1621,#0a1019)}#scr[hidden]{display:none}#scr main{padding-top:12px}.ph{margin-bottom:6px}
+body{background:#0a1a12!important}
+#bgx{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.bgi{position:absolute;inset:-5%;background-size:cover;background-position:center;animation:kb 26s ease-in-out infinite alternate}
+.bgo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,18,12,.2),rgba(4,18,12,.62))}
+.bgm i{position:absolute;left:-40%;top:18%;width:70%;height:16%;border-radius:50%;background:radial-gradient(closest-side,#ffffffaa,#fff0);animation:ms 30s linear infinite}
+.bgp i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.75;animation:pt 9s linear infinite}
+.hud{background:rgba(8,24,17,.74)!important}
+.story,.s{background:rgba(10,32,22,.64)!important;backdrop-filter:blur(6px)}
+.sub,.switch,.hint{color:#e7f4ea!important;text-shadow:0 1px 3px #000a}
+h2{text-shadow:0 2px 6px #000a}
+.clue{border-left:6px solid var(--amber)}
+#bgc span{position:absolute;opacity:.62;filter:drop-shadow(0 2px 3px #0006);animation:fl 7s ease-in-out infinite alternate}
+#bgc .dx{left:0;animation:dxm 60s linear infinite}#bgc .fa{top:-6%;animation:fa 14s linear infinite}
+@keyframes fl{to{transform:translateY(-16px) rotate(6deg)}}@keyframes dxm{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}@keyframes fa{to{transform:translate(40px,110vh) rotate(300deg)}}
+.bgo{background:linear-gradient(180deg,rgba(4,18,12,.38),rgba(4,18,12,.52))!important}
+h2{display:flex;width:fit-content;max-width:100%;padding:4px 16px 4px 12px;background:rgba(6,22,15,.62);border-radius:999px;backdrop-filter:blur(4px)}
+.hint{display:inline-block;padding:2px 10px;background:rgba(6,22,15,.5);border-radius:8px}
+.bgo{background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.22))!important}
+.rays{position:absolute;top:-35%;right:-35%;width:100vmax;height:100vmax;background:repeating-conic-gradient(from 0deg,rgba(255,255,255,.26) 0 7deg,transparent 7deg 18deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 62%);mask:radial-gradient(circle,#000 0,transparent 62%);animation:rot 90s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+#bgt span{position:absolute;bottom:-6px;transform-origin:50% 100%;animation:sw2 3.4s ease-in-out infinite alternate;filter:drop-shadow(0 -2px 3px #0004)}
+@keyframes sw2{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+#bgc .dx{animation:dxm 60s linear infinite,bob 3s ease-in-out infinite alternate}@keyframes bob{to{margin-top:-14px}}
+#bgc .wd{animation:wdr 12s ease-in-out infinite alternate}@keyframes wdr{33%{transform:translate(60px,-30px) rotate(8deg)}66%{transform:translate(-40px,20px) rotate(-6deg)}to{transform:translate(30px,40px)}}
+#bgc .tw{animation:tw 1.6s ease-in-out infinite alternate}@keyframes tw{from{opacity:.15;transform:scale(.7)}to{opacity:1;transform:scale(1.15)}}
+#bgc .pu{opacity:.9;animation:pu2 4s ease-in-out infinite alternate}@keyframes pu2{to{transform:scale(1.18)}}
+#bgc span{opacity:.85}
+.brand h1{color:#ffe45e!important;text-shadow:2px 2px 0 #0d4a2a,-2px 2px 0 #0d4a2a,2px -2px 0 #0d4a2a,-2px -2px 0 #0d4a2a,0 5px 14px #0009!important}
+h2{background:var(--amber)!important;color:#fff!important;text-shadow:0 1px 3px #0007;box-shadow:0 3px 0 #0003;backdrop-filter:none}
+h2::before{background:#fff!important}
+#scr h2{background:#2E9E5B!important}
+.sub{display:inline-block;background:rgba(255,255,255,.86);color:#1c3a2a!important;text-shadow:none!important;border-radius:14px;padding:8px 14px}
+.switch{background:rgba(255,255,255,.86);color:#1c3a2a!important;text-shadow:none!important;border-radius:999px;padding:4px 14px}
+.hint{background:rgba(255,255,255,.88)!important;color:#1c3a2a!important;text-shadow:none!important}
+.story,.s{background:rgba(255,255,255,.86)!important;color:#1c2a22!important;backdrop-filter:blur(4px)}
+.s .tag{color:#4b5a52!important}.s.clear{opacity:.75}
+#muBtn{background:#fff!important;color:#1c3a2a!important;border:2px solid #2E9E5B!important}
+</style>
+</head>
+<body>
+<div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div id="bgt"></div></div>
+<main>
+  <header class="brand">
+    <h1 class="ar" lang="ar">لُغْزُ الْجَبَلِ</h1>
+    <p class="sub">Misteri di Gunung. 4 pos dan puncak, 3 nyawa untuk seluruh permainan. Nyawa pulih 1 setiap selesai satu pos.</p>
+    <label class="switch"><input type="checkbox" id="scareTgl" checked onchange="setScare(this.checked)"> Efek kejutan aktif (suara keras dan getar)</label>
+    <br><button class="mini" id="muBtn" onclick="muTog()" style="margin-top:8px;color:var(--text);border-color:var(--mute)">🔇 Musik</button>
+  </header>
+
+  <div class="hud" id="hud"></div>
+
+  <div id="ban"></div>
+  <h2 id="title"></h2>
+  <div class="story" id="story"></div>
+
+  <h2>Petunjuk</h2>
+  <div class="bar"><i id="fill"></i></div>
+  <div class="hint" id="count"></div>
+  <div class="clues" id="clues"></div>
+  <div id="panel"></div>
+
+  <h2>Tersangka</h2>
+  <div class="sus" id="sus"></div>
+  <p class="hint" id="accHint"></p>
+  <div id="end"></div>
+</main>
+<div id="scr" hidden></div>
+<script>
+const ph=(s,k)=>`<div class="ph"><div class="in"><img src="${s}" alt="">${k==0?'<i class="lt" style="left:28%;top:48%"></i><i class="lt" style="left:79%;top:55%;width:7%"></i>':'<i class="wt"></i>'}</div><div class="ms"></div><div class="ms" style="top:10%;animation-duration:34s;animation-delay:-12s"></div><div class="ry"></div>${[12,30,52,70,86].map((x,i)=>`<i class="pt" style="left:${x}%;top:${70+i*4}%;animation-delay:${-i*1.6}s"></i>`).join('')}</div>`;
+let AC=null,mus=false,tm=null,bi=0,mset=0;
+function tone(f,t,d,v,ty){const o=AC.createOscillator(),g=AC.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.05)}
+function beat(){if(!mus)return;const t=AC.currentTime,i=bi++,root=[196,220,175,247,262,294][peak?5:lvi+1]||196,sc=[0,2,4,7,9],n=sc[(i*3+(i>>2))%5]+(i%8>=4?12:0);
+ tone(root*Math.pow(2,n/12),t,1.6,.08,'triangle');if(i%4==0){tone(root/2,t,3.2,.07);tone(root*Math.pow(2,4/12),t,3.2,.04)}tm=setTimeout(beat,600)}
+const sfx=ok=>{if(!AC||!mus)return;const t=AC.currentTime;ok?[523,659,784].forEach((f,k)=>tone(f,t+k*.1,.4,.12,'triangle')):tone(150,t,.35,.14,'sawtooth')};
+let au=null,auOK=null;function mtog(){try{if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();AC.resume();mus=!mus;clearTimeout(tm);if(!mus){au&&au.pause();return}if(!au){au=new Audio('musik.mp3');au.loop=true;au.volume=.6;au.onerror=()=>{auOK=false;if(mus){clearTimeout(tm);beat()}}}if(auOK===false)beat();else au.play().then(()=>{auOK=true}).catch(()=>{})}catch(e){mus=false}}
+document.addEventListener('visibilitychange',()=>{if(mus){if(AC)document.hidden?AC.suspend():AC.resume();if(au&&auOK)document.hidden?au.pause():au.play().catch(()=>{})}});
+
+const SUS=[{k:'ahmad',ar:'أَحْمَد',n:'Ahmad',em:'📸',d:'Fotografer sombong, teman kuliah Salma'},{k:'khalid',ar:'خَالِد',n:'Khalid',em:'🧭',d:'Pemandu pendakian yang tenang'},{k:'maryam',ar:'مَرْيَم',n:'Maryam',em:'🩺',d:'Dokter muda, tetangga Salma'},{k:'yusuf',ar:'يُوسُف',n:'Yusuf',em:'🎮',d:'Sepupu Salma, suka game, pelit'},{k:'hind',ar:'هِنْد',n:'Hind',em:'🌸',d:'Sahabat dekat Salma, pemalu'}];
+const INTRO='Enam sahabat mendaki gunung. Ponsel Salma hilang saat mereka berkemah, dan pelakunya salah satu dari lima temannya. Kumpulkan bukti di tiap pos, lalu tuduh pelaku di puncak.';
+const KEY={q:'Mengapa pelakunya Yusuf?',o:['Hanya karena sepatunya biru','Baterainya kosong, sepatunya cocok dengan jejak, ia berbohong soal tidur, dan ponsel ada di tasnya','Karena Ahmad menuduh Maryam'],a:1};
+const LV=[
+{title:'Pos 1: Hutan (500 mdpl)',T:30,plays:3,img:'pos1-kasus1.jpg',story:'Pos pertama di tengah hutan. Dengarkan kesaksian dan cari tahu siapa yang membutuhkan ponsel itu.',clues:[
+ {t:'Pesan Salma',type:'baca',ar:'وَضَعْتُ هَاتِفِي فِي الْحَقِيبَةِ الْحَمْرَاءِ قُرْبَ الْخَيْمَةِ.',tr:'Aku menaruh ponselku di tas merah dekat tenda.',q:'Di mana Salma menaruh ponselnya?',o:['Di tas merah dekat tenda','Di dalam sungai','Di tas hijau'],a:0,note:'Ponsel terakhir ada di tas merah dekat tenda.'},
+ {t:'Saksi: Ahmad',type:'dengar',ar:'رَأَيْتُ مَرْيَمَ قُرْبَ الْخَيْمَةِ لَيْلًا.',tr:'Aku melihat Maryam dekat tenda pada malam hari.',q:'Siapa yang dilihat Ahmad dekat tenda?',o:['Maryam','Khalid','Hind'],a:0,note:'Ahmad menuduh Maryam. Hati-hati, bisa jadi menyesatkan.',fx:[{k:'maryam',tag:'Terlihat dekat tenda',warn:1}]},
+ {t:'Pengakuan Yusuf',type:'dengar',req:[0],ar:'قَالَ يُوسُفُ: بَطَّارِيَّةُ هَاتِفِي فَارِغَةٌ.',tr:'Yusuf berkata: baterai ponselku kosong.',q:'Apa kata Yusuf tentang ponselnya?',o:['Baterainya kosong','Ponselnya hilang','Ponselnya rusak'],a:0,note:'Yusuf sedang butuh ponsel karena baterainya kosong.',fx:[{k:'yusuf',tag:'Baterai kosong',warn:1}]}]},
+{title:'Pos 2: Sungai (800 mdpl)',T:25,plays:3,story:'Di tepi sungai ada jejak di tanah. Sebagian petunjuk terkunci sampai kamu membuktikan petunjuk sebelumnya.',clues:[
+ {t:'Jejak di tanah',type:'baca',ar:'وَجَدْنَا أَثَرَ حِذَاءٍ أَزْرَقَ قُرْبَ خَيْمَةِ سَلْمَى.',tr:'Kami menemukan jejak sepatu biru dekat tenda Salma.',q:'Apa warna sepatu pada jejak itu?',o:['Biru','Hitam','Merah'],a:0,note:'Pelaku memakai sepatu biru.'},
+ {t:'Saksi: Khalid',type:'dengar',req:[0],ar:'حِذَاءُ يُوسُفَ أَزْرَقُ، وَحِذَائِي أَسْوَدُ.',tr:'Sepatu Yusuf biru, sepatuku hitam.',q:'Apa warna sepatu Yusuf?',o:['Hitam','Biru','Hijau'],a:1,note:'Sepatu Yusuf biru, cocok dengan jejak.',fx:[{k:'yusuf',tag:'Sepatu biru',warn:1},{k:'khalid',tag:'Sepatu hitam',clear:1}]},
+ {t:'Catatan Hind',type:'baca',ar:'كُنْتُ مَعَ أَحْمَدَ نُصَوِّرُ الضَّبَابَ قُرْبَ النَّهْرِ.',tr:'Aku bersama Ahmad memotret kabut dekat sungai.',q:'Hind bersama siapa dan sedang apa?',o:['Bersama Ahmad memotret kabut','Bersama Maryam memasak','Sendirian tidur'],a:0,note:'Hind dan Ahmad saling menjadi alibi.',fx:[{k:'hind',tag:'Alibi: bersama Ahmad',clear:1},{k:'ahmad',tag:'Alibi: memotret',clear:1}]}]},
+{title:'Pos 3: Jalur (1.100 mdpl)',T:20,plays:2,story:'Waktu makin sempit dan kesaksian hanya bisa diputar 2 kali. Uji alibi Maryam.',clues:[
+ {t:'Pengakuan Maryam',type:'dengar',ar:'قَالَتْ مَرْيَمُ: كُنْتُ أُسَاعِدُ خَالِدًا فِي الْمَطْبَخِ.',tr:'Maryam berkata: aku membantu Khalid di dapur.',q:'Maryam membantu siapa?',o:['Khalid','Yusuf','Hind'],a:0,note:'Maryam mengaku di dapur bersama Khalid. Klaim ini perlu diuji.',fx:[{k:'maryam',tag:'Mengaku di dapur'}]},
+ {t:'Kesaksian Khalid',type:'baca',req:[0],ar:'نَعَمْ، مَرْيَمُ كَانَتْ مَعِي طُولَ اللَّيْلِ.',tr:'Ya, Maryam bersamaku sepanjang malam.',q:'Berapa lama Maryam bersama Khalid?',o:['Sepanjang malam','Hanya sebentar','Tidak sama sekali'],a:0,note:'Alibi Maryam sah. Tuduhan Ahmad tadi menyesatkan.',fx:[{k:'maryam',tag:'Alibi: bersama Khalid',clear:1},{k:'khalid',tag:'Alibi: di dapur',clear:1}]},
+ {t:'Catatan pemandu',type:'baca',ar:'خَرَجَ يُوسُفُ مِنْ خَيْمَتِهِ بَعْدَ الْعِشَاءِ وَرَجَعَ بَعْدَ سَاعَةٍ.',tr:'Yusuf keluar dari tendanya setelah isya dan kembali sejam kemudian.',q:'Kapan Yusuf keluar dari tendanya?',o:['Setelah isya','Sebelum magrib','Saat subuh'],a:0,note:'Yusuf keluar tenda pada waktu kejadian.',fx:[{k:'yusuf',tag:'Keluar tenda malam hari',warn:1}]}]},
+{title:'Pos 4: Batu Karang (1.400 mdpl)',T:35,plays:3,story:'Pos terakhir sebelum puncak. Kali ini tidak ada pilihan jawaban: kamu harus MENULIS atau MENGUCAPKAN jawabanmu dalam bahasa Arab.',clues:[
+ {t:'Temuan Hind',type:'baca',mode:'ketik',ar:'وَجَدَتْ هِنْدُ الْهَاتِفَ فِي حَقِيبَةٍ خَضْرَاءَ.',tr:'Hind menemukan ponsel itu di tas hijau.',q:'Tulis dalam bahasa Arab: ponsel ditemukan di tas apa?',ans:['حَقِيبَةٍ خَضْرَاءَ','حَقِيبَة خَضْرَاء'],note:'Ponsel ditemukan di sebuah tas hijau.'},
+ {t:'Saksi: Khalid',type:'dengar',mode:'suara',ar:'قَالَ خَالِدٌ: الْحَقِيبَةُ الْخَضْرَاءُ لِيُوسُفَ.',tr:'Khalid berkata: tas hijau itu milik Yusuf.',q:'Ucapkan dalam bahasa Arab: tas hijau itu milik siapa?',ans:['لِيُوسُفَ','يُوسُفَ'],note:'Tas hijau itu milik Yusuf.',fx:[{k:'yusuf',tag:'Ponsel ada di tasnya',warn:1}]},
+ {t:'Tenda Yusuf',type:'baca',mode:'ketik',req:[0],ar:'قَالَ يُوسُفُ إِنَّهُ نَامَ، لَكِنَّ خَيْمَتَهُ كَانَتْ فَارِغَةً.',tr:'Yusuf mengaku tidur, tetapi tendanya kosong.',q:'Tulis dalam bahasa Arab: bagaimana keadaan tenda Yusuf?',ans:['فَارِغَةً','كَانَتْ فَارِغَةً'],note:'Yusuf berbohong soal tidur.',fx:[{k:'yusuf',tag:'Bohong soal tidur',warn:1}]}]}
+];
+LV.forEach(l=>{l.sus=SUS;l.culprit='yusuf';l.key=KEY});
+const narm=s=>s.replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[^\u0621-\u064A0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').map(w=>w.length>3?w.replace(/^ال/,''):w).join(' ');
+let lvi,lives,score,streak,solved,open,tleft,timer,showTxt,showTr,over,failed,left,plays,keyMode,keyFail,T;
+let hist=[],peak=false;
+const $=id=>document.getElementById(id);
+const L=()=>LV[lvi];
+
+let scareOn=true;try{scareOn=localStorage.getItem('scare')!=='off'}catch(e){}
+function setScare(v){scareOn=v;try{localStorage.setItem('scare',v?'on':'off')}catch(e){}}
+function boom(){try{
+  const A=new(window.AudioContext||window.webkitAudioContext)(),t=A.currentTime,g=A.createGain();
+  g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+1.2);g.connect(A.destination);
+  const o=A.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(900,t);o.frequency.exponentialRampToValueAtTime(70,t+1.1);o.connect(g);o.start(t);o.stop(t+1.2);
+  const b=A.createBuffer(1,A.sampleRate*.6,A.sampleRate),d=b.getChannelData(0);
+  for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+  const n=A.createBufferSource();n.buffer=b;n.connect(g);n.start(t)}catch(e){}}
+function scare(cb){
+  if(!scareOn||matchMedia('(prefers-reduced-motion:reduce)').matches){cb&&cb();return}
+  const d=document.createElement('div');d.className='scare';d.setAttribute('aria-hidden','true');
+  d.innerHTML=scareImg?'<img src="scare.jpg" alt="">':'<span>'+['💀','👻','🤡','👹'][Math.random()*4|0]+'</span>';document.body.appendChild(d);
+  if(scareSnd){try{scareSnd.currentTime=0;scareSnd.volume=1;scareSnd.play().catch(boom)}catch(e){boom()}}else boom();
+  if(navigator.vibrate)navigator.vibrate([200,80,200]);
+  setTimeout(()=>{d.remove();cb&&cb()},1400)}
+let scareSnd=null;{const a=new Audio();a.preload='auto';a.oncanplaythrough=()=>{scareSnd=a};a.src='scare.mp3'}
+let scareImg=false;{const im=new Image();im.onload=()=>{scareImg=true};im.src='scare.jpg'}
+$('scareTgl').checked=scareOn;
+function newGame(){lives=3;score=0;lvi=0;hist=[];peak=false;intro()}
+function load(){
+  const l=L();T=l.T;streak=0;solved=new Set();open=null;showTxt=false;showTr=false;over=false;failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();
+  clearInterval(timer);$('panel').innerHTML='';$('end').innerHTML='';
+  $('title').textContent=l.title;$('story').textContent=l.story;document.documentElement.style.setProperty('--amber',PCOL[lvi]);$('ban').innerHTML=l.img?ph(l.img,1):'';setBg(lvi);
+  render();window.scrollTo(0,0)}
+function speak(t){
+  if(!('speechSynthesis' in window)){alert('Browser ini tidak mendukung suara. Coba Chrome atau Safari.');return}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.8;speechSynthesis.speak(u)}
+function play(){
+  const l=L(),c=l.clues[open];
+  if(c.type==='dengar'&&!solved.has(open)){if((plays[open]||0)>=l.plays)return;plays[open]=(plays[open]||0)+1}
+  speak(c.ar);drawPanel()}
+function locked(i){return (L().clues[i].req||[]).some(r=>!solved.has(r))}
+function render(){
+  const l=L(),n=solved.size,tot=l.clues.length;
+  $('hud').innerHTML=`<span class="h" aria-label="${lives} nyawa">${'❤️'.repeat(lives)}${'🖤'.repeat(3-lives)}</span><span>${peak?'Puncak':'Pos '+(lvi+1)+'/'+LV.length}</span><span>Skor ${score}</span><span>Streak ${streak}🔥</span>`;
+  $('fill').style.width=(n/tot*100)+'%';
+  $('count').textContent=n+' dari '+tot+' petunjuk terbukti';
+  $('clues').innerHTML=l.clues.map((c,i)=>{
+    const lk=locked(i);
+    return `<button class="clue ${solved.has(i)?'done':''} ${open===i?'open':''}" ${over||lk?'disabled':''} onclick="openClue(${i})"><b>${lk?'🔒 Terkunci':c.t}</b><small>${lk?'Buktikan petunjuk lain dulu':c.type==='baca'?'📄 Baca teks':'🎧 Dengarkan'}</small></button>`}).join('');
+  const fx=[...hist];[...solved].sort((a,b)=>a-b).forEach(i=>(l.clues[i].fx||[]).forEach(f=>fx.push(f)));
+  const all=peak&&n===tot&&!over&&!keyMode;
+  $('sus').innerHTML=l.sus.map(s=>{
+    const m=fx.filter(f=>f.k===s.k),c=m.some(f=>f.clear),w=!c&&m.some(f=>f.warn);
+    return `<button class="s ${c?'clear':''} ${w?'warn':''}" ${all?'':'disabled'} onclick="accuse('${s.k}')"><span class="em">${s.em}</span><span class="ar" lang="ar">${s.ar}</span>${s.n}${m.map(f=>`<span class="tag">${f.tag}</span>`).join('')}</button>`}).join('');
+  $('accHint').textContent=over?'':keyMode?'':all?'Semua bukti terkumpul. Salah tuduh mengurangi nyawa.':'Buktikan semua petunjuk di pos ini, lalu naik ke puncak untuk menuduh.'}
+function openClue(i){
+  if(over||open===i||locked(i))return;
+  if(open!==null&&!solved.has(open))left[open]=tleft;
+  open=i;showTxt=false;showTr=false;vmsg=null;typed='';vfb=false;clearInterval(timer);
+  tleft=left[i]!==undefined?left[i]:T;
+  if(!solved.has(i))timer=setInterval(tick,100);
+  drawPanel()}
+function tick(){
+  tleft-=.1;left[open]=tleft;const b=$('tb');
+  if(b){b.firstElementChild.style.width=Math.max(0,tleft/T*100)+'%';b.classList.toggle('low',tleft<T/3)}
+  if(tleft<=0){tleft=T;streak=0;loseLife('Waktu habis!')}}
+function loseLife(msg){
+  lives--;sfx(0);const h=$('hud');render();h.classList.remove('hit');void h.offsetWidth;h.classList.add('hit');
+  if(lives<=0){gameOver();return}
+  if(Math.random()<.15)scare();
+  if(open!==null&&!solved.has(open))drawPanel(msg)}
+function drawPanel(msg){
+  render();
+  if(open===null){$('panel').innerHTML='';return}
+  const l=L(),c=l.clues[open],ok=solved.has(open),mode=c.mode||'pilih',hide=c.type==='dengar'&&!ok&&!showTxt;
+  const rem=l.plays-(plays[open]||0),lim=c.type==='dengar'&&!ok;
+  let ans='';
+  if(mode==='pilih')ans=c.o.map((o,j)=>{const f=failed.has(open+'-'+j);return `<button class="opt ${ok&&j===c.a?'ok':''} ${f?'no':''}" ${ok||f?'disabled':''} onclick="answer(${j})">${o}</button>`}).join('');
+  else if(!ok&&mode==='ketik')ans=`<p class="hint" style="color:#555">Jawab dengan <b>menulis huruf Arab</b>. Harakat tidak wajib.</p><div class="row"><input class="ti" id="ti" type="text" dir="rtl" lang="ar" autocomplete="off" style="font-family:'Amiri',serif;font-size:1.4rem" placeholder="اكتب إجابتك هنا" value="${typed.replace(/"/g,'&quot;')}" oninput="typed=this.value" onkeydown="if(event.key==='Enter')submitType()" aria-label="Ketik jawaban dalam bahasa Arab"><button class="mini" onclick="submitType()">Kirim</button></div>`;
+  else if(!ok)ans=`<p class="hint" style="color:#555">Jawab dengan <b>mengucapkan bahasa Arab</b>. Tekan tombol lalu bicara dengan jelas.</p><button class="mini" style="font-size:1.1rem;padding:10px 20px" onclick="listenVoice()">🎤 Ucapkan jawabanmu</button>${vmsg?`<p class="note"><b>${vmsg.t}</b></p>`:''}${vfb?`<p class="hint" style="color:#555">Mikrofon tidak bisa dipakai? Kamu boleh menjawab dengan menulis huruf Arab (skor -50).</p>`+inputBox():''}`;
+  $('panel').innerHTML=`<div class="panel"><b>${c.t}</b>${mode!=='pilih'?` <span class="hint" style="color:#555">· Mode ${mode==='ketik'?'tulis Arab':'ucap Arab'}</span>`:''}
+  ${ok?'':'<div class="tbar" id="tb"><i></i></div>'}
+  ${hide?`<div class="say h2">Teks disembunyikan. Tekan Dengarkan dan simak baik-baik.</div>`:`<div class="say ar" lang="ar">${c.ar}</div>`}
+  <div class="row"><button class="mini" ${lim&&rem<=0?'disabled':''} onclick="play()">🔊 Dengarkan${lim?' ('+rem+' tersisa)':''}</button>
+  ${hide?`<button class="mini" onclick="showTxt=true;score=Math.max(0,score-50);drawPanel()">Buka teks (-50)</button>`:''}
+  ${!ok&&!showTr?`<button class="mini" onclick="showTr=true;score=Math.max(0,score-30);drawPanel()">Terjemahan (-30)</button>`:''}</div>
+  ${(showTr||ok)?`<p class="tr">${c.tr}</p>`:''}
+  ${msg?`<p class="note" style="border-color:var(--red);background:#fde3dd"><b>${msg}</b> Nyawa berkurang.</p>`:''}
+  <p><b>${c.q}</b></p>
+  ${ans}
+  ${ok?`<div class="note"><b>Catatan detektif:</b> ${c.note}${mode!=='pilih'?`<br><b>Jawaban Arab:</b> <span class="ar" lang="ar">${c.ans[0]}</span>`:''}</div>`:''}</div>`}
+let vmsg=null,rec=null,typed='',vfb=false;
+function inputBox(){return `<div class="row"><input class="ti" id="ti" type="text" dir="rtl" lang="ar" autocomplete="off" style="font-family:'Amiri',serif;font-size:1.4rem" placeholder="اكتب إجابتك هنا" value="${typed.replace(/"/g,'&quot;')}" oninput="typed=this.value" onkeydown="if(event.key==='Enter')submitType()" aria-label="Ketik jawaban dalam bahasa Arab"><button class="mini" onclick="submitType()">Kirim</button></div>`}
+function okAr(alts,c){
+  return alts.some(a=>{const h=narm(a).split(' ');
+    return c.ans.some(x=>{const t=narm(x).split(' ').filter(Boolean);return t.length&&t.filter(w=>h.includes(w)).length>=Math.ceil(t.length*.8)})})}
+function judge(alts,lbl){
+  vmsg=null;const c=L().clues[open];
+  if(okAr(alts,c))solveClue();
+  else{streak=0;loseLife('Jawaban belum tepat. '+lbl+': «'+alts[0]+'».')}}
+function submitType(){
+  const v=(typed||'').trim();
+  if(!v){drawPanel('Tulis jawabanmu dulu.');return}
+  typed='';if((L().clues[open].mode)==='suara')score=Math.max(0,score-50);judge([v],'Kamu menulis')}
+function listenVoice(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){vfb=true;vmsg={t:'Browser ini tidak mendukung rekam suara. Ini sering terjadi di browser dalam aplikasi (WhatsApp, Instagram, dll). Buka tautan web ini lewat Chrome.'};drawPanel();return}
+  try{speechSynthesis.cancel()}catch(e){}
+  try{rec&&rec.abort()}catch(e){}
+  rec=new SR();rec.lang='ar-SA';rec.interimResults=false;rec.maxAlternatives=5;rec.continuous=false;
+  let got=false;
+  vmsg={t:'🎤 Meminta izin mikrofon... tekan Izinkan kalau muncul pertanyaan'};drawPanel();
+  rec.onstart=()=>{vmsg={t:'🎤 Merekam sekarang... ucapkan jawabanmu dalam bahasa Arab'};drawPanel()};
+  rec.onresult=e=>{got=true;judge([...e.results[0]].map(x=>x.transcript),'Terdengar')};
+  rec.onerror=e=>{
+    got=true;const m={
+      'not-allowed':'Izin mikrofon ditolak. Tap ikon gembok di kolom alamat, pilih Izin, aktifkan Mikrofon, lalu muat ulang halaman.',
+      'service-not-allowed':'Layanan suara diblokir di browser ini. Coba buka lewat Chrome.',
+      'no-speech':'Tidak ada suara terdengar. Coba lagi dan bicara lebih dekat ke mikrofon.',
+      'audio-capture':'Mikrofon tidak ditemukan atau sedang dipakai aplikasi lain.',
+      'network':'Pengenalan suara butuh internet. Cek koneksimu lalu coba lagi.',
+      'language-not-supported':'Bahasa Arab belum didukung di perangkat ini.'};
+    if(['not-allowed','service-not-allowed','audio-capture','language-not-supported'].includes(e.error))vfb=true;
+    if(e.error==='aborted')return;
+    vmsg={t:m[e.error]||('Terjadi masalah saat merekam: '+e.error)};drawPanel()};
+  rec.onend=()=>{if(!got){vmsg={t:'Rekaman berhenti sebelum ada suara. Tekan tombol dan langsung bicara.'};drawPanel()}};
+  try{rec.start()}catch(err){vfb=true;vmsg={t:'Gagal memulai rekaman: '+err.message};drawPanel()}}
+function solveClue(){
+  clearInterval(timer);
+  score+=Math.round((100+tleft*4)*(1+Math.min(streak,3)*.25))+lvi*30;
+  streak++;solved.add(open);sfx(1);drawPanel();if(solved.size===L().clues.length)setTimeout(posDone,700)}
+function answer(j){
+  const c=L().clues[open];
+  if(j===c.a)solveClue();
+  else{failed.add(open+'-'+j);streak=0;loseLife('Jawaban salah!')}}
+function modal(cls,html){$('end').innerHTML=`<div class="modal" role="alertdialog" aria-modal="true"><div class="box ${cls}">${html}</div></div>`;const b=$('mbtn');if(b)b.focus()}
+function gameOver(){
+  clearInterval(timer);over=true;render();$('panel').innerHTML='';
+  scare(()=>modal('',`<div style="font-size:4rem">💔</div><h3>Anda Kalah!</h3>
+  <p class="ar" lang="ar" style="font-size:2rem;margin:0;color:var(--red)">خَسِرْتَ الْقَضِيَّةَ</p>
+  <p>Nyawamu habis di ${peak?'Puncak':'Pos '+(lvi+1)} dan pelaku berhasil lolos.</p><p><b>Skor akhir: ${score}</b></p>
+  <button class="go" id="mbtn" onclick="newGame()">Mulai dari Basecamp</button>`))}
+function accuse(k){
+  const l=L();
+  if(k===l.culprit){keyMode=true;render();keyCard()}
+  else{const s=l.sus.find(x=>x.k===k);streak=0;loseLife('Salah tuduh!');
+    if(!over)$('end').innerHTML=`<div class="end"><h3>${s.n} bukan pelakunya.</h3><p>Cek ulang siapa yang punya alibi dan siapa yang berbohong.</p></div>`}}
+function keyCard(){
+  const q=L().key;
+  $('end').innerHTML=`<div class="end"><h3>Tuduhanmu diterima hakim. Apa alasanmu?</h3><p><b>${q.q}</b></p>
+  ${q.o.map((o,j)=>{const f=keyFail.has(j);return `<button class="opt ${f?'no':''}" ${f?'disabled':''} onclick="keyAns(${j})">${o}</button>`}).join('')}</div>`;
+  $('end').scrollIntoView({behavior:'smooth',block:'center'})}
+function keyAns(j){
+  if(j===L().key.a){levelClear();return}
+  keyFail.add(j);streak=0;loseLife('Alasan salah!');if(!over)keyCard()}
+function levelClear(){const bonus=lives*200;score+=bonus;render();const rank=lives===3?'Detektif Legendaris 🏆':lives===2?'Detektif Senior 🥈':'Detektif Muda 🥉';
+  modal('win',`<div style="font-size:4rem">🏆</div><h3>Kasus terpecahkan!</h3><p class="ar" lang="ar" style="font-size:1.8rem;margin:0">مُحَقِّقٌ عَظِيمٌ!</p><p><b>Peringkat: ${rank}</b><br>Skor akhir: ${score}</p><button class="go" id="mbtn" onclick="newGame()">Main lagi</button>`)}
+
+const sc=(a,b,h1,h2,h3,x)=>'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+a+'"/><stop offset=".62" stop-color="'+b+'"/></linearGradient></defs><rect width="400" height="800" fill="url(#g)"/>'+x+'<polygon points="0,520 90,400 170,480 270,360 400,500 400,800 0,800" fill="'+h1+'"/><polygon points="0,620 120,520 220,600 330,500 400,580 400,800 0,800" fill="'+h2+'"/>'+[...Array(14)].map((_,i)=>{const x=i*30+10,y=640+(i%3)*40;return'<polygon points="'+x+','+y+' '+(x+16)+','+(y+50)+' '+(x-16)+','+(y+50)+'" fill="'+h3+'"/>'}).join('')+'</svg>');
+const BGP=[sc('#4cb4ff','#c6f1d6','#3f9a62','#2a7a52','#17523a','<circle cx="310" cy="120" r="38" fill="#fff6c0"/>'),
+ sc('#5cc8ff','#c4f2e6','#4f9d7a','#2f7d63','#1e5c49','<circle cx="300" cy="150" r="40" fill="#fffbe0"/><path d="M60 800C120 700 110 640 190 570" stroke="#5fc3ff" stroke-width="46" fill="none" opacity=".85"/>'),
+ sc('#f08a4b','#ffc98a','#b2704a','#7a4a3a','#4a2f2a','<circle cx="300" cy="230" r="62" fill="#ffd27a"/>'),
+ sc('#7a6af0','#ffb98a','#5a4a7a','#33294f','#1c1535','<circle cx="200" cy="330" r="52" fill="#ffd9a0"/>'),
+ sc('#e8707a','#ffd48a','#6b7fa8','#4d5f8a','#2b3a63','<circle cx="200" cy="300" r="92" fill="#fff3b0"/>')];
+const bgs=f=>'linear-gradient(rgba(5,15,10,.5),rgba(5,15,10,.78)),url("'+f+'") center/cover fixed';
+const IC=[
+[['☁️',0,6,56,'dx',0],['☁️',0,20,44,'dx',-25],['🐦',0,13,28,'dx',-10],['🦋',12,52,26,'',0],['🍃',70,0,24,'fa',0],['🍃',30,0,20,'fa',-6],['🌲',2,80,58,'',0],['🌲',88,78,64,'',-2],['☀️',80,4,48,'',0]],
+[['☁️',0,8,56,'dx',0],['🦆',0,16,30,'dx',-14],['💧',20,0,22,'fa',0],['💧',60,0,20,'fa',-5],['🐟',8,70,34,'',0],['🌊',84,82,48,'',-2],['🪨',3,84,46,'',0],['🌿',90,66,34,'',-1]],
+[['🌤️',78,4,54,'',0],['🦅',0,10,40,'dx',0],['☁️',0,22,44,'dx',-30],['🍂',15,0,24,'fa',0],['🍂',65,0,22,'fa',-7],['🪨',4,82,52,'',0],['🥾',86,80,36,'',-1],['🧗',90,60,34,'',-2]],
+[['🌙',80,4,48,'',0],['⭐',18,5,24,'',-1],['⭐',50,9,18,'',-3],['⭐',66,3,22,'',-2],['☁️',0,14,40,'dx',-20],['🦉',6,70,38,'',0],['🏔️',84,78,60,'',-1],['🔦',92,56,28,'',-2]],
+[['🌅',46,4,56,'',0],['🚩',84,70,52,'',0],['🦅',0,12,40,'dx',0],['🐦',0,6,26,'dx',-35],['☁️',0,24,56,'dx',-15],['✨',12,8,26,'',-1],['✨',74,20,22,'',-3],['🏔️',3,80,60,'',-2]]];
+function setBg(i){const f=BGP[i];document.querySelector('.bgo').style.opacity=.6;$('bgt').innerHTML=i<0?'':[...Array(9)].map((_,k)=>'<span style="left:'+(k*11.5-2)+'%;font-size:'+(44+(k*37%26))+'px;animation-delay:'+(-k*.6)+'s">'+(k%3==1?'🌳':'🌲')+'</span>').join('');$('bgc').innerHTML=[...(IC[i]||[]),...(i<0?[]:[['☁️',0,34,70,'dx',-40],['☁️',0,3,40,'dx',-50],['🐦',0,28,24,'dx',-22]])].map(q=>'<span class="'+(q[4]||(/[🦋🐟]/u.test(q[0])?'wd':/[⭐✨]/u.test(q[0])?'tw':/[☀🌙🌅🌤]/u.test(q[0])?'pu':''))+'" style="left:'+q[1]+'%;top:'+q[2]+'%;font-size:'+q[3]+'px;animation-delay:'+q[5]+'s">'+q[0]+'</span>').join('');$('bgi').style.backgroundImage=f?'url("'+f+'")':'none';const p=$('bgp');if(!p.firstChild)p.innerHTML=[...Array(10)].map((_,k)=>'<i style="left:'+(6+k*9.5)+'%;top:'+(60+(k%4)*10)+'%;animation-delay:'+(-k*0.9)+'s"></i>').join('')}
+const HK='<svg viewBox="0 0 40 56" aria-hidden="true"><ellipse cx="21" cy="53" rx="9" ry="2" fill="#0005"/><g class="bd"><g class="lg b"><rect x="17.5" y="32" width="5" height="16" rx="2.4" fill="#2D3B55"/><rect x="16.5" y="46" width="8" height="5" rx="2" fill="#4A2E1A"/></g><rect x="7" y="14" width="11" height="19" rx="4" fill="#E8832A"/><rect x="7.5" y="10.5" width="10" height="5" rx="2.5" fill="#3B82F6"/><rect x="15" y="14" width="11" height="19" rx="4.5" fill="#1F8FD6"/><g class="lg"><rect x="17.5" y="32" width="5" height="16" rx="2.4" fill="#3A4A6B"/><rect x="16.5" y="46" width="8" height="5" rx="2" fill="#5A3A22"/></g><circle cx="22" cy="9.5" r="5.5" fill="#F2C9A0"/><path d="M15 8.5a7 6 0 0 1 14 0z" fill="#8B5E3C"/><rect x="13" y="7.5" width="18" height="2.4" rx="1.2" fill="#6B4528"/><g class="pl"><path d="M24 18L29 27" stroke="#1F6FA6" stroke-width="3.6" stroke-linecap="round"/><circle cx="29.3" cy="27.5" r="2" fill="#F2C9A0"/><rect x="28.2" y="22" width="2.2" height="30" rx="1" fill="#9AA5B1"/><rect x="27.8" y="22" width="3" height="6" rx="1.5" fill="#E5484D"/></g></g></svg>';
+const PCOL=['#2E9E5B','#1F8FD6','#E8832A','#8B5CF6','#E5484D'];
+const C={map:'peta-kasus1.jpg',pts:[[46.7,88],[64.9,66.1],[44.1,52.4],[72.3,35.2],[54.2,24.7],[64.3,9.8]],sd:[-1,-1,1,-1,1,-1]};
+const scr=h=>{const e=$('scr');e.innerHTML=h?'<main>'+h+'</main>':'';e.hidden=!h;if(h)e.scrollTop=0};
+function syncMu(){const b=$('muBtn');if(b)b.textContent=(mus?'🔊':'🔇')+' Musik'}
+function muTog(){mset=1;mtog();syncMu()}
+function intro(){clearInterval(timer);$('hud').innerHTML='';$('end').innerHTML='';$('panel').innerHTML='';
+ setBg(-1);$('scr').style.background=bgs('basecamp-kasus1.jpg');scr(ph('basecamp-kasus1.jpg',0)+'<h2>Basecamp</h2><div class="story">'+INTRO+'</div><h2>Tersangka</h2><div class="sus">'+SUS.map(s=>'<div class="s"><span class="em">'+s.em+'</span><span class="ar" lang="ar">'+s.ar+'</span>'+s.n+'<span class="tag">'+s.d+'</span></div>').join('')+'</div><h2>Aturan</h2><div class="story">3 nyawa untuk seluruh permainan. Tiap petunjuk ada batas waktu. Jawaban salah, waktu habis, atau salah tuduh mengurangi nyawa. Selesai satu pos memberi +1 nyawa (maksimal 3). Semua bukti harus terkumpul sebelum menuduh di puncak.</div><p style="text-align:center"><button class="go" onclick="startTrip()">⛰️ Mulai mendaki</button></p>')}
+function startTrip(){if(!mset){mset=1;mtog();syncMu()}showMap(0,1,()=>load())}
+function showMap(f,t,cb){const P=C.pts;
+ scr('<div class="mapw" style="margin-top:10px"><img src="'+C.map+'" alt=""><div class="cl"></div>'+P.map((q,i)=>'<span class="pn '+(i<t?'dn':i==t?'cu':'lk')+'" style="left:'+q[0]+'%;top:'+q[1]+'%">'+(i<t?'✓':i==0?'⛺':i==5?'🚩':i)+'</span>').join('')+'<div class="hk" id="hk" style="left:'+P[f][0]+'%;top:'+P[f][1]+'%;margin-left:'+C.sd[f]*44+'px">'+HK+'</div></div><p style="text-align:center"><button class="go" id="mgo">'+(t==5?'Masuk Puncak':'Masuk Pos '+t)+' ←</button></p>');
+ const h=$('hk');h.firstChild.style.transform=P[t][0]<P[f][0]?'scaleX(-1)':'';h.classList.add('wk');setTimeout(()=>h.classList.remove('wk'),2700);
+ setTimeout(()=>{h.style.left=P[t][0]+'%';h.style.top=P[t][1]+'%';h.style.marginLeft=C.sd[t]*44+'px'},300);
+ $('mgo').onclick=()=>{scr('');cb()}}
+function posDone(){const last=lvi===LV.length-1,bonus=lives*100;score+=bonus;lives=Math.min(3,lives+1);
+ if(!last)LV[lvi].clues.forEach(c=>(c.fx||[]).forEach(f=>hist.push(f)));render();
+ modal('win','<div style="font-size:4rem">⛰️</div><h3>'+(last?'Semua bukti terkumpul!':'Pos '+(lvi+1)+' selesai!')+'</h3><p class="ar" lang="ar" style="font-size:1.8rem;margin:0">أَحْسَنْتَ!</p><p>Bonus nyawa +'+bonus+'. Skor: '+score+'.<br>Kamu mendapat 1 nyawa tambahan (maksimal 3).</p><button class="go" id="mbtn" onclick="'+(last?'toPeak()':'nextPos()')+'">'+(last?'Naik ke Puncak':'Lanjut ke Pos '+(lvi+2))+'</button>')}
+function nextPos(){$('end').innerHTML='';showMap(lvi+1,lvi+2,()=>{lvi++;load()})}
+function toPeak(){$('end').innerHTML='';showMap(4,5,()=>{peak=true;open=null;setBg(4);$('panel').innerHTML='';$('title').textContent='Puncak: tuduh pelaku';$('story').textContent='Kamu sampai di puncak. Semua bukti sudah terkumpul. Perhatikan tanda alibi di tiap tersangka, lalu tuduh pelakunya.';render();window.scrollTo(0,0)})}
+newGame();
+</script>
+</body>
+</html>
