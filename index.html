@@ -259,6 +259,7 @@ h2::before{background:#fff!important}
 
   <h2>Tersangka</h2>
   <div class="sus" id="sus"></div>
+  <p style="text-align:center"><button class="go" style="padding:8px 18px;font-size:.9rem" onclick="goClues()">⬆ Kembali ke petunjuk</button></p>
   <p class="hint" id="accHint"></p>
   <div id="end"></div>
 </main>
@@ -267,7 +268,7 @@ h2::before{background:#fff!important}
 <div id="pho" hidden></div>
 <div id="scr" hidden></div>
 <script>
-const ph=(s,k)=>`<div class="ph"><div class="in"><img src="${s}" alt="">${k==0?'<i class="lt" style="left:28%;top:48%"></i><i class="lt" style="left:79%;top:55%;width:7%"></i>':k==2?'<i class="lt" style="left:50%;top:86%;width:22%"></i>':'<i class="wt"></i>'}</div><div class="ms"></div><div class="ms" style="top:10%;animation-duration:34s;animation-delay:-12s"></div><div class="ry"></div>${[12,30,52,70,86].map((x,i)=>`<i class="pt" style="left:${x}%;top:${70+i*4}%;animation-delay:${-i*1.6}s"></i>`).join('')}</div>`;
+const ph=(s,k)=>`<div class="ph"${k==3?' style="aspect-ratio:4/3"':''}><div class="in"><img src="${s}" alt="">${k==0?'<i class="lt" style="left:28%;top:48%"></i><i class="lt" style="left:79%;top:55%;width:7%"></i>':k==2?'<i class="lt" style="left:50%;top:86%;width:22%"></i>':k==3?'':'<i class="wt"></i>'}</div><div class="ms"></div><div class="ms" style="top:10%;animation-duration:34s;animation-delay:-12s"></div><div class="ry"></div>${[12,30,52,70,86].map((x,i)=>`<i class="pt" style="left:${x}%;top:${70+i*4}%;animation-delay:${-i*1.6}s"></i>`).join('')}</div>`;
 let AC=null,mus=false,tm=null,bi=0,mset=0;
 function tone(f,t,d,v,ty){const o=AC.createOscillator(),g=AC.createGain();o.type=ty||'sine';o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.05)}
 function beat(){if(!mus)return;const t=AC.currentTime,i=bi++,root=[196,220,175,247,262,294][peak?5:lvi+1]||196,sc=[0,2,4,7,9],n=sc[(i*3+(i>>2))%5]+(i%8>=4?12:0);
@@ -426,7 +427,7 @@ function listenVoice(){
 function solveClue(){
   clearInterval(timer);
   score+=Math.round((100+tleft*4)*(1+Math.min(streak,3)*.25))+lvi*30;
-  streak++;solved.add(open);sfx(1);drawPanel();if(solved.size===L().clues.length)setTimeout(posDone,700)}
+  streak++;solved.add(open);sfx(1);drawPanel();if(solved.size===L().clues.length)setTimeout(posDone,700);else setTimeout(goSus,900)}
 function answer(j){
   const c=L().clues[open];
   if(j===c.a)solveClue();
@@ -481,6 +482,8 @@ let mvRaf=0,mvKeys={},water=100;
 const MK={ArrowUp:'u',w:'u',W:'u',' ':'u',e:'w',E:'w',ArrowLeft:'l',a:'l',A:'l',ArrowRight:'r',d:'r',D:'r'};
 function mvKd(e){const k=MK[e.key];if(k){mvKeys[k]=1;e.preventDefault()}}
 function mvKu(e){const k=MK[e.key];if(k)mvKeys[k]=0}
+function goSus(){const e=$('sus').previousElementSibling;if(!e)return;e.style.scrollMarginTop='90px';e.scrollIntoView({behavior:'smooth',block:'start'})}
+function goClues(){const e=$('count');e.style.scrollMarginTop='90px';e.scrollIntoView({behavior:'smooth',block:'start'})}
 function mvStop(){cancelAnimationFrame(mvRaf);document.removeEventListener('keydown',mvKd);document.removeEventListener('keyup',mvKu)}
 const RB=(x,y,w,h)=>'M'+x+' '+y+'h'+w+'v'+h+'h'+(-w)+'z';
 const HATS=[[['M16.5 6a5.5 5 0 0 1 11 0z','#3a2a1e']],[[RB(12.5,5.5,19,2.4),'#6B4528'],['M16.5 5.6a5.5 5 0 0 1 11 0z','#8B5E3C']],[['M16 6.2a6 5.5 0 0 1 12 0z','#E5484D'],[RB(16,5,12,2.6),'#B02A30'],['M20.2 0.9a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0 -3.6 0z','#fff']],[['M16.5 6a5.5 5 0 0 1 11 0z','#1F8FD6'],[RB(24,5.2,9,2),'#14609a']],[['M16.5 6.4L18 1.8h8l1.5 4.6z','#C9B27C'],[RB(14.5,5.8,15,2),'#A8925F']]];
@@ -646,6 +649,7 @@ const TC=[0,['#ff9f43','#2ec4b6','#ffd166'],['#e63946','#f4a261','#2a9d8f'],['#7
 const tent=(x,y,w,h,c)=>'<polygon points="'+x+','+y+' '+(x+w/2)+','+(y-h)+' '+(x+w)+','+y+'" fill="'+c+'"/><polygon points="'+(x+w*.4)+','+y+' '+(x+w/2)+','+(y-h*.55)+' '+(x+w*.6)+','+y+'" fill="#0004"/>';
 const bcs=(m,c)=>'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+m.s1+'"/><stop offset=".75" stop-color="'+m.s2+'"/></linearGradient></defs><rect width="600" height="400" fill="url(#b)"/><circle cx="520" cy="70" r="28" fill="#fff6c0"/><g transform="scale(1.5,.55)"><polygon points="'+m.bk+'" fill="#fff" opacity=".4"/><polygon points="'+m.pk+'" fill="'+m.f+'"/>'+m.x+'</g><rect y="286" width="600" height="114" fill="#3b8c52"/><ellipse cx="300" cy="350" rx="230" ry="40" fill="#c9a56a"/>'+[0,1,2,3,4,5].map(i=>{const x=i<3?10+i*40:470+(i-3)*45,y=300+(i%2)*20;return'<polygon points="'+x+','+(y-70)+' '+(x+22)+','+y+' '+(x-22)+','+y+'" fill="#1e6a40"/>'}).join('')+tent(70,340,120,74,TC[c][0])+tent(380,336,130,80,TC[c][2])+tent(235,322,90,56,TC[c][1])+'<g transform="translate(300 354)"><rect x="-16" y="-4" width="32" height="6" rx="3" fill="#5a3a22"/><g><animateTransform attributeName="transform" type="scale" values="1 1;.88 1.28;1 1" dur=".6s" repeatCount="indefinite"/><polygon points="-10,0 0,-28 10,0" fill="#ff9e2c"/><polygon points="-5,0 0,-15 5,0" fill="#ffe27a"/></g><circle r="6" fill="#fff" opacity=".5"><animate attributeName="cy" values="-30;-80" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0" dur="3s" repeatCount="indefinite"/></circle></g><rect x="36" y="150" width="8" height="140" fill="#5a3a22"/><rect x="26" y="60" width="220" height="62" rx="7" fill="#6b4423"/><text x="40" y="100" font-size="31" font-weight="800" font-family="sans-serif" fill="#fff">BASECAMP</text><rect x="36" y="128" width="200" height="30" rx="6" fill="#c9a56a"/><text x="46" y="150" font-size="19" font-weight="700" font-family="sans-serif" fill="#3a2410">'+m.t+'</text><rect x="548" y="170" width="3" height="120" fill="#ddd"/><g transform="translate(551 172)"><g><animateTransform attributeName="transform" type="skewY" values="-4;4;-4" dur="1.8s" repeatCount="indefinite"/><rect width="38" height="12" fill="#e63946"/><rect y="12" width="38" height="12" fill="#fff"/></g></g></svg>');
 for(let k=1;k<5;k++)CASES[k].bc=[bcs(MD[k],k),2];
+['basecamp-slamet.jpg','basecamp-sindoro.jpg','basecamp-merbabu.jpg','basecamp-lawu.jpg','basecamp-rinjani.jpg'].forEach((f,k)=>CASES[k].bc=[f,3]);
 ['','Kasus 2: Kamera yang Hilang','Kasus 3: Senter yang Hilang','Kasus 4: Dompet yang Hilang','Kasus 5: Jam yang Hilang'].forEach((t,k)=>{if(k){MT[k].kasus=t;MT[k].ok=1}});
 function setCase(k){mi=k;const c=CASES[k];LV=c.lv;INTRO=c.intro;KEY=c.key;C=c.map;LV.forEach(l=>{l.sus=SUS;l.culprit=c.cul;l.key=KEY})}
 ['gunung-slamet.jpg','gunung-sindoro.jpg','gunung-merbabu.jpg','gunung-lawu.jpg','gunung-rinjani.jpg'].forEach((f,k)=>MT[k].im=f);
