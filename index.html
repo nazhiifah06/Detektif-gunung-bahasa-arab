@@ -369,9 +369,7 @@ h2{color:#fff!important;text-shadow:none!important}
 }
 @media(max-width:380px){.stat-grid{grid-template-columns:1fr}.auth-tabs{grid-template-columns:1fr 1fr}}
 </style>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 </head>
 <body>
@@ -856,47 +854,10 @@ const unl=k=>k==0||!!(PF[CUR]&&PF[CUR].pr[k-1]),bst=k=>(PF[CUR]&&PF[CUR].pr[k])|
 function maxS(k){let s=0,i=0;CASES[k].lv.forEach((l,p)=>{l.clues.forEach(()=>{s+=Math.round((100+l.T*4)*(1+Math.min(i,3)*.25))+p*30;i++});s+=300});return s+600}
 const SC=(r,k)=>Math.min(500,Math.round(r/maxS(k)*500));
 const starsOf=(s,k)=>{const r=s/maxS(k);return r>=TH[3]?5:r>=TH[2]?4:r>=TH[1]?3:r>=TH[0]?2:1};
-function saveRes(k,s,st,l){const p=PF[CUR];if(!p)return;const o=p.pr[k];if(!o||s>o.s)p.pr[k]={s,st:Math.max(st,o?o.st:0),l,d:new Date().toISOString().slice(0,10)};else o.st=Math.max(o.st,st);jset('lgj_pf',PF)}
-function mkCode(p){const o={v:1,n:p.n,c:p.c,t:new Date().toISOString().slice(0,10),p:{}};for(const k in p.pr)o.p[k]=[p.pr[k].s,p.pr[k].st,p.pr[k].l];return 'LGJ1.'+btoa(unescape(encodeURIComponent(JSON.stringify(o))))}
-function kodeGuru(){const p=PF[CUR];if(!p)return;const cd=mkCode(p),tx='Hasil mendaki gunung - '+p.n+(p.c?' ('+p.c+')':'')+'\n'+cd;
- $('pho').innerHTML='<div class="hmc"><h3>📤 Kirim ke guru</h3><p>Salin kode ini lalu kirim ke gurumu (WhatsApp atau Google Classroom). Kode berisi semua skor dan bintangmu.</p><textarea id="cdt" readonly rows="4" style="width:100%;font-size:.7rem">'+cd+'</textarea><p><button class="go" onclick="cdCopy()">📋 Salin</button> <a class="go" style="display:inline-block;text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(tx)+'">💬 WhatsApp</a> <button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" onclick="$(\'pho\').hidden=true">Tutup</button></p></div>';$('pho').hidden=false}
-function cdCopy(){const t=$('cdt');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand('copy')}}
-function login(){mvStop();$('homeBtn').hidden=true;clearInterval(timer);$('end').innerHTML='';$('panel').innerHTML='';$('hud').innerHTML='';setBg(-1);$('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';CUR='';const ps=Object.keys(PF);
- scr('<h2>Siapa yang mendaki?</h2><p class="sub">Tulis namamu supaya skor dan bintangmu tersimpan. Gunung dibuka satu per satu.</p><div class="lgn"><input id="ln" class="t2" placeholder="Nama siswa" maxlength="30" autocomplete="off"><input id="lc" class="t2" placeholder="Kelas (mis. 7A)" maxlength="12" autocomplete="off"><button class="go" onclick="doLogin()">Mulai ⛰️</button></div><p id="lm" class="hint" hidden></p>'+(ps.length?'<h2>Siswa di perangkat ini</h2><div class="ots">'+ps.map(k=>'<button class="chip" data-p="'+esc(k)+'">👤 '+esc(PF[k].n)+(PF[k].c?' · '+esc(PF[k].c):'')+'</button>').join('')+'</div>':'')+'<p style="text-align:center"><button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" onclick="gPin()">👩‍🏫 Mode Guru</button></p>');
- document.querySelectorAll('#scr [data-p]').forEach(b=>b.onclick=()=>{CUR=b.dataset.p;pickMt()})}
-function doLogin(){const n=$('ln').value.trim(),c=$('lc').value.trim();if(n.length<2){$('lm').hidden=false;$('lm').textContent='Tulis nama (minimal 2 huruf).';return}const k=pkey(n,c);if(!PF[k])PF[k]={n,c,pr:{}};CUR=k;jset('lgj_pf',PF);pickMt()}
-function pickMt(){if(!PF[CUR])return login();mvStop();$('homeBtn').hidden=true;clearInterval(timer);$('end').innerHTML='';$('panel').innerHTML='';$('hud').innerHTML='';setBg(-1);$('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
- const p=PF[CUR];let ts=0;for(let k=0;k<5;k++)ts+=(bst(k)||{st:0}).st;
- scr('<h2>Pilih Gunung</h2><div class="pbar">👤 <b>'+esc(p.n)+'</b>'+(p.c?' · '+esc(p.c):'')+' · ⭐ '+ts+'/25<br><button class="chip" onclick="login()">Ganti siswa</button> <button class="chip" onclick="kodeGuru()">📤 Kirim ke guru</button></div><p class="sub">Selesaikan gunung secara berurutan. Makin bagus skormu, makin banyak bintang (maksimal 5).</p><div class="mtg">'+MT.map((m,k)=>{const u=unl(k),b=bst(k);return '<div class="mt'+(u?'':' lk')+'"><div class="cvr"><img src="'+m.im+'" alt="'+m.n+'"></div><div class="mi"><b class="ar" lang="ar">'+m.ar+'</b><span class="mn">'+m.n+'</span><span class="stars">'+STR(b?b.st:0)+'</span><span class="ml">'+(b?'Skor terbaik: '+b.s+' / 500':(u?'Belum diselesaikan':'🔒 Selesaikan '+MT[k-1].n+' dulu'))+'</span><span class="ml">📍 '+m.loc+'</span><span class="ml">Kesulitan kasus '+m.lv+'</span><span class="ml">'+m.kasus+'</span><button class="go" onclick="'+(u?'startCase('+k+')':'mtNote('+k+')')+'">'+(u?(b?'🔁 Main lagi':'⛰️ Daki gunung ini'):'🔒 Terkunci')+'</button></div></div>'}).join('')+'</div><p id="mtmsg" class="hint"></p>')}
-function startCase(k){if(!unl(k))return mtNote(k);setCase(k);$('homeBtn').hidden=false;customize(newGame)}
-function mtNote(k){$('mtmsg').textContent=k?'🔒 Selesaikan '+MT[k-1].n+' (sampai kasusnya terpecahkan) dulu untuk membuka '+MT[k].n+'.':''}
-function allRows(){const R={},add=(n,c,p,t)=>{const k=pkey(n,c),r=R[k]||(R[k]={n,c,p:{},t:''});for(const m in p){const q=[Math.min(500,p[m][0]),p[m][1],p[m][2]];if(!r.p[m]||q[0]>r.p[m][0])r.p[m]=q}if(t>r.t)r.t=t};
- Object.values(PF).forEach(p=>{const q={};for(const k in p.pr)q[k]=[p.pr[k].s,p.pr[k].st,p.pr[k].l];add(p.n,p.c,q,'')});Object.values(jget('lgj_gr',{})).forEach(g=>add(g.n,g.c||'',g.p,g.t||''));
- return Object.values(R).sort((a,b)=>((a.c||'')+a.n).localeCompare((b.c||'')+b.n))}
-function gPin(){const has=LS.get('lgj_pin');scr('<h2>👩‍🏫 Mode Guru</h2><p class="sub">'+(has?'Masukkan PIN guru.':'Buat PIN guru (4–8 angka) dan ingat PIN ini.')+'</p><div class="lgn"><input id="gp" class="t2" type="password" inputmode="numeric" maxlength="8" placeholder="PIN"><button class="go" onclick="gGo()">'+(has?'Masuk':'Simpan PIN')+'</button></div><p id="gm" class="hint"></p><p style="text-align:center"><button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" onclick="login()">← Kembali</button></p>')}
-function gGo(){const v=$('gp').value.trim(),has=LS.get('lgj_pin');if(!/^\d{4,8}$/.test(v)){$('gm').textContent='PIN harus 4–8 angka.';return}if(!has){LS.set('lgj_pin',v);guru('PIN guru dibuat.')}else if(v===has)guru();else $('gm').textContent='PIN salah.'}
-function guru(msg){setBg(-1);$('scr').style.background='linear-gradient(#e8f1ff,#fff) fixed';const R=allRows();
- const tb=R.map(r=>{let tot=0,ts=0;const cl=GK.map((g,k)=>{const q=r.p[k];if(!q)return '<td>–</td>';tot+=q[0];ts+=q[1];return '<td><span class="stars">'+STR(q[1])+'</span><br>'+q[0]+'</td>'}).join('');return '<tr><td><b>'+esc(r.n)+'</b><br><small>'+esc(r.c||'')+'</small></td>'+cl+'<td><b>'+tot+'</b><br>⭐ '+ts+'</td></tr>'}).join('');
- scr('<h2>👩‍🏫 Dasbor Guru</h2>'+(msg?'<p class="hint">'+esc(msg)+'</p>':'')+'<div class="story">Data siswa tersimpan di browser perangkat ini dan tidak dikirim ke server. Minta tiap siswa menekan <b>📤 Kirim ke guru</b>, lalu tempel kode mereka di bawah. Satu kode berisi semua skor dan bintang siswa itu. Skor maksimal 500 per gunung. PIN hanya pengaman ringan.</div><textarea id="gt" class="gta" rows="4" placeholder="Tempel kode hasil siswa di sini (boleh banyak, satu per baris)"></textarea><p><button class="go" onclick="gAdd()">➕ Tambahkan</button> <button class="go" onclick="gCsv()">📥 Unduh CSV</button> <button class="go" onclick="gClr(this)">🗑 Hapus kode siswa</button> <button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" onclick="login()">Keluar</button></p><div class="gtw"><table class="gt"><tr><th>Siswa</th>'+GK.map(g=>'<th>'+g+'</th>').join('')+'<th>Total</th></tr>'+(tb||'<tr><td colspan="7">Belum ada data siswa.</td></tr>')+'</table></div>')}
-function gAdd(){const m=$('gt').value.match(/LGJ1\.[A-Za-z0-9+\/=]+/g)||[],gr=jget('lgj_gr',{});let n=0;m.forEach(s=>{try{const o=JSON.parse(decodeURIComponent(escape(atob(s.slice(5)))));if(typeof o.n=='string'&&o.n&&o.p){const k=pkey(o.n,o.c),old=gr[k];if(old)for(const q in old.p)if(!o.p[q]||old.p[q][0]>o.p[q][0])o.p[q]=old.p[q];gr[k]=o;n++}}catch(e){}});jset('lgj_gr',gr);guru(n+' kode berhasil ditambahkan'+(m.length-n?', '+(m.length-n)+' tidak valid':'')+'.')}
-function gCsv(){const q=x=>'"'+String(x).replace(/"/g,'""')+'"';let s='Nama,Kelas,'+GK.map(g=>g+'_skor,'+g+'_bintang').join(',')+',Total_skor,Total_bintang\n';allRows().forEach(r=>{let t=0,b=0;s+=q(r.n)+','+q(r.c||'')+','+GK.map((g,k)=>{const z=r.p[k];if(!z)return ',';t+=z[0];b+=z[1];return z[0]+','+z[1]}).join(',')+','+t+','+b+'\n'});const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('\ufeff'+s);a.download='skor-siswa.csv';document.body.appendChild(a);a.click();a.remove()}
-function gClr(b){if(b.dataset.s){jset('lgj_gr',{});guru('Kode siswa dihapus.')}else{b.dataset.s=1;b.textContent='Yakin? Tekan lagi'}}
-
 /* =========================================================
    REVISI 2026 — LOGIN ONLINE, DASHBOARD SISWA/GURU, POS UI
-   Firebase Authentication + Cloud Firestore
+   Supabase Auth + Supabase Database
    ========================================================= */
-
-/* GANTI ISI OBJECT INI DENGAN KONFIGURASI WEB APP FIREBASE-MU.
-   Firebase Console > Project settings > Your apps > SDK setup. */
-const FIREBASE_CONFIG = {
-  apiKey: "ISI_API_KEY",
-  authDomain: "ISI_PROJECT_ID.firebaseapp.com",
-  projectId: "ISI_PROJECT_ID",
-  storageBucket: "ISI_PROJECT_ID.appspot.com",
-  messagingSenderId: "ISI_MESSAGING_SENDER_ID",
-  appId: "ISI_APP_ID"
-};
 
 const SUMMIT_MDPL = [3428, 3153, 3145, 3265, 3726];
 const POS_MDPL = [
@@ -957,376 +918,402 @@ for(let k=1;k<CASES.length;k++){
 }
 LV=CASES[0].lv;
 
-/* Firebase state */
-let fbReady=false,fbError='',auth=null,db=null,authBusy=false;
-let currentUser=null,currentProfile=null,currentRole=null;
-let authMode='student-login',teacherRows=[];
+/* =========================================================
+   SUPABASE INTEGRATION — Detektif Gunung Bahasa Arab
+   Project URL dan Publishable Key boleh berada di frontend.
+   Jangan pernah menaruh Secret Key/service_role di sini.
+   ========================================================= */
+const SUPABASE_URL = 'https://ykhlhpasvmhxxewgwiiy.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_0jIvdWOTa9N5UBR0ooiuqQ_RSTR9bwL';
 
-function firebaseConfigured(){
-  return FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.startsWith('ISI_') &&
-    FIREBASE_CONFIG.projectId && !FIREBASE_CONFIG.projectId.startsWith('ISI_') &&
-    FIREBASE_CONFIG.appId && !FIREBASE_CONFIG.appId.startsWith('ISI_');
-}
-function initFirebase(){
-  try{
-    if(typeof firebase==='undefined'){
-      fbError='Library Firebase tidak berhasil dimuat. Periksa koneksi internet.';
-      return false;
-    }
-    if(!firebaseConfigured()){
-      fbError='Firebase belum dikonfigurasi. Isi FIREBASE_CONFIG di bagian atas kode dengan konfigurasi proyek Firebase milikmu.';
-      return false;
-    }
-    if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);
-    auth=firebase.auth();
-    db=firebase.firestore();
-    fbReady=true;
-    auth.onAuthStateChanged(async user=>{
-      if(authBusy)return;
-      if(!user){
-        currentUser=null;currentProfile=null;currentRole=null;CUR='';
-        login();
-        return;
-      }
-      await restoreFirebaseSession(user);
-    });
-    return true;
-  }catch(err){
-    fbError='Firebase gagal diinisialisasi: '+(err.message||err);
-    fbReady=false;
-    return false;
-  }
-}
+let sbClient = null;
+let sbReady = false;
+let sbError = '';
+let authBusy = false;
+let currentUser = null;
+let currentProfile = null;
+let currentRole = null;
+let authMode = 'student-login';
+let teacherRows = [];
+
 function authErrorText(err){
-  const code=err&&err.code||'';
-  const map={
-    'auth/email-already-in-use':'Email ini sudah terdaftar. Silakan masuk.',
-    'auth/invalid-email':'Format email tidak valid.',
-    'auth/weak-password':'Kata sandi minimal 6 karakter.',
-    'auth/user-not-found':'Akun tidak ditemukan. Periksa email atau daftar sebagai siswa.',
-    'auth/wrong-password':'Kata sandi salah.',
-    'auth/invalid-credential':'Email atau kata sandi tidak sesuai.',
-    'auth/too-many-requests':'Terlalu banyak percobaan. Coba lagi beberapa saat.',
-    'auth/network-request-failed':'Koneksi internet bermasalah. Periksa jaringanmu.',
-    'permission-denied':'Akses Firestore ditolak. Periksa Firestore Security Rules.'
-  };
-  return map[code]||((err&&err.message)||'Terjadi kesalahan. Silakan coba kembali.');
+  const msg = String(err?.message || err || 'Terjadi kesalahan.');
+  const low = msg.toLowerCase();
+  if(low.includes('anonymous') && (low.includes('disabled') || low.includes('not enabled')))
+    return 'Login anonim belum aktif. Buka Supabase → Authentication → Sign In / Providers → aktifkan Anonymous Sign-Ins.';
+  if(low.includes('invalid login credentials')) return 'Email atau password guru salah.';
+  if(low.includes('email not confirmed')) return 'Email guru belum dikonfirmasi. Aktifkan/konfirmasi akun guru di Supabase Authentication.';
+  if(low.includes('row-level security') || low.includes('permission denied') || low.includes('not allowed'))
+    return 'Akses database ditolak. Periksa SQL dan kebijakan RLS Supabase.';
+  if(low.includes('failed to fetch') || low.includes('network'))
+    return 'Koneksi ke Supabase gagal. Periksa internet dan Project URL.';
+  return msg;
 }
-function setAuthMode(mode){authMode=mode;login();}
 function authMessage(message){
-  const el=$('authMsg');
-  if(el)el.textContent=message||'';
+  const el = $('authMsg');
+  if(el) el.textContent = message || '';
 }
+function setAuthMode(mode){ authMode = mode; login(mode); }
+
 function login(mode){
-  if(mode)authMode=mode;
-  mvStop();clearInterval(timer);
-  $('homeBtn').hidden=true;
-  $('end').innerHTML='';$('panel').innerHTML='';$('hud').innerHTML='';
+  if(mode) authMode = mode;
+  mvStop(); clearInterval(timer);
+  $('homeBtn').hidden = true;
+  $('end').innerHTML = ''; $('panel').innerHTML = ''; $('hud').innerHTML = '';
   setBg(-1);
-  const isTeacher=authMode==='teacher-login';
-  const isRegister=authMode==='student-register';
-  const warning=!fbReady
-    ?'<div class="auth-warning"><b>Pengaturan awal diperlukan.</b><br>'+esc(fbError||'Isi konfigurasi Firebase terlebih dahulu.')+'<br>Setelah dikonfigurasi, akun siswa dan guru dapat digunakan secara online.</div>'
-    :'';
-  const fields=(isRegister?`
+  const isTeacher = authMode === 'teacher-login';
+  const warning = !sbReady
+    ? '<div class="auth-warning"><b>Supabase belum siap.</b><br>'+esc(sbError || 'Periksa koneksi Supabase dan muat ulang halaman.')+'</div>'
+    : '';
+  const fields = isTeacher ? `
+    <label class="auth-field">Email guru
+      <input class="auth-input" id="authEmail" type="email" autocomplete="username" placeholder="guru@sekolah.sch.id" required>
+    </label>
+    <label class="auth-field">Password
+      <input class="auth-input" id="authPassword" type="password" autocomplete="current-password" placeholder="Password akun guru" required>
+    </label>` : `
     <label class="auth-field">Nama lengkap
-      <input class="auth-input" id="authName" maxlength="60" autocomplete="name" placeholder="Nama siswa">
+      <input class="auth-input" id="authName" maxlength="60" autocomplete="name" placeholder="Nama siswa" required>
     </label>
     <label class="auth-field">Kelas
-      <input class="auth-input" id="authClass" maxlength="20" placeholder="Contoh: VII A">
-    </label>`:'')+`
-    <label class="auth-field">Email
-      <input class="auth-input" id="authEmail" type="email" autocomplete="email" placeholder="nama@email.com">
-    </label>
-    <label class="auth-field">Kata sandi
-      <input class="auth-input" id="authPassword" type="password" minlength="6" autocomplete="${isRegister?'new-password':'current-password'}" placeholder="Minimal 6 karakter">
+      <input class="auth-input" id="authClass" maxlength="20" placeholder="Contoh: VII A" required>
     </label>`;
-  const roleTabs=`
-    <div class="auth-tabs">
-      <button class="auth-tab ${!isTeacher?'active':''}" onclick="setAuthMode('student-login')">🎒 Akun Siswa</button>
-      <button class="auth-tab ${isTeacher?'active':''}" onclick="setAuthMode('teacher-login')">👩‍🏫 Akun Guru</button>
-    </div>`;
   scr(`<section class="auth-shell">
     <div class="auth-mark"><span class="mountain-mark">⛰️</span><div><strong>DETEKTIF GUNUNG</strong><small>Petualangan belajar Bahasa Arab</small></div></div>
-    <h2 class="auth-title">${isTeacher?'Selamat datang, Guru':'Siap memulai petualangan?'}</h2>
-    <p class="auth-lead">${isTeacher?'Masuk untuk memantau aktivitas dan hasil belajar siswa.':'Masuk untuk menyimpan progres pendakian dan hasil belajarmu.'}</p>
-    ${roleTabs}
+    <h2 class="auth-title">${isTeacher ? 'Selamat datang, Guru' : 'Siap memulai petualangan?'}</h2>
+    <p class="auth-lead">${isTeacher ? 'Masuk untuk memantau aktivitas dan hasil belajar siswa.' : 'Masukkan nama dan kelas. Progres pendakian akan tersimpan secara online pada perangkat ini.'}</p>
+    <div class="auth-tabs">
+      <button type="button" class="auth-tab ${!isTeacher?'active':''}" onclick="setAuthMode('student-login')">🎒 Akun Siswa</button>
+      <button type="button" class="auth-tab ${isTeacher?'active':''}" onclick="setAuthMode('teacher-login')">👩‍🏫 Akun Guru</button>
+    </div>
     ${warning}
     <form class="auth-form" onsubmit="event.preventDefault();doAuth()">
       ${fields}
-      <button class="go auth-submit" type="submit" ${fbReady?'':'disabled'}>${isRegister?'Buat Akun Siswa':isTeacher?'Masuk ke Dashboard Guru':'Masuk ke Dashboard Siswa'}</button>
+      <button class="go auth-submit" type="submit" ${sbReady?'':'disabled'}>${isTeacher ? 'Masuk ke Dashboard Guru' : 'Mulai Mendaki ⛰️'}</button>
     </form>
     <div class="auth-message" id="authMsg"></div>
-    ${!isTeacher?`<p style="text-align:center;margin:12px 0 0;color:#6a7f71">${isRegister?'Sudah punya akun?':'Belum punya akun?' } <button class="auth-link" onclick="setAuthMode('${isRegister?'student-login':'student-register'}')">${isRegister?'Masuk di sini':'Daftar sebagai siswa'}</button></p>`:''}
-    <p class="auth-foot">Akun siswa dan guru terpisah. Progres tersimpan di cloud setelah Firebase dikonfigurasi.</p>
+    <p class="auth-foot">Siswa masuk tanpa password menggunakan sesi anonim Supabase. Guru masuk dengan email dan password yang dibuat oleh administrator.</p>
   </section>`);
 }
-async function doAuth(){
-  if(!fbReady){authMessage(fbError||'Firebase belum dikonfigurasi.');return;}
-  const email=($('authEmail')?.value||'').trim().toLowerCase();
-  const password=$('authPassword')?.value||'';
-  const name=($('authName')?.value||'').trim();
-  const className=($('authClass')?.value||'').trim();
-  const isRegister=authMode==='student-register';
-  const expectedRole=authMode==='teacher-login'?'teacher':'student';
-  if(!email||!password){authMessage('Isi email dan kata sandi terlebih dahulu.');return;}
-  if(isRegister&&name.length<2){authMessage('Nama lengkap minimal 2 karakter.');return;}
-  if(isRegister&&password.length<6){authMessage('Kata sandi minimal 6 karakter.');return;}
-  authBusy=true;authMessage('Memproses akun...');
+
+async function initSupabase(){
   try{
-    let user,profile;
-    if(isRegister){
-      const cred=await auth.createUserWithEmailAndPassword(email,password);
-      user=cred.user;
-      profile={
-        uid:user.uid,name,className,email,role:'student',
-        createdAt:firebase.firestore.FieldValue.serverTimestamp()
-      };
-      await db.collection('users').doc(user.uid).set(profile);
+    if(!window.supabase || typeof window.supabase.createClient !== 'function')
+      throw new Error('Library Supabase tidak berhasil dimuat. Periksa koneksi internet.');
+    sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+    });
+    const { data, error } = await sbClient.auth.getSession();
+    if(error) throw error;
+    sbReady = true;
+    if(data?.session?.user){
+      await restoreSupabaseSession(data.session.user);
     }else{
-      const cred=await auth.signInWithEmailAndPassword(email,password);
-      user=cred.user;
-      const doc=await db.collection('users').doc(user.uid).get();
-      if(!doc.exists){
-        await auth.signOut();
-        throw new Error('Profil akun belum dibuat di Firestore. Untuk akun guru, ikuti panduan pembuatan akun guru.');
-      }
-      profile=doc.data();
-      if(profile.role!==expectedRole){
-        await auth.signOut();
-        throw new Error(expectedRole==='teacher'
-          ?'Akun ini bukan akun guru. Pilih Akun Siswa atau hubungi administrator.'
-          :'Akun ini terdaftar sebagai guru. Pilih Akun Guru.');
-      }
-    }
-    currentUser=user;currentProfile=profile;currentRole=profile.role;CUR=user.uid;
-    PF={...PF,[CUR]:{n:profile.name||profile.displayName||email,c:profile.className||'',pr:{}}};
-    if(currentRole==='student'){
-      await loadStudentProgress();
-      authBusy=false;
-      pickMt();
-    }else{
-      authBusy=false;
-      await teacherDashboard();
+      login('student-login');
     }
   }catch(err){
-    authBusy=false;
+    sbReady = false;
+    sbError = authErrorText(err);
+    login('student-login');
+  }
+}
+
+async function getProfile(userId){
+  let result = await sbClient.from('profiles').select('*').eq('id', userId).maybeSingle();
+  if(result.error) throw result.error;
+  if(!result.data){
+    // Trigger pembuatan profil berjalan saat auth user dibuat; beri satu kesempatan retry.
+    await new Promise(resolve => setTimeout(resolve, 500));
+    result = await sbClient.from('profiles').select('*').eq('id', userId).maybeSingle();
+    if(result.error) throw result.error;
+  }
+  if(!result.data) throw new Error('Profil belum terbentuk. Pastikan SQL Supabase sudah dijalankan dengan lengkap.');
+  return result.data;
+}
+
+async function doAuth(){
+  if(!sbReady || !sbClient){ authMessage(sbError || 'Supabase belum siap.'); return; }
+  if(authBusy) return;
+  authBusy = true;
+  authMessage('Menghubungkan ke Supabase...');
+  try{
+    if(authMode === 'teacher-login'){
+      const email = ($('authEmail')?.value || '').trim().toLowerCase();
+      const password = $('authPassword')?.value || '';
+      if(!email || !password) throw new Error('Isi email dan password guru.');
+      const { data, error } = await sbClient.auth.signInWithPassword({ email, password });
+      if(error) throw error;
+      const profile = await getProfile(data.user.id);
+      if(profile.role !== 'teacher'){
+        await sbClient.auth.signOut();
+        throw new Error('Akun ini belum diberi role guru. Buat akun di Authentication, lalu jalankan query promosi guru pada panduan.');
+      }
+      currentUser = data.user; currentProfile = profile; currentRole = 'teacher'; CUR = data.user.id;
+      authBusy = false;
+      await teacherDashboard();
+      return;
+    }
+
+    const name = ($('authName')?.value || '').trim();
+    const className = ($('authClass')?.value || '').trim();
+    if(name.length < 2) throw new Error('Nama siswa minimal 2 karakter.');
+    if(!className) throw new Error('Isi kelas siswa terlebih dahulu.');
+
+    const { data, error } = await sbClient.auth.signInAnonymously({
+      options: { data: { full_name: name, class_name: className } }
+    });
+    if(error) throw error;
+    const profile = await getProfile(data.user.id);
+    // Pastikan nama/kelas mengikuti input terbaru pada sesi anonim ini.
+    const { data: updated, error: updateError } = await sbClient.from('profiles')
+      .update({ full_name: name, class_name: className })
+      .eq('id', data.user.id)
+      .select('*').single();
+    if(updateError) throw updateError;
+    currentUser = data.user; currentProfile = updated || profile; currentRole = 'student'; CUR = data.user.id;
+    await loadStudentProgress();
+    authBusy = false;
+    pickMt();
+  }catch(err){
+    authBusy = false;
     authMessage(authErrorText(err));
   }
 }
-async function restoreFirebaseSession(user){
+
+async function restoreSupabaseSession(user){
   try{
-    const doc=await db.collection('users').doc(user.uid).get();
-    if(!doc.exists){
-      await auth.signOut();
-      login();
-      toast('Profil akun belum ditemukan. Hubungi guru atau administrator.');
-      return;
-    }
-    currentUser=user;currentProfile=doc.data();currentRole=currentProfile.role;CUR=user.uid;
-    if(currentRole==='student'){
+    currentUser = user;
+    const profile = await getProfile(user.id);
+    currentProfile = profile;
+    currentRole = profile.role;
+    CUR = user.id;
+    if(currentRole === 'student'){
       await loadStudentProgress();
       pickMt();
-    }else if(currentRole==='teacher'){
+    }else if(currentRole === 'teacher'){
       await teacherDashboard();
     }else{
-      await auth.signOut();login();
+      await sbClient.auth.signOut();
+      currentUser = null; currentProfile = null; currentRole = null; CUR = '';
+      login('student-login');
     }
   }catch(err){
-    toast('Gagal memuat akun: '+authErrorText(err));
-    login();
+    await sbClient.auth.signOut().catch(()=>{});
+    currentUser = null; currentProfile = null; currentRole = null; CUR = '';
+    login('student-login');
+    toast('Gagal memulihkan sesi: ' + authErrorText(err));
   }
 }
+
 async function loadStudentProgress(){
-  if(!currentUser||!db)return;
-  const uid=currentUser.uid;
-  const p={n:currentProfile?.name||currentProfile?.displayName||currentUser.email,
-           c:currentProfile?.className||'',pr:{}};
-  const snap=await db.collection('users').doc(uid).collection('progress').get();
-  snap.forEach(doc=>{
-    const k=Number(doc.id),d=doc.data();
-    if(Number.isInteger(k)&&k>=0&&k<MT.length){
-      let date=d.updatedAtIso||'';
-      if(!date&&d.updatedAt&&d.updatedAt.toDate)date=d.updatedAt.toDate().toISOString().slice(0,10);
-      p.pr[k]={s:Number(d.score||0),st:Number(d.stars||0),l:Number(d.lives||0),d:date};
+  if(!currentUser || !sbClient) return;
+  const { data, error } = await sbClient.from('student_progress')
+    .select('mountain_id,best_score,stars,lives_left,best_at,updated_at')
+    .eq('student_id', currentUser.id);
+  if(error) throw error;
+  const p = { n: currentProfile?.full_name || 'Siswa', c: currentProfile?.class_name || '', pr: {} };
+  (data || []).forEach(row => {
+    const k = Number(row.mountain_id);
+    if(Number.isInteger(k) && k >= 0 && k < MT.length){
+      p.pr[k] = {
+        s: Number(row.best_score || 0),
+        st: Number(row.stars || 0),
+        l: Number(row.lives_left || 0),
+        d: String(row.best_at || row.updated_at || '').slice(0,10)
+      };
     }
   });
-  PF={...PF,[uid]:p};CUR=uid;jset('lgj_pf',PF);
+  PF = { ...PF, [currentUser.id]: p };
+  CUR = currentUser.id;
+  jset('lgj_pf', PF);
 }
+
 function saveRes(k,s,st,l){
-  if(!currentUser||!db)return;
-  const p=PF[CUR]||(PF[CUR]={n:currentProfile?.name||currentUser.email,c:currentProfile?.className||'',pr:{}});
-  const old=p.pr[k],better=!old||s>old.s;
-  const bestScore=better?s:old.s;
-  const bestStars=Math.max(st,old?old.st:0);
-  const date=new Date().toISOString().slice(0,10);
-  p.pr[k]={s:bestScore,st:bestStars,l,d:date};
-  jset('lgj_pf',PF);
-  return db.collection('users').doc(currentUser.uid).collection('progress').doc(String(k)).set({
-    mountainIndex:k,mountainName:MT[k].n,score:bestScore,stars:bestStars,lives:l,
-    completed:true,updatedAtIso:new Date().toISOString(),
-    updatedAt:firebase.firestore.FieldValue.serverTimestamp()
-  },{merge:true}).then(()=>toast('☁️ Progres '+MT[k].n+' tersimpan.'))
-    .catch(err=>toast('Progres lokal tersimpan, tetapi sinkronisasi gagal: '+authErrorText(err)));
+  if(!currentUser || currentRole !== 'student' || !sbClient) return;
+  const p = PF[CUR] || (PF[CUR] = { n: currentProfile?.full_name || 'Siswa', c: currentProfile?.class_name || '', pr: {} });
+  const old = p.pr[k];
+  const bestScore = !old || s > old.s ? s : old.s;
+  const bestStars = Math.max(st, old ? old.st : 0);
+  const date = new Date().toISOString().slice(0,10);
+  p.pr[k] = { s: bestScore, st: bestStars, l, d: date };
+  jset('lgj_pf', PF);
+
+  (async()=>{
+    const { error: progressError } = await sbClient.from('student_progress').upsert({
+      student_id: currentUser.id,
+      mountain_id: k,
+      best_score: bestScore,
+      stars: bestStars,
+      lives_left: l,
+      completed: true,
+      best_at: new Date().toISOString()
+    }, { onConflict: 'student_id,mountain_id' });
+    if(progressError) throw progressError;
+    const { error: attemptError } = await sbClient.from('game_attempts').insert({
+      student_id: currentUser.id,
+      mountain_id: k,
+      score: s,
+      stars: st,
+      status: 'completed',
+      result_detail: { mountain_name: MT[k].n, lives_left: l, best_score: bestScore }
+    });
+    if(attemptError) throw attemptError;
+    toast('☁️ Progres ' + MT[k].n + ' berhasil disimpan online.');
+  })().catch(err=>toast('Nilai tersimpan di sesi ini, tetapi sinkronisasi gagal: ' + authErrorText(err)));
 }
+
 function showPosQuestions(){
-  const area=$('questionArea');
-  if(!area)return;
-  area.hidden=false;
-  $('posReturn').hidden=!!peak;
-  $('ban').hidden=true;
+  const area = $('questionArea');
+  if(!area) return;
+  area.hidden = false;
+  $('posReturn').hidden = !!peak;
+  $('ban').hidden = true;
   area.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function showPosStage(){
-  if(peak)return;
-  $('questionArea').hidden=true;
-  $('ban').hidden=false;
+  if(peak) return;
+  $('questionArea').hidden = true;
+  $('ban').hidden = false;
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function load(){
-  const l=L();T=l.T;streak=0;solved=new Set();open=null;showTxt=false;showTr=false;over=false;
-  failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();
-  clearInterval(timer);$('panel').innerHTML='';$('end').innerHTML='';
-  $('title').textContent=l.title;$('story').textContent=l.story;
+  const l=L(); T=l.T; streak=0; solved=new Set(); open=null; showTxt=false; showTr=false; over=false;
+  failed=new Set(); left={}; plays={}; keyMode=false; keyFail=new Set();
+  clearInterval(timer); $('panel').innerHTML=''; $('end').innerHTML='';
+  $('title').textContent=l.title; $('story').textContent=l.story;
   document.documentElement.style.setProperty('--amber',PCOL[lvi]);
   const visual=l.img
-    ?`<div class="pos-photo"><img src="${esc(l.img)}" alt="${esc(l.title)}" onerror="this.style.display='none';this.parentNode.classList.add('fallback')"><div class="pos-photo-fallback"><span>🏕️</span><b>Foto pos segera ditambahkan</b></div></div>`
-    :mcv(MT[mi]);
+    ? `<div class="pos-photo"><img src="${esc(l.img)}" alt="${esc(l.title)}" onerror="this.style.display='none';this.parentNode.classList.add('fallback')"><div class="pos-photo-fallback"><span>🏕️</span><b>Foto pos segera ditambahkan</b></div></div>`
+    : mcv(MT[mi]);
   $('ban').hidden=false;
-  $('ban').innerHTML=`<section class="pos-card">
-    <div class="pos-card-visual">${visual}</div>
-    <div class="pos-card-copy">
-      <span class="pos-kicker">⛰️ POS ${lvi+1} · ${MT[mi].n}</span>
-      <h3>${esc(l.title)}</h3>
-      <p>${esc(l.story)}</p>
-      <p class="hint">Kumpulkan tiga bukti untuk melanjutkan pendakian.</p>
-      <button class="go" onclick="showPosQuestions()">Buka Soal →</button>
-    </div>
-  </section>`;
-  $('questionArea').hidden=true;
-  $('posReturn').hidden=false;
-  setBg(lvi);render();window.scrollTo(0,0);
+  $('ban').innerHTML=`<section class="pos-card"><div class="pos-card-visual">${visual}</div><div class="pos-card-copy">
+    <span class="pos-kicker">⛰️ POS ${lvi+1} · ${MT[mi].n}</span><h3>${esc(l.title)}</h3><p>${esc(l.story)}</p>
+    <p class="hint">Kumpulkan tiga bukti untuk melanjutkan pendakian.</p><button class="go" onclick="showPosQuestions()">Buka Soal →</button>
+  </div></section>`;
+  $('questionArea').hidden=true; $('posReturn').hidden=false;
+  setBg(lvi); render(); window.scrollTo(0,0);
 }
 function toPeak(){
   $('end').innerHTML='';
   showMap(4,5,()=>summit(()=>{
-    peak=true;open=null;setBg(4);$('panel').innerHTML='';
+    peak=true; open=null; setBg(4); $('panel').innerHTML='';
     $('title').textContent='Puncak: tuduh pelaku';
     $('story').textContent='Kamu sampai di puncak. Semua bukti sudah terkumpul. Perhatikan tanda alibi di tiap tersangka, lalu tuduh pelakunya.';
-    $('ban').hidden=true;$('questionArea').hidden=false;$('posReturn').hidden=true;
-    render();window.scrollTo(0,0);
+    $('ban').hidden=true; $('questionArea').hidden=false; $('posReturn').hidden=true;
+    render(); window.scrollTo(0,0);
   }));
 }
+function mtNote(k){
+  const target = $('mtmsg');
+  if(target) target.textContent = k ? '🔒 Selesaikan '+MT[k-1].n+' terlebih dahulu untuk membuka '+MT[k].n+'.' : '';
+}
 function startCase(k){
-  if(currentRole!=='student')return;
-  if(!unl(k))return mtNote(k);
-  setCase(k);$('homeBtn').hidden=false;customize(newGame);
+  if(currentRole !== 'student') return;
+  if(!unl(k)) return mtNote(k);
+  setCase(k); $('homeBtn').hidden=false; customize(newGame);
 }
 function pickMt(){
-  if(!currentUser||currentRole!=='student')return login();
-  mvStop();$('homeBtn').hidden=true;clearInterval(timer);
-  $('end').innerHTML='';$('panel').innerHTML='';$('hud').innerHTML='';setBg(-1);
-  const p=PF[CUR]||{n:currentProfile?.name||currentUser.email,c:currentProfile?.className||'',pr:{}};
+  if(!currentUser || currentRole !== 'student') return login('student-login');
+  mvStop(); $('homeBtn').hidden=true; clearInterval(timer);
+  $('end').innerHTML=''; $('panel').innerHTML=''; $('hud').innerHTML=''; setBg(-1);
+  const p=PF[CUR] || {n:currentProfile?.full_name||'Siswa',c:currentProfile?.class_name||'',pr:{}};
   PF[CUR]=p;
   let totalStars=0,totalScore=0,completed=0;
   for(let k=0;k<5;k++){const b=bst(k);if(b){totalStars+=b.st;totalScore+=b.s;completed++;}}
   const cards=MT.map((m,k)=>{
-    const unlocked=unl(k),best=bst(k);
-    const fallback=mcv(m);
+    const unlocked=unl(k),best=bst(k),fallback=mcv(m);
     return `<article class="mountain-card ${unlocked?'':'locked'}">
-      <div class="mountain-photo ${m.im?'':'fallback'}">
-        <img src="${esc(m.im||'')}" alt="${esc(m.n)}" onerror="this.parentNode.classList.add('fallback')">
-        <div class="fallback-art">${fallback}</div>
-      </div>
-      <div class="mountain-info">
-        <h3>${esc(m.n)}</h3>
+      <div class="mountain-photo ${m.im?'':'fallback'}"><img src="${esc(m.im||'')}" alt="${esc(m.n)}" onerror="this.parentNode.classList.add('fallback')"><div class="fallback-art">${fallback}</div></div>
+      <div class="mountain-info"><h3>${esc(m.n)}</h3>
         <div class="mountain-meta">📍 ${esc(m.loc)} · Puncak ${m.elev.toLocaleString('id-ID')} mdpl</div>
         <div class="stars">${STR(best?best.st:0)}</div>
         <div class="mountain-meta">${best?'Skor terbaik: '+best.s+' / 500':(unlocked?'Belum diselesaikan':'🔒 Selesaikan '+esc(MT[k-1].n)+' dahulu')}</div>
         <button class="go" ${unlocked?'':'disabled'} onclick="startCase(${k})">${unlocked?(best?'Main lagi':'Mulai mendaki'):'🔒 Terkunci'}</button>
-      </div>
-    </article>`;
+      </div></article>`;
   }).join('');
-  scr(`<div class="dashboard-head">
-    <div><h2>Dashboard Siswa</h2><b style="color:#2e704c">${esc(p.n)}</b><div class="mountain-meta">${esc(p.c||'Kelas belum diisi')} · ${esc(currentUser.email||'')}</div></div>
-    <div class="dashboard-actions"><button class="chip" onclick="customize(()=>pickMt())">🎒 Avatar</button><button class="chip" onclick="logout()">Keluar</button></div>
-  </div>
-  <div class="stat-grid">
-    <div class="stat-card"><small>Gunung selesai</small><strong>${completed}/5</strong></div>
-    <div class="stat-card"><small>Total bintang</small><strong>⭐ ${totalStars}/25</strong></div>
-    <div class="stat-card"><small>Total skor</small><strong>${totalScore}</strong></div>
-  </div>
-  <p class="sub">Pilih gunung untuk melanjutkan petualangan. Progres dan nilai tersimpan otomatis pada akunmu.</p>
-  <div class="mountain-grid">${cards}</div>`);
+  scr(`<div class="dashboard-head"><div><h2>Dashboard Siswa</h2><b style="color:#2e704c">${esc(p.n)}</b><div class="mountain-meta">${esc(p.c||'Kelas belum diisi')} · Akun siswa</div></div>
+    <div class="dashboard-actions"><button class="chip" onclick="customize(()=>pickMt())">🎒 Avatar</button><button class="chip" onclick="logout()">Keluar</button></div></div>
+    <div class="stat-grid"><div class="stat-card"><small>Gunung selesai</small><strong>${completed}/5</strong></div><div class="stat-card"><small>Total bintang</small><strong>⭐ ${totalStars}/25</strong></div><div class="stat-card"><small>Total skor</small><strong>${totalScore}</strong></div></div>
+    <p class="sub">Pilih gunung untuk melanjutkan petualangan. Progres dan nilai tersimpan otomatis di Supabase.</p><div class="mountain-grid">${cards}</div>`);
 }
+
 async function teacherDashboard(){
-  if(!currentUser||currentRole!=='teacher'){login('teacher-login');return;}
+  if(!currentUser || currentRole !== 'teacher'){ login('teacher-login'); return; }
   setBg(-1);
   scr(`<div class="dashboard-head"><div><h2>Dashboard Guru</h2><div class="mountain-meta">Pemantauan progres seluruh siswa</div></div>
     <div class="dashboard-actions"><button class="chip" onclick="teacherDashboard()">↻ Perbarui</button><button class="chip" onclick="logout()">Keluar</button></div></div>
-    <div class="teacher-note" style="margin:14px 0">Data diperbarui langsung dari Firestore. Guru dapat melihat progres siswa dari perangkat yang berbeda selama siswa masuk menggunakan akun masing-masing.</div>
+    <div class="teacher-note" style="margin:14px 0">Data siswa dan progres diambil dari Supabase. Tekan Perbarui untuk mengambil data terbaru.</div>
     <div id="teacherContent" class="teacher-empty">Memuat data siswa...</div>`);
   try{
-    const snap=await db.collection('users').where('role','==','student').get();
-    const rows=await Promise.all(snap.docs.map(async doc=>{
-      const u=doc.data(),ps=await doc.ref.collection('progress').get(),progress={};
-      ps.forEach(d=>{const k=Number(d.id);if(k>=0&&k<5)progress[k]=d.data();});
-      const scores=Object.values(progress).reduce((a,x)=>a+Number(x.score||0),0);
-      const stars=Object.values(progress).reduce((a,x)=>a+Number(x.stars||0),0);
-      const latest=Object.values(progress).map(x=>x.updatedAtIso||'').filter(Boolean).sort().pop()||'';
-      return {uid:doc.id,name:u.name||u.displayName||'Tanpa nama',className:u.className||'',email:u.email||'',progress,scores,stars,completed:Object.keys(progress).length,latest};
-    }));
+    const [profileResult, progressResult, attemptResult] = await Promise.all([
+      sbClient.from('profiles').select('id,full_name,class_name,role,created_at').eq('role','student').order('class_name').order('full_name'),
+      sbClient.from('student_progress').select('student_id,mountain_id,best_score,stars,best_at,updated_at'),
+      sbClient.from('game_attempts').select('student_id,created_at').order('created_at',{ascending:false}).limit(2000)
+    ]);
+    if(profileResult.error) throw profileResult.error;
+    if(progressResult.error) throw progressResult.error;
+    if(attemptResult.error) throw attemptResult.error;
+    const progressByStudent = {};
+    (progressResult.data||[]).forEach(q=>{
+      if(!progressByStudent[q.student_id]) progressByStudent[q.student_id]={};
+      progressByStudent[q.student_id][Number(q.mountain_id)] = q;
+    });
+    const latestByStudent = {};
+    (attemptResult.data||[]).forEach(a=>{ if(!latestByStudent[a.student_id]) latestByStudent[a.student_id]=a.created_at; });
+    const rows = (profileResult.data||[]).map(u=>{
+      const progress=progressByStudent[u.id]||{};
+      const vals=Object.values(progress);
+      return {
+        uid:u.id, name:u.full_name||'Tanpa nama', className:u.class_name||'',
+        progress, scores:vals.reduce((a,x)=>a+Number(x.best_score||0),0),
+        stars:vals.reduce((a,x)=>a+Number(x.stars||0),0),
+        completed:vals.filter(x=>x.completed).length,
+        latest:latestByStudent[u.id]||vals.map(x=>x.best_at||x.updated_at||'').sort().pop()||''
+      };
+    });
     rows.sort((a,b)=>(a.className+a.name).localeCompare(b.className+b.name,'id'));
     teacherRows=rows;
-    const content=$('teacherContent');
-    if(!content)return;
-    const body=rows.map(r=>`<tr>
-      <td><b>${esc(r.name)}</b><br><small>${esc(r.email)}</small><br><small>${esc(r.className||'Kelas belum diisi')}</small></td>
-      ${MT.map((m,k)=>{const q=r.progress[k];return q?`<td><span class="stars">${STR(Number(q.stars||0))}</span><br>${Number(q.score||0)}/500</td>`:'<td>—</td>'}).join('')}
-      <td><b>${r.scores}</b><br>⭐ ${r.stars}</td><td>${r.completed}/5</td><td>${esc(r.latest||'—')}</td>
-    </tr>`).join('');
-    content.innerHTML=rows.length?`
-      <div class="teacher-summary">
-        <div class="stat-card"><small>Jumlah siswa</small><strong>${rows.length}</strong></div>
-        <div class="stat-card"><small>Gunung diselesaikan</small><strong>${rows.reduce((a,r)=>a+r.completed,0)}</strong></div>
-        <div class="stat-card"><small>Total bintang</small><strong>⭐ ${rows.reduce((a,r)=>a+r.stars,0)}</strong></div>
-      </div>
-      <div class="teacher-table-wrap"><table class="teacher-table">
-        <thead><tr><th>Siswa</th>${MT.map(m=>`<th>${esc(m.n.replace('Gunung ','').toUpperCase())}</th>`).join('')}<th>Total skor</th><th>Selesai</th><th>Aktivitas terakhir</th></tr></thead>
-        <tbody>${body}</tbody>
-      </table></div>
-      <p style="text-align:right"><button class="go" onclick="exportTeacherCsv()">📥 Unduh rekap CSV</button></p>`
-      :'<div class="teacher-empty">Belum ada akun siswa. Minta siswa mendaftar melalui halaman Akun Siswa.</div>';
+    const content=$('teacherContent'); if(!content) return;
+    const body=rows.map(r=>`<tr><td><b>${esc(r.name)}</b><br><small>${esc(r.className||'Kelas belum diisi')}</small></td>
+      ${MT.map((m,k)=>{const q=r.progress[k];return q?`<td><span class="stars">${STR(Number(q.stars||0))}</span><br>${Number(q.best_score||0)}/500</td>`:'<td>—</td>'}).join('')}
+      <td><b>${r.scores}</b><br>⭐ ${r.stars}</td><td>${r.completed}/5</td><td>${esc(r.latest?new Date(r.latest).toLocaleString('id-ID'):'—')}</td></tr>`).join('');
+    content.innerHTML=rows.length?`<div class="teacher-summary">
+      <div class="stat-card"><small>Jumlah siswa</small><strong>${rows.length}</strong></div>
+      <div class="stat-card"><small>Gunung diselesaikan</small><strong>${rows.reduce((a,r)=>a+r.completed,0)}</strong></div>
+      <div class="stat-card"><small>Total bintang</small><strong>⭐ ${rows.reduce((a,r)=>a+r.stars,0)}</strong></div>
+    </div><div class="teacher-table-wrap"><table class="teacher-table"><thead><tr><th>Siswa</th>${MT.map(m=>`<th>${esc(m.n.replace('Gunung ','').toUpperCase())}</th>`).join('')}<th>Total skor</th><th>Selesai</th><th>Aktivitas terakhir</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p style="text-align:right"><button class="go" onclick="exportTeacherCsv()">📥 Unduh rekap CSV</button></p>`
+    :'<div class="teacher-empty">Belum ada siswa yang masuk ke website.</div>';
   }catch(err){
     const content=$('teacherContent');
-    if(content)content.innerHTML='<div class="auth-warning">'+esc(authErrorText(err))+' Periksa Firestore Security Rules.</div>';
+    if(content) content.innerHTML='<div class="auth-warning">'+esc(authErrorText(err))+' Pastikan SQL dan RLS sudah dijalankan.</div>';
   }
 }
 function exportTeacherCsv(){
   const q=x=>'"'+String(x??'').replace(/"/g,'""')+'"';
-  let csv='Nama,Kelas,Email,'+MT.map(m=>m.n+'_Skor,'+m.n+'_Bintang').join(',')+',Total_Skor,Total_Bintang,Gunung_Selesai\n';
+  let csv='Nama,Kelas,'+MT.map(m=>m.n+'_Skor,'+m.n+'_Bintang').join(',')+',Total_Skor,Total_Bintang,Gunung_Selesai\n';
   teacherRows.forEach(r=>{
-    const cells=[q(r.name),q(r.className),q(r.email)];
-    MT.forEach((m,k)=>{const p=r.progress[k];cells.push(p?Number(p.score||0):'',p?Number(p.stars||0):'')});
+    const cells=[q(r.name),q(r.className)];
+    MT.forEach((m,k)=>{const p=r.progress[k];cells.push(p?Number(p.best_score||0):'',p?Number(p.stars||0):'')});
     cells.push(r.scores,r.stars,r.completed);csv+=cells.join(',')+'\n';
   });
   const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
   const url=URL.createObjectURL(blob),a=document.createElement('a');
   a.href=url;a.download='rekap-progres-siswa.csv';a.click();URL.revokeObjectURL(url);
 }
-function logout(){
-  mvStop();clearInterval(timer);
-  if(auth&&currentUser){auth.signOut().catch(()=>{});}
-  currentUser=null;currentProfile=null;currentRole=null;CUR='';
+async function logout(){
+  mvStop(); clearInterval(timer);
+  const {error}=await sbClient.auth.signOut();
+  if(error) toast('Gagal keluar: '+authErrorText(error));
+  currentUser=null; currentProfile=null; currentRole=null; CUR='';
   login('student-login');
 }
-function gPin(){login('teacher-login');}
-function guru(){return teacherDashboard();}
-function kodeGuru(){toast('Progres belajarmu tersimpan otomatis di akun dan dapat dilihat guru.');}
-function doLogin(){return doAuth();}
+function gPin(){ login('teacher-login'); }
+function guru(){ return teacherDashboard(); }
+function kodeGuru(){ toast('☁️ Progres tersimpan otomatis di Supabase dan dapat dilihat guru.'); }
+function doLogin(){ return doAuth(); }
 
-initFirebase();
-login();
+initSupabase();
 </script>
 </body>
 </html>
