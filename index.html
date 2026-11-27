@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#eaf7f1">
+<meta name="theme-color" content="#f6f2e9">
 <title>Detektif Gunung Bahasa Arab – لُغْزُ الْجَبَلِ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -933,7 +933,252 @@ body{background:transparent!important;color:#24372a!important}
 }
 
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style id="vintage-mountain-theme">
+/* =========================================================
+   VINTAGE MOUNTAIN THEME — GLOBAL ALL-MOUNTAIN BACKGROUNDS
+   Warm ivory, parchment, sage, olive and muted antique gold.
+   Applied consistently to every expedition, basecamp, pos,
+   summit, dashboard and learning screen.
+   ========================================================= */
+:root{
+  --bg:#f6f2e9;
+  --card:#fffdf8;
+  --line:#e5dcc9;
+  --paper:#fffdf7;
+  --paper2:#f2ecdf;
+  --ink:#3b4337;
+  --amber:#bd9558;
+  --red:#b86e5e;
+  --green:#647b61;
+  --mute:#7b806f;
+  --text:#3d493b;
+  --pr:#71856a;
+  --or:#bd9558;
+  --shadow:0 12px 30px rgba(73,61,42,.09);
+}
+
+html{background:#f6f2e9!important}
+body{
+  color:#3d493b!important;
+  background:
+    radial-gradient(ellipse at 12% 8%,rgba(203,180,137,.13),transparent 34%),
+    radial-gradient(ellipse at 88% 24%,rgba(128,151,119,.10),transparent 32%),
+    linear-gradient(180deg,#faf8f1 0%,#f2eee3 100%)!important;
+}
+body>main{position:relative;z-index:1;background:transparent!important}
+
+/* Global mountain artwork: keep the individual mountain scenes,
+   but soften every one with the same warm vintage grade. */
+#bgx{display:block!important;z-index:-1!important;pointer-events:none!important}
+#bgx .bgi{
+  filter:sepia(.30) saturate(.48) brightness(1.13) contrast(.88)!important;
+  opacity:.42!important;
+  transform:scale(1.04);
+}
+#bgx .bgo{
+  background:linear-gradient(180deg,rgba(250,247,238,.68),rgba(248,245,236,.84))!important;
+  opacity:1!important;
+}
+#bgx .rays{opacity:.025!important}
+#bgx .bgf{background:linear-gradient(transparent,rgba(131,117,87,.10))!important;opacity:.24!important}
+#bgc span,#bgt span{opacity:.10!important;filter:sepia(.38) saturate(.52)!important}
+#bgp i{background:#b89a68!important;opacity:.16!important}
+
+/* Main landing and game HUD */
+.brand h1{color:#526b4f!important;text-shadow:0 2px 0 #fffaf0,0 8px 20px rgba(81,99,68,.12)!important}
+.brand .sub{
+  background:rgba(255,253,247,.88)!important;color:#68735e!important;
+  border:1px solid #e7decc!important;border-radius:14px;
+}
+.switch{background:rgba(255,253,247,.92)!important;color:#5c6d55!important;border:1px solid #e4dac6!important}
+.hud{
+  background:rgba(255,253,247,.96)!important;color:#4d6049!important;
+  border:1px solid #e4dac8!important;box-shadow:0 8px 22px rgba(73,61,42,.08)!important;
+}
+.hud .h{color:#b66d5c!important}
+#questionArea{
+  background:rgba(255,253,247,.96)!important;border:1px solid #e6ddcc!important;
+  box-shadow:0 14px 34px rgba(73,61,42,.08)!important;
+}
+
+/* All screens use the same soft paper backdrop, including screens
+   whose JavaScript assigns a per-mountain inline background. */
+#scr{
+  color:#3d493b!important;
+  background:
+    radial-gradient(ellipse at 10% 8%,rgba(205,183,143,.16),transparent 34%),
+    radial-gradient(ellipse at 92% 18%,rgba(132,153,121,.12),transparent 32%),
+    repeating-linear-gradient(0deg,rgba(120,99,65,.018) 0 1px,transparent 1px 4px),
+    linear-gradient(180deg,#faf8f1 0%,#f1ede2 100%)!important;
+  backdrop-filter:none!important;
+}
+#scr::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.58),transparent 58%),
+    repeating-linear-gradient(90deg,rgba(137,116,82,.012) 0 1px,transparent 1px 5px);
+}
+#scr main{position:relative;z-index:1;background:transparent!important}
+
+/* Consistent parchment surfaces and borders */
+.story,.s,.panel,.end,.clue,.learning-card,.case-brief,.climb-panel,
+.vocab-quiz,.dashboard-head,.stat-card,.mountain-card,.auth-shell,
+.customize-shell,.teacher-table-wrap,.overlay-card,.hmc,
+#scr .story,#scr .s,#scr .panel,#scr .end,#scr .clue,
+#scr .learning-card,#scr .case-brief,#scr .climb-panel,
+#scr .vocab-quiz,#scr .dashboard-head,#scr .stat-card,
+#scr .mountain-card,#scr .auth-shell,#scr .customize-shell,
+#scr .teacher-table-wrap{
+  border-color:#e5dcc9!important;
+  box-shadow:0 8px 24px rgba(73,61,42,.075)!important;
+}
+.story,.s,.panel,.end,.learning-card,.case-brief,.climb-panel,
+.vocab-quiz,.dashboard-head,.stat-card,.mountain-card,.auth-shell,
+.customize-shell,.teacher-table-wrap,#scr .story,#scr .s,
+#scr .panel,#scr .end,#scr .learning-card,#scr .case-brief,
+#scr .climb-panel,#scr .vocab-quiz,#scr .dashboard-head,
+#scr .stat-card,#scr .mountain-card,#scr .auth-shell,
+#scr .customize-shell,#scr .teacher-table-wrap{
+  background:rgba(255,253,247,.96)!important;
+}
+.story,#scr .story{border-left-color:#b99a69!important;color:#3f4b3c!important}
+.s,#scr .s{color:#3f4b3c!important}
+.s .ar,#scr .s .ar{color:#3f6249!important}
+.s .tag,#scr .s .tag{color:#78806e!important}
+.clue,#scr .clue{
+  background:#fffdf7!important;color:#3d493b!important;
+  border:1px solid #e7decd!important;border-left:5px solid #bd995e!important;
+  box-shadow:0 5px 14px rgba(73,61,42,.055)!important;
+}
+.clue.done,#scr .clue.done{background:#edf1e7!important;border-color:#cbd5c1!important}
+.clue:disabled,#scr .clue:disabled{background:#f0eee7!important;color:#a19c8e!important}
+.panel,.end,#scr .panel,#scr .end{
+  background:#fffdf7!important;border:1px solid #e2d8c4!important;
+  border-top:5px solid #bd9558!important;color:#3d493b!important;
+}
+.opt,#scr .opt{background:#fffefa!important;color:#3d493b!important;border-color:#e0d7c6!important}
+.opt.ok,#scr .opt.ok{background:#e8f0e5!important;border-color:#7e9a78!important}
+.opt.no,#scr .opt.no{background:#f7e9e4!important;border-color:#c78372!important;color:#75483e!important}
+.note,#scr .note{background:#f6efdf!important;color:#5b4b32!important;border-left-color:#bd9558!important}
+.say,#scr .say{background:#f1eee4!important;color:#405340!important;border-right-color:#bd9558!important}
+.say.h2,#scr .say.h2{background:#f6f3ea!important;color:#6b705f!important}
+.hint,#scr .hint{color:#6e7868!important;text-shadow:none!important}
+
+/* Warm, restrained green and antique-gold controls */
+.go{
+  background:linear-gradient(135deg,#78896b,#5f775d);
+  color:#fff;border-radius:13px;box-shadow:0 4px 0 #4b624b;
+}
+.go:active{box-shadow:0 1px 0 #4b624b}
+.mini,.secondary-btn,.chip{
+  background:#fffdf7!important;color:#586c53!important;border-color:#ded4c0!important;
+}
+.chip.on{background:#687f62!important;color:#fff!important;border-color:#586f53!important}
+#homeBtn{background:#687f62!important;border-color:#fff!important}
+#scr .go:not([style]){background:linear-gradient(135deg,#78896b,#5f775d)!important;color:#fff!important;box-shadow:0 4px 0 #4b624b!important}
+#scr .go:not([style]):hover{filter:brightness(1.04)}
+#muBtn{background:#fffdf7!important;color:#586c53!important;border-color:#ded4c0!important}
+
+/* All five mountain cards and all basecamp / pos photographs */
+.mountain-card,#scr .mountain-card{
+  background:#fffdf7!important;border:1px solid #e4dac7!important;
+  border-radius:20px;overflow:hidden;
+}
+.mountain-card .mountain-photo,#scr .mountain-photo,
+.pos-card-visual,.pos-photo,#scr .pos-card-visual,#scr .pos-photo,
+.ph,#scr .ph,.cvw,#scr .cvw{
+  background:linear-gradient(145deg,#e8e2d3 0%,#dfe5d8 55%,#c9d2bf 100%)!important;
+}
+.mountain-card .mountain-photo img,#scr .mountain-photo img,
+.pos-photo img,#scr .pos-photo img,
+.journey-hero>img,#scr .journey-hero>img,
+.ph img,#scr .ph img,.mapw img,#scr .mapw img{
+  filter:sepia(.22) saturate(.76) brightness(1.055) contrast(.94)!important;
+}
+.cvr,#scr .cvr{filter:sepia(.20) saturate(.72) brightness(1.06)!important}
+.cvw,#scr .cvw,.mapw,#scr .mapw{background:#f1ecdf!important;border-color:#bd9558!important}
+.cvw canvas,#scr .cvw canvas{filter:sepia(.16) saturate(.82) brightness(1.035) contrast(.96)!important}
+.pos-card,#scr .pos-card{
+  background:rgba(255,253,247,.97)!important;border:1px solid #e5dcc9!important;
+  box-shadow:0 14px 32px rgba(73,61,42,.09)!important;
+}
+.pos-card-copy h3,#scr .pos-card-copy h3{color:#465c45!important}
+.pos-card-copy p,#scr .pos-card-copy p{color:#727866!important}
+.pos-kicker,#scr .pos-kicker{background:#edf0e5!important;color:#647b61!important}
+
+/* Basecamp and expedition introduction: keep the mountain photo, but
+   replace the dark modern treatment with a muted forest-vintage grade. */
+.journey-hero,#scr .journey-hero{
+  background:#d9dfcf!important;box-shadow:0 14px 34px rgba(73,61,42,.13)!important;
+  border:1px solid rgba(174,157,121,.34);
+}
+.journey-hero::after,#scr .journey-hero::after{
+  background:linear-gradient(90deg,rgba(39,55,39,.76),rgba(53,67,46,.43) 62%,rgba(248,244,232,.12))!important;
+}
+.journey-hero-copy,#scr .journey-hero-copy{color:#fff!important}
+.journey-hero-copy .eyebrow,#scr .journey-hero-copy .eyebrow{
+  background:rgba(248,243,228,.18)!important;border-color:rgba(255,250,236,.42)!important;
+}
+.hero-facts span,#scr .hero-facts span{background:rgba(248,243,228,.16)!important;border-color:rgba(255,250,236,.38)!important}
+
+/* Mufradat and learning panels: remove cool/pink casts in every mountain. */
+.vocab-card,#scr .vocab-card{border-color:#e4dac7!important;box-shadow:0 7px 18px rgba(73,61,42,.065)!important}
+.vocab-card-0,#scr .vocab-card-0{background:linear-gradient(145deg,#fffdf7,#edf1e7)!important}
+.vocab-card-1,#scr .vocab-card-1{background:linear-gradient(145deg,#fffdf7,#f3ead8)!important}
+.vocab-card-2,#scr .vocab-card-2{background:linear-gradient(145deg,#fffdf7,#e9eee8)!important}
+.vocab-card-3,#scr .vocab-card-3{background:linear-gradient(145deg,#fffdf7,#eee9dc)!important}
+.vocab-card .ar,#scr .vocab-card .ar{color:#3e6348!important}
+.vocab-card .latin,#scr .vocab-card .latin{color:#858372!important}
+.vocab-card .meaning,#scr .vocab-card .meaning{color:#4d5d46!important}
+.case-mode,#scr .case-mode{background:#f2efe4!important;border-color:#e3d9c5!important;color:#596c51!important}
+.climb-panel,#scr .climb-panel{background:linear-gradient(135deg,#fffdf7,#edf0e5)!important}
+.avs,#scr .avs{background:linear-gradient(180deg,#f5f1e6,#e4e8da 72%,#cbd5c1)!important;border-color:#dfd5c0!important}
+
+/* Summit celebration remains cinematic, now with a warm vintage grade. */
+#scr .finish-hero{box-shadow:0 20px 44px rgba(73,61,42,.18)!important}
+#scr .finish-hero::before{
+  background-image:
+    linear-gradient(180deg,rgba(42,46,34,.42) 0%,rgba(48,52,37,.12) 42%,rgba(35,43,30,.62) 100%),
+    linear-gradient(0deg,rgba(194,159,104,.14),rgba(194,159,104,.14)),
+    var(--finish-image)!important;
+  background-size:cover!important;background-position:center 48%!important;
+}
+#scr .finish-hero::after{
+  background:linear-gradient(135deg,rgba(222,197,151,.12),rgba(247,241,224,.05)),
+    radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.18),transparent 50%)!important;
+}
+#scr .finish-results{background:rgba(255,253,247,.97)!important;border-color:#e4dac7!important}
+#scr .finish-stat{background:linear-gradient(145deg,#f5f1e6,#e9eee3)!important;border-color:#ddd3bf!important}
+#scr .finish-btn{border-color:#ded4c0!important;color:#53684f!important;background:#fffdf7!important}
+#scr .finish-btn.primary{background:#687f62!important;color:#fff!important;border-color:#586f53!important}
+
+/* Headings and secondary surfaces across all screens */
+#scr h2:not(.finish-results-head h2){
+  background:transparent!important;color:#4d644b!important;
+  border-bottom:1px solid #e6ddca!important;border-radius:0!important;
+  box-shadow:none!important;text-shadow:none!important;padding:0 0 8px!important;
+}
+#scr h2:not(.finish-results-head h2)::before{background:#bd9558!important}
+#scr .section-kicker{color:#9a835c!important}
+#scr .word-count,#scr .mountain-state,#scr .investigation-label{
+  background:#f1eee3!important;color:#65785d!important;border:1px solid #e2d8c5!important;
+}
+#scr .secondary-btn{background:#fffdf7!important;color:#596d54!important;border-color:#ded4c0!important}
+#scr .auth-mark .mountain-mark{background:linear-gradient(145deg,#f1ead9,#e4eadf)!important}
+#scr .auth-tabs .auth-tab.active{background:#687f62!important;border-color:#687f62!important}
+#scr .teacher-table th{background:#687f62!important}
+#scr .overlay-modal{background:rgba(63,59,44,.46)!important}
+#hm,#pho{background:rgba(63,59,44,.48)!important}
+.hmc,.overlay-card{background:#fffdf7!important;color:#3d493b!important;border:1px solid #e4dac7!important}
+
+@media(max-width:640px){
+  #scr{background-attachment:scroll!important}
+  .journey-hero::after,#scr .journey-hero::after{background:linear-gradient(180deg,rgba(39,55,39,.64),rgba(39,55,39,.38) 72%,rgba(248,244,232,.10))!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #bgx .bgi{animation:none!important}
+}
+</style>
 
 </head>
 <body>
