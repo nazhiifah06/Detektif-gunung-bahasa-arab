@@ -619,6 +619,100 @@ h2{color:#fff!important;text-shadow:none!important}
   .mt .cvr{height:160px}
 }
 @media(max-width:380px){.stat-grid{grid-template-columns:1fr}.auth-tabs{grid-template-columns:1fr 1fr}}
+
+/* REVISI LANJUTAN: avatar gender/arah, kontras soal, dan latar alam yang lembut */
+body{background:#e6eee7!important;color:#24372a!important}
+#bgx{display:block!important}
+#bgx .bgi{filter:saturate(.78) brightness(1.12);transform:scale(1.02)}
+#bgx .bgo{background:linear-gradient(180deg,rgba(20,48,32,.18),rgba(20,48,32,.34))!important}
+#scr{background:linear-gradient(180deg,rgba(239,246,239,.78),rgba(232,241,232,.86))!important;color:#24372a!important;backdrop-filter:blur(2px)}
+#scr main{background:transparent}
+#scr .hint,#scr .sub{color:#526b59!important;text-shadow:none!important}
+#scr h2{color:#244c34!important;text-shadow:none!important}
+#scr .story,#scr .s{background:#f4f6ee!important;color:#263a2b!important;border-color:#c7d5c5!important;box-shadow:0 5px 16px rgba(34,61,41,.09)!important}
+#scr .story{border-left:5px solid #7c9f7e!important}
+#scr .s .ar{color:#22583b!important}
+#scr .clue{background:#e5eee3!important;color:#24382a!important;border:1px solid #b9cdb9!important;border-left:5px solid #6e9876!important;box-shadow:0 4px 0 rgba(51,82,58,.13),0 7px 16px rgba(34,61,41,.08)!important}
+#scr .clue b{color:#213b2a!important}#scr .clue small{color:#526b59!important}
+#scr .clue.done{background:#d5e8d7!important;border-color:#8eb79a!important}
+#scr .clue.open{outline-color:#c18a36!important}
+#scr .panel,#scr .end{background:#fffdf6!important;color:#233629!important;border:1px solid #b9cbb9!important;border-top:6px solid #c18a36!important;box-shadow:0 12px 30px rgba(27,52,34,.16)!important}
+#scr .panel b,#scr .end b,#scr .panel p,#scr .end p,#scr .panel label,#scr .end label{color:#263a2b}
+#scr .panel .say{background:#e9efe4!important;color:#173e2a!important;border-right:5px solid #c18a36!important;font-weight:700}
+#scr .panel .say.h2{background:#e8eee5!important;color:#334c3a!important}
+#scr .panel .tr{color:#354f3d!important;background:#edf2e8;padding:10px 12px;border-radius:10px}
+#scr .opt{background:#f8faf5!important;color:#203629!important;border:2px solid #c4d3c2!important;font-size:1rem;font-weight:650}
+#scr .opt::before{color:#365a40;border-color:#aebfae}
+#scr .opt:hover:not(:disabled){background:#edf4e9!important;border-color:#6e9876!important}
+#scr .opt.ok{background:#d8eddd!important;border-color:#4d9462!important}
+#scr .opt.no{background:#f7dfd9!important;border-color:#c76c5b!important;color:#713b32!important}
+#scr .ti,#scr .final-input{background:#fff!important;color:#1f3528!important;border-color:#9db89f!important}
+#scr .note{background:#f7efd9!important;color:#493c24!important;border-left-color:#c18a36!important}
+#scr .hint{background:rgba(255,255,255,.84)!important;color:#405846!important}
+#scr .vocab-card{border:1px solid #b9cdbb!important;box-shadow:0 6px 16px rgba(39,73,48,.09)!important}
+#scr .vocab-card-0{background:linear-gradient(145deg,#edf6ed,#dcebe0)!important}
+#scr .vocab-card-1{background:linear-gradient(145deg,#fbf3df,#f0e5c9)!important}
+#scr .vocab-card-2{background:linear-gradient(145deg,#e9f0f7,#dbe6f0)!important}
+#scr .vocab-card-3{background:linear-gradient(145deg,#f5eaf0,#eadde6)!important}
+#scr .vocab-card .ar{color:#174b31!important}#scr .vocab-card .latin{color:#536d5b!important}#scr .vocab-card .meaning{color:#263e2d!important}
+#scr .vocab-card button{background:#fff!important;border:1px solid #b9cdbb!important;color:#2d6845!important}
+#scr .case-brief,#scr .learning-card,#scr .climb-panel{background:rgba(255,255,250,.97)!important;border-color:#c3d2c1!important;box-shadow:0 8px 24px rgba(31,59,39,.10)!important}
+#scr .case-mode{background:#e8f0e5!important;border-color:#c2d3bf!important;color:#294a33!important}
+#scr .case-brief p,#scr .rules-list{color:#405846!important}
+#scr .climb-panel{background:linear-gradient(135deg,#f8f5e9,#e5efe3)!important}
+#scr .climb-panel h2{background:transparent!important;color:#244c34!important}
+#scr .journey-hero::after{background:linear-gradient(90deg,rgba(15,42,27,.86),rgba(15,42,27,.52) 62%,rgba(15,42,27,.12))!important}
+#scr .avatar-controls{display:grid;gap:9px;justify-content:center;margin:10px auto 14px}
+#scr .avatar-control-group{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+#scr .avatar-control-group>span{min-width:88px;color:#405d48;font-size:.84rem;font-weight:900}
+#scr .avp svg{transform:perspective(650px) rotateY(var(--avatar-yaw,0deg));transform-origin:50% 55%;transition:transform .32s ease}
+#scr .avs{background:linear-gradient(180deg,#e7f0e6,#d4e3d2 72%,#b5cdb5)!important;border:1px solid #c0d2c0!important;box-shadow:inset 0 1px 0 #fff,0 8px 20px rgba(39,73,48,.10)!important}
+#scr .bird-ride-modal{position:fixed!important;inset:0!important;z-index:9999!important;display:grid!important;place-items:center!important;background:rgba(18,37,25,.72)!important}
+#scr .bird-ride-modal[hidden]{display:none!important}
+#scr .bird-ride-modal .overlay-card{border:2px solid #c7d8c4;background:#fffdf6;color:#24382a}
+#scr .bird-ride-modal .overlay-card p{color:#405846!important}
+@media(max-width:560px){#scr .avatar-control-group{gap:6px}#scr .avatar-control-group>span{width:100%;text-align:center}#scr .avatar-control-group .chip{min-height:40px;padding:6px 11px}#scr .panel{padding:15px}#scr .clues{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+
+
+/* KONTRAS GLOBAL UNTUK LAYAR PERMAINAN (di luar #scr) */
+html{background:#e6eee7!important}
+body{background:transparent!important;color:#24372a!important}
+#bgx{z-index:-1!important;display:block!important}
+#bgx .bgi{filter:saturate(.78) brightness(1.12)}
+#bgx .bgo{background:linear-gradient(180deg,rgba(20,48,32,.18),rgba(20,48,32,.34))!important}
+.hud{background:rgba(255,255,250,.94)!important;color:#294b35!important;border:1px solid #bfd0bf!important;box-shadow:0 8px 22px rgba(27,52,34,.14)!important}
+.story{background:#f4f6ee!important;color:#263a2b!important;border:1px solid #c7d5c5!important;border-left:5px solid #7c9f7e!important;box-shadow:0 5px 16px rgba(34,61,41,.09)!important}
+.s{background:#f4f6ee!important;color:#263a2b!important;border:1px solid #c7d5c5!important;box-shadow:0 5px 16px rgba(34,61,41,.09)!important}
+.s .ar{color:#22583b!important}.s .tag{color:#526b59!important}
+.clue{background:#e5eee3!important;color:#24382a!important;border:1px solid #b9cdb9!important;border-left:5px solid #6e9876!important;box-shadow:0 4px 0 rgba(51,82,58,.13),0 7px 16px rgba(34,61,41,.08)!important}
+.clue b{color:#213b2a!important}.clue small{color:#526b59!important}
+.clue.done{background:#d5e8d7!important;border-color:#8eb79a!important}
+.clue.open{outline:3px solid #c18a36!important}
+.panel,.end{background:#fffdf6!important;color:#233629!important;border:1px solid #b9cbb9!important;border-top:6px solid #c18a36!important;box-shadow:0 12px 30px rgba(27,52,34,.16)!important}
+.panel b,.end b,.panel p,.end p,.panel label,.end label{color:#263a2b}
+.panel .say{background:#e9efe4!important;color:#173e2a!important;border-right:5px solid #c18a36!important;font-weight:700}
+.panel .say.h2{background:#e8eee5!important;color:#334c3a!important}
+.panel .tr{color:#354f3d!important;background:#edf2e8;padding:10px 12px;border-radius:10px}
+.opt{background:#f8faf5!important;color:#203629!important;border:2px solid #c4d3c2!important;font-size:1rem;font-weight:650}
+.opt::before{color:#365a40;border-color:#aebfae}
+.opt:hover:not(:disabled){background:#edf4e9!important;border-color:#6e9876!important}
+.opt.ok{background:#d8eddd!important;border-color:#4d9462!important}
+.opt.no{background:#f7dfd9!important;border-color:#c76c5b!important;color:#713b32!important}
+.ti,.final-input{background:#fff!important;color:#1f3528!important;border-color:#9db89f!important}
+.note{background:#f7efd9!important;color:#493c24!important;border-left-color:#c18a36!important}
+.hint{color:#405846!important;text-shadow:none!important}
+
+
+.panel{font-size:1.02rem;line-height:1.72}
+.panel> b{font-size:1.12rem;color:#1f3b2a!important}
+.panel .say.ar{font-size:clamp(1.8rem,4vw,2.25rem);line-height:1.75}
+.panel .say.h2{font-size:1rem;line-height:1.6}
+.panel .opt{min-height:56px;padding:12px 15px;line-height:1.5}
+.panel .ti{font-size:1.18rem;min-height:52px}
+.end{font-size:1.02rem;line-height:1.72}
+.clue{min-height:82px;padding:15px}
+.clue b{font-size:1.02rem;line-height:1.45}
+@media(max-width:560px){.panel{font-size:.98rem}.panel .say.ar{font-size:1.7rem}.clue{min-height:76px;padding:11px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -881,14 +975,29 @@ function goClues(){const e=$('count');e.style.scrollMarginTop='90px';e.scrollInt
 function mvStop(){cancelAnimationFrame(mvRaf);document.removeEventListener('keydown',mvKd);document.removeEventListener('keyup',mvKu)}
 const RB=(x,y,w,h)=>'M'+x+' '+y+'h'+w+'v'+h+'h'+(-w)+'z';
 const HATS=[[['M16.5 6a5.5 5 0 0 1 11 0z','#3a2a1e']],[[RB(12.5,5.5,19,2.4),'#6B4528'],['M16.5 5.6a5.5 5 0 0 1 11 0z','#8B5E3C']],[['M16 6.2a6 5.5 0 0 1 12 0z','#E5484D'],[RB(16,5,12,2.6),'#B02A30'],['M20.2 0.9a1.8 1.8 0 1 0 3.6 0a1.8 1.8 0 1 0 -3.6 0z','#fff']],[['M16.5 6a5.5 5 0 0 1 11 0z','#1F8FD6'],[RB(24,5.2,9,2),'#14609a']],[['M16.5 6.4L18 1.8h8l1.5 4.6z','#C9B27C'],[RB(14.5,5.8,15,2),'#A8925F']]];
-function dav(c,x,y,dir,tt,mov,air,em,sk){sk=sk||1.3;em=em||0;if(em==4){y-=Math.abs(Math.sin(tt*5))*34;air=true}if(em==3){y-=Math.abs(Math.sin(tt*10))*6;mov=1}const j=AVJ[AV.jk],p=AVP[AV.pt],s=AVS[AV.sh],b=AVB[AV.bg],k=AVK[AV.sk],a=air?.7:Math.sin(tt*11)*.6*mov,F=(d,f)=>{c.fillStyle=f;c.fill(new Path2D(d))};
+function dav(c,x,y,dir,tt,mov,air,em,sk){
+ sk=sk||1.3;em=em||0;
+ if(em==4){y-=Math.abs(Math.sin(tt*5))*34;air=true}
+ if(em==3){y-=Math.abs(Math.sin(tt*10))*6;mov=1}
+ const j=AVJ[AV.jk],p=AVP[AV.pt],s=AVS[AV.sh],b=AVB[AV.bg],k=AVK[AV.sk],a=air?.7:Math.sin(tt*11)*.6*mov,F=(d,f)=>{c.fillStyle=f;c.fill(new Path2D(d))};
  c.save();c.translate(x,y);c.scale(dir*sk,sk);c.translate(-21,-51);
  const leg=an=>{c.save();c.translate(20,33);c.rotate(an);c.translate(-20,-33);F(RB(17.5,32,5,16),p);F(RB(16.5,46,8,5),s);c.restore()};
  leg(-a);F(RB(6.5,14,11,19),b);F(RB(7.5,10.5,9,4.5),'#3B82F6');F(RB(15,14,11,19),j);
- if(AV.jp==1){F(RB(15,22.5,11,2),'#ffffffcc');F(RB(15,26.5,11,1.2),'#ffffff99')}if(AV.jp==2)F(RB(15,14,11,4),'#0003');
- leg(a);F(RB(16.5,2.5,11,11),k);F(RB(23,6.8,1.7,2.3),'#222');F(RB(26,6.8,1.2,2.3),'#222');
+ if(AV.jp==1){F(RB(15,22.5,11,2),'#ffffffcc');F(RB(15,26.5,11,1.2),'#ffffff99')}
+ if(AV.jp==2)F(RB(15,14,11,4),'#0003');
+ leg(a);
+ if(AV.gender==='female')F('M16 10C12 3 16 -2 22 -2C29 -2 31 4 28 11L30 18L26 20L25 11C22 14 18 14 17 11L15 19L12 17Z','#493126');
+ else F('M16 8C15 2 18 0 22 0C27 0 29 3 28 9L25 7L22 8L19 6Z','#493126');
+ c.fillStyle=k;c.beginPath();c.arc(22,8.5,6.1,0,Math.PI*2);c.fill();
+ c.fillStyle='#263329';c.beginPath();c.arc(20,8,.75,0,Math.PI*2);c.arc(24.5,8,.75,0,Math.PI*2);c.fill();
+ c.strokeStyle='#7d4438';c.lineWidth=.8;c.beginPath();c.arc(22.2,10.3,2.2,.15,Math.PI-.15);c.stroke();
  HATS[AV.hat].forEach(q=>F(q[0],q[1]));
- c.save();c.translate(24,18);c.rotate(em==1?-2.6+Math.sin(tt*9)*.5:em==2?3.0:em==3?-1.8+Math.sin(tt*10)*1.2:em==4?-2.4:air?-.5:-a*.8);c.translate(-24,-18);c.strokeStyle=j;c.lineWidth=3.6;c.lineCap='round';c.beginPath();c.moveTo(24,18);c.lineTo(29,27);c.stroke();F('M29.3 25.5a2 2 0 1 0 .01 0z',k);F(RB(28.2,22,2.2,30),'#9AA5B1');F(RB(27.8,22,3,6),'#E5484D');if(em==2)F(RB(30.6,44,12,8),'#e63946');c.restore();c.restore()}
+ c.save();c.translate(24,18);c.rotate(em==1?-2.6+Math.sin(tt*9)*.5:em==2?3.0:em==3?-1.8+Math.sin(tt*10)*1.2:em==4?-2.4:air?-.5:-a*.8);c.translate(-24,-18);
+ c.strokeStyle=j;c.lineWidth=3.6;c.lineCap='round';c.beginPath();c.moveTo(24,18);c.lineTo(29,27);c.stroke();
+ F('M29.3 25.5a2 2 0 1 0 .01 0z',k);F(RB(28.2,22,2.2,30),'#9AA5B1');F(RB(27.8,22,3,6),'#E5484D');
+ if(em==2)F(RB(30.6,44,12,8),'#e63946');
+ c.restore();c.restore();
+}
 function shufC(c){const t=c.o[c.a];for(let i=c.o.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[c.o[i],c.o[j]]=[c.o[j],c.o[i]]}c.a=c.o.indexOf(t)}
 function shufAll(){LV.forEach(l=>l.clues.forEach(c=>{if(c.o)shufC(c)}));shufC(KEY)}
 const cl=(c,x,y,rx,ry,a)=>{const g=c.createRadialGradient(x,y,2,x,y,rx);g.addColorStop(0,'rgba(255,255,255,'+a+')');g.addColorStop(1,'rgba(255,255,255,0)');c.save();c.translate(0,y);c.scale(1,ry/rx);c.translate(0,-y);c.fillStyle=g;c.beginPath();c.arc(x,y,rx,0,7);c.fill();c.restore()};
@@ -904,7 +1013,7 @@ const IMGS={};
 const mimg=()=>IMGS[mi]||(IMGS[mi]=Object.assign(new Image(),{src:MT[mi].im}));
 function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Math.round((2600+f*600)*TK.len),im=mimg();
  $('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
- scr('<h2>'+(t==5?'Menuju Puncak':'Menuju Pos '+t)+'</h2><div class="cvw"><canvas id="cv"></canvas></div><div class="overlay-modal bird-ride-modal" id="birdConfirm" hidden role="dialog" aria-modal="true" aria-labelledby="birdConfirmTitle"><div class="overlay-card"><div class="big-icon">🦅</div><h3 id="birdConfirmTitle">Ada burung yang bisa membantumu!</h3><p>Burung ini bisa membawamu terbang melewati sebagian jalur pendakian. Apakah kamu ingin naik?</p><div class="overlay-actions"><button class="go" onclick="resolveBirdRide(true)">Ya, naik burung</button><button class="secondary-btn" onclick="resolveBirdRide(false)">Tidak, lanjut berjalan</button></div></div></div><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb wb" id="wbtn" data-k="w">💧 Isi</button><button class="cb jp" data-k="u">⤒ Lompat</button></div><p class="hint trail-tip" style="text-align:center">Gunakan ◀ ▶ untuk bergerak dan ⤒ untuk melompat. Nikmati pemandangan selama pendakian.</p><p style="text-align:center"><button class="go" style="padding:6px 14px;font-size:.9rem" id="mskip">⏩ Lewati jalur</button></p>');
+ scr('<h2>'+(t==5?'Menuju Puncak':'Menuju Pos '+t)+'</h2><div class="cvw"><canvas id="cv"></canvas></div><div class="overlay-modal bird-ride-modal" id="birdConfirm" hidden role="dialog" aria-modal="true" aria-labelledby="birdConfirmTitle"><div class="overlay-card"><div class="big-icon">🦅</div><h3 id="birdConfirmTitle">Mau naik burung?</h3><p>Burung ini bisa membawamu melewati sebagian jalur. Pilih <b>Ya</b> untuk naik, atau <b>Tidak</b> untuk melanjutkan berjalan kaki.</p><div class="overlay-actions"><button class="go" onclick="resolveBirdRide(true)">Ya, naik burung</button><button class="secondary-btn" onclick="resolveBirdRide(false)">Tidak, lanjut berjalan</button></div></div></div><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb wb" id="wbtn" data-k="w">💧 Isi</button><button class="cb jp" data-k="u">⤒ Lompat</button></div><p class="hint trail-tip" style="text-align:center">Gunakan ◀ ▶ untuk bergerak dan ⤒ untuk melompat. Nikmati pemandangan selama pendakian.</p><p style="text-align:center"><button class="go" style="padding:6px 14px;font-size:.9rem" id="mskip">⏩ Lewati jalur</button></p>');
  let sd=(mi+1)*977+f*131+7;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
  const WT=TK.wt,ob=[],bo=[],gy=x=>TK.gy(x,f),top=o=>gy(o.x+o.w/2)-o.h;
  const sl=x=>(gy(x+5)-gy(x-5))/10,fr=[],WL=[110].concat([...Array(Math.ceil(LEN/1300)-1)].map((_,i)=>Math.round(110+(LEN-260)*(i+1)/Math.ceil(LEN/1300))),[LEN-150]);let pt=-1;
@@ -920,7 +1029,7 @@ function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Mat
  const cv=$('cv'),c=cv.getContext('2d'),W=cv.parentNode.clientWidth||360,H=Math.min(440,Math.round(innerHeight*.5)),dr=devicePixelRatio||1;
  cv.width=W*dr;cv.height=H*dr;cv.style.width=W+'px';cv.style.height=H+'px';c.scale(dr,dr);
  const bd=[];for(let i=0;i<2+f;i++){const q=ob[Math.floor(ob.length*(i+.5)/(2+f))];if(q){const x=q.x-190;if(x>200&&!WL.some(w=>Math.abs(w-x)<110))bd.push({x,u:0})}}
- let mnt=0,px=70,py=gy(70),vy=0,face=1,tt=0,last=performance.now(),cx=0,cy=py-H*.66,msg='',mt=0,arr=0,done=0,onG=true,st=0,birdPrompt=null;mvKeys={};
+ let mnt=0,px=70,py=gy(70),vy=0,face=AV.facing==='left'?-1:1,tt=0,last=performance.now(),cx=0,cy=py-H*.66,msg='',mt=0,arr=0,done=0,onG=true,st=0,birdPrompt=null;mvKeys={};
  window.mvDbg=()=>({px,py,LEN,ob,bo,onG,st,water,fr,WL,bd,mnt,zn,gust:(TK.fx=='wind'&&(tt%7.5)>.2&&(tt%7.5)<3.6)});window.mvSet=x=>{px=x};
  const go=()=>{if(done)return;done=1;mvStop();scr('');cb()};
  const poly=(pts,col)=>{const a=pts.split(' ').map(q=>q.split(',').map(Number));c.beginPath();a.forEach((q,i)=>i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]));c.closePath();c.fillStyle=col;c.fill()};
@@ -995,7 +1104,7 @@ const SUMI=['puncak-slamet.jpg','puncak-sindoro.jpg','puncak-merbabu.jpg','punca
 function summit(cb){mvStop();const M=MT[mi],im=mimg(),pf=SUMI[mi],pim=pf?(SIMG[mi]||(SIMG[mi]=Object.assign(new Image(),{src:pf}))):null;$('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
  scr('<h2>Puncak '+M.n+' · '+(M.elev?M.elev.toLocaleString('id-ID')+' mdpl':'')+'</h2><div class="cvw"><canvas id="sc"></canvas><div id="fl"></div></div><p class="hint" style="text-align:center">🏔️ Kamu sampai di puncak! Jalan-jalan dengan ◀ ▶ dan ⤒, pilih gaya, lalu ambil foto.</p><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb jp" data-k="u">⤒ Lompat</button></div><div class="ots" id="em">'+['🧍 Berdiri','👋 Melambai','🚩 Bendera','💃 Joget','🦘 Lompat'].map((s,i)=>'<button class="chip'+(i?'':' on')+'" data-e="'+i+'">'+s+'</button>').join('')+'</div><p style="text-align:center"><button class="go" id="shot">📸 Foto</button> <button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" id="snext">Lanjut ke tuduhan →</button></p>');
  const cv=$('sc'),c=cv.getContext('2d'),W=cv.parentNode.clientWidth||360,H=Math.max(220,Math.round(W/1.5)),dr=devicePixelRatio||1;cv.width=W*dr;cv.height=H*dr;cv.style.width=W+'px';cv.style.height=H+'px';c.scale(dr,dr);
- let em=0,tt=0,last=performance.now(),cap=0,done=0,ax=null,jy=0,vy=0,face=1,cam=0,mov=0;mvKeys={};
+ let em=0,tt=0,last=performance.now(),cap=0,done=0,ax=null,jy=0,vy=0,face=AV.facing==='left'?-1:1,cam=0,mov=0;mvKeys={};
  const ok=()=>pim&&pim.complete&&pim.naturalWidth,ww=()=>ok()?pim.naturalWidth*H/pim.naturalHeight:W;
  const setEm=v=>{em=v;document.querySelectorAll('#em .chip').forEach((x,i)=>x.classList.toggle('on',i==v))};
  document.querySelectorAll('#em .chip').forEach(b=>b.onclick=()=>setEm(+b.dataset.e));
@@ -1089,8 +1198,10 @@ for(let k=1;k<5;k++)CASES[k].bc=[bcs(MD[k],k),2];
 function setCase(k){mi=k;const c=CASES[k];LV=c.lv;INTRO=c.intro;KEY=c.key;C=c.map;LV.forEach(l=>{l.sus=SUS;l.culprit=c.cul;l.key=KEY})}
 ['gunung-slamet.jpg','gunung-sindoro.jpg','gunung-merbabu.jpg','gunung-lawu.jpg','gunung-rinjani.jpg'].forEach((f,k)=>MT[k].im=f);
 const AVJ=['#1F8FD6','#E5484D','#E8832A','#2E9E5B','#8B5CF6','#E5508F','#F2C94C','#2b2f3a'],AVP=['#2D3B55','#222','#C2A878','#5B6B3A','#8a8f98','#6b4a35'],AVS=['#5A3A22','#222','#f2f2f2','#E5484D','#1F8FD6','#E8832A'],AVB=['#E8832A','#1F8FD6','#2E9E5B','#2b2f3a','#E5484D','#8B5CF6'],AVK=['#F8D9B8','#E8B98A','#C68642','#8D5524','#5C3A21'];
-let AV={hat:1,jk:0,jp:1,pt:0,sh:0,bg:0,sk:1},avTab=0,avCb=null;
+let AV={hat:1,jk:0,jp:1,pt:0,sh:0,bg:0,sk:1,gender:'male',facing:'right'},avTab=0,avCb=null;
 try{const s=JSON.parse(localStorage.getItem('avt'));if(s&&typeof s=='object')AV=Object.assign(AV,s)}catch(e){}
+AV.gender=AV.gender==='female'?'female':'male';
+AV.facing=['left','right','front'].includes(AV.facing)?AV.facing:'right';
 const avSave=()=>{try{localStorage.setItem('avt',JSON.stringify(AV))}catch(e){}};
 function avSvg(){const j=AVJ[AV.jk],p=AVP[AV.pt],s=AVS[AV.sh],b=AVB[AV.bg],k=AVK[AV.sk];
  const hat=['<path d="M16.5 6a5.5 5 0 0 1 11 0z" fill="#3a2a1e"/>','<rect x="12.5" y="5.5" width="19" height="2.4" rx="1.2" fill="#6B4528"/><path d="M16.5 5.6a5.5 5 0 0 1 11 0z" fill="#8B5E3C"/>','<path d="M16 6.2a6 5.5 0 0 1 12 0z" fill="#E5484D"/><rect x="16" y="5" width="12" height="2.6" fill="#B02A30"/><circle cx="22" cy="0.9" r="1.8" fill="#fff"/>','<path d="M16.5 6a5.5 5 0 0 1 11 0z" fill="#1F8FD6"/><rect x="24" y="5.2" width="9" height="2" rx="1" fill="#14609a"/>','<path d="M16.5 6.4L18 1.8h8l1.5 4.6z" fill="#C9B27C"/><rect x="14.5" y="5.8" width="15" height="2" rx="1" fill="#A8925F"/>'][AV.hat];
@@ -1712,37 +1823,44 @@ function pickMt(){
   </div>`);
 }
 function avSvg(){
-  const j=AVJ[AV.jk],p=AVP[AV.pt],s=AVS[AV.sh],b=AVB[AV.bg],k=AVK[AV.sk];
-  const hats=[
+  const j=AVJ[AV.jk],p=AVP[AV.pt],shoe=AVS[AV.sh],bag=AVB[AV.bg],skin=AVK[AV.sk];
+  const female=AV.gender==='female';
+  const hair=female
+    ? `<path d="M14 13C10 4 15 -1 22 -1C30 -1 33 5 30 14L30 23L26 25L25 13C22 16 18 15 16 12L15 24L11 22Z" fill="#493126"/>`
+    : `<path d="M15 9C14 3 17 0 22 0C28 0 30 4 28 10L25 7L22 8L19 6Z" fill="#493126"/>`;
+  const hat=[
     '<path d="M16 7a6 5 0 0 1 12 0z" fill="#3a2a1e"/>',
     '<path d="M12 7h20v2H12z" fill="#6B4528"/><path d="M16 7a6 5 0 0 1 12 0z" fill="#8B5E3C"/>',
     '<path d="M15 7a7 6 0 0 1 14 0z" fill="#E5484D"/><rect x="15" y="6" width="14" height="2" fill="#B02A30"/>',
     '<path d="M16 7a6 5 0 0 1 12 0z" fill="#1F8FD6"/><rect x="25" y="7" width="8" height="2" fill="#14609a"/>',
     '<path d="M17 7l2-5h8l2 5z" fill="#C9B27C"/><rect x="14" y="7" width="18" height="2" fill="#A8925F"/>'
   ][AV.hat]||'';
-  return `<svg viewBox="0 0 44 58" aria-label="Avatar pendaki tampak depan">
+  const yaw=AV.facing==='left'?-48:AV.facing==='right'?48:0;
+  return `<svg viewBox="0 0 44 58" role="img" aria-label="Avatar ${female?'perempuan':'laki-laki'} menghadap ${AV.facing==='front'?'depan':AV.facing==='left'?'kiri':'kanan'}" style="--avatar-yaw:${yaw}deg">
     <ellipse cx="22" cy="55" rx="11" ry="2.2" fill="#0002"/>
     <g class="bd">
-      <g class="lg b"><rect x="13.5" y="42" width="6" height="10" rx="2" fill="${p}"/><rect x="12" y="50" width="9" height="4" rx="1.8" fill="${s}"/></g>
-      <rect x="7" y="17" width="7" height="17" rx="3.5" fill="${b}"/>
-      <rect x="30" y="17" width="7" height="17" rx="3.5" fill="${b}"/>
+      <g class="lg b"><rect x="13.5" y="42" width="6" height="10" rx="2" fill="${p}"/><rect x="12" y="50" width="9" height="4" rx="1.8" fill="${shoe}"/></g>
+      <rect x="7" y="17" width="7" height="17" rx="3.5" fill="${bag}"/>
+      <rect x="30" y="17" width="7" height="17" rx="3.5" fill="${bag}"/>
       <rect x="10" y="16" width="24" height="25" rx="5" fill="${j}"/>
       <path d="M15 18v21M29 18v21" stroke="#ffffff88" stroke-width="1.2"/>
       <rect x="19.5" y="18" width="5" height="22" rx="2" fill="#00000012"/>
       <path d="M11 24h22" stroke="#ffffff44" stroke-width="1.2"/>
-      <g class="lg"><rect x="24.5" y="42" width="6" height="10" rx="2" fill="${p}"/><rect x="23" y="50" width="9" height="4" rx="1.8" fill="${s}"/></g>
-      <circle cx="22" cy="10.5" r="7" fill="${k}"/>
+      <g class="lg"><rect x="24.5" y="42" width="6" height="10" rx="2" fill="${p}"/><rect x="23" y="50" width="9" height="4" rx="1.8" fill="${shoe}"/></g>
+      ${hair}
+      <circle cx="22" cy="10.5" r="7" fill="${skin}"/>
       <circle cx="19.5" cy="10" r=".8" fill="#263329"/><circle cx="24.5" cy="10" r=".8" fill="#263329"/>
       <path d="M19.5 13q2.5 2 5 0" fill="none" stroke="#7d4438" stroke-width=".9" stroke-linecap="round"/>
-      ${hats}
-      <g class="pl"><path d="M31 22l5 12" stroke="${j}" stroke-width="3.2" stroke-linecap="round"/><circle cx="36" cy="34" r="2" fill="${k}"/></g>
+      ${hat}
+      <g class="pl"><path d="M31 22l5 12" stroke="${j}" stroke-width="3.2" stroke-linecap="round"/><circle cx="36" cy="34" r="2" fill="${skin}"/></g>
     </g>
   </svg>`;
 }
 function customize(cb){
   avCb=cb;avTab=0;setBg(-1);
   scr(`<section class="customize-shell">
-    <div class="customize-head"><span class="section-kicker">PERSIAPAN EKSPEDISI</span><h1>Atur Penampilan Pendakimu</h1><p>Avatar ditampilkan menghadap ke depan. Pilih perlengkapan yang paling kamu suka.</p></div>
+    <div class="customize-head"><span class="section-kicker">PERSIAPAN EKSPEDISI</span><h1>Atur Penampilan Pendakimu</h1><p>Pilih karakter laki-laki atau perempuan, arah hadap, dan perlengkapan pendakian.</p></div>
+    <div class="avatar-controls" id="avatarControls"></div>
     <div class="avs"><div class="avp" id="avp"></div></div>
     <div class="tabs" id="avtabs"></div><div class="opts" id="avopts"></div>
     <div class="ots">${OT.map((o,i)=>'<button class="chip" onclick="avPre('+i+')">✨ '+o[0]+'</button>').join('')}<button class="chip" onclick="avRnd()">🎲 Acak</button></div>
@@ -1750,6 +1868,25 @@ function customize(cb){
   </section>`);
   avR();
 }
+function avR(){
+  const preview=$('avp');if(preview)preview.innerHTML=avSvg();
+  const controls=$('avatarControls');
+  if(controls)controls.innerHTML=`
+    <div class="avatar-control-group"><span>Karakter</span>
+      <button class="chip ${AV.gender==='male'?'on':''}" onclick="setAvatarGender('male')">👦 Laki-laki</button>
+      <button class="chip ${AV.gender==='female'?'on':''}" onclick="setAvatarGender('female')">👧 Perempuan</button>
+    </div>
+    <div class="avatar-control-group"><span>Arah hadap</span>
+      <button class="chip ${AV.facing==='left'?'on':''}" onclick="setAvatarFacing('left')">← Kiri</button>
+      <button class="chip ${AV.facing==='front'?'on':''}" onclick="setAvatarFacing('front')">↑ Depan</button>
+      <button class="chip ${AV.facing==='right'?'on':''}" onclick="setAvatarFacing('right')">Kanan →</button>
+    </div>`;
+  $('avtabs').innerHTML=AVT.map((t,i)=>'<button class="chip'+(i==avTab?' on':'')+'" onclick="avTb('+i+')">'+t[0]+'</button>').join('');
+  const t=AVT[avTab];
+  $('avopts').innerHTML=t[2].map((v,i)=>'<button class="chip'+(AV[t[1]]==i?' on':'')+'" onclick="avSet('+i+')">'+(v[0]=='#'?'<i class="sw" style="background:'+v+'"></i>':v)+'</button>').join('');
+}
+function setAvatarGender(g){AV.gender=g==='female'?'female':'male';avSave();avR()}
+function setAvatarFacing(d){AV.facing=['left','right','front'].includes(d)?d:'front';avSave();avR()}
 function intro(){
   clearInterval(timer);mvStop();$('hud').innerHTML='';$('end').innerHTML='';$('panel').innerHTML='';
   setBg(mi);
@@ -1796,19 +1933,14 @@ function intro(){
     <section class="climb-panel">
       <span class="section-kicker">SIAP MEMULAI PETUALANGAN?</span>
       <h2>Mau mendaki ${esc(mountain.n)}?</h2>
-      <div class="climb-actions"><button class="go" onclick="openClimbConfirm()">⛰️ Ya, aku mau mendaki</button><button class="secondary-btn" onclick="pickMt()">Belum, kembali ke pilihan gunung</button></div>
+      <div class="climb-actions"><button class="go" onclick="startTrip()">⛰️ Ya, aku mau mendaki</button><button class="secondary-btn" onclick="pickMt()">Belum, kembali ke pilihan gunung</button></div>
     </section>
-    <div class="overlay-modal" id="climbConfirm" hidden><div class="overlay-card">
-      <div class="big-icon">🥾</div><h3>Konfirmasi pendakian</h3>
-      <p>Kamu akan memulai ekspedisi ${esc(mountain.n)}. Pastikan sudah mempelajari mufradat dan siap mengumpulkan bukti.</p>
-      <div class="overlay-actions"><button class="go" onclick="confirmClimb()">Mulai sekarang</button><button class="secondary-btn" onclick="closeClimbConfirm()">Nanti dulu</button></div>
-    </div></div>
     <section class="vocab-quiz" id="vocabQuiz" hidden></section>
   </div>`);
 }
 function openClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=false}
 function closeClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=true}
-function confirmClimb(){closeClimbConfirm();startTrip()}
+function confirmClimb(){startTrip()}
 function showVocabQuiz(){
   const pool=VOCAB_SETS[mi];
   const selected=shuffleItems(pool).slice(0,5);
