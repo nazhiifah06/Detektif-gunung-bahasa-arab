@@ -1181,6 +1181,117 @@ body>main{position:relative;z-index:1;background:transparent!important}
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style id="vintage-readability-refinement">
+/* VINTAGE READABILITY REFINEMENT
+   Slightly deeper mountain backdrop and stronger text contrast. */
+html {
+  background: #e9e2d4 !important;
+}
+body {
+  background: transparent !important;
+  color: #26382b !important;
+}
+
+/* Bring back a little depth in the mountain scenery without making it gloomy. */
+#bgx .bgi {
+  filter: saturate(.84) brightness(.94) contrast(1.06) !important;
+  opacity: 1 !important;
+}
+#bgx .bgo {
+  background: linear-gradient(
+    180deg,
+    rgba(98, 84, 59, .10),
+    rgba(63, 73, 52, .24)
+  ) !important;
+  opacity: 1 !important;
+}
+
+/* The game headings were inheriting white text on a pale background. */
+#questionArea h2 {
+  color: #294d35 !important;
+  background: transparent !important;
+  text-shadow: none !important;
+  font-weight: 900 !important;
+  letter-spacing: .005em;
+}
+#questionArea h2::before {
+  background: #729477 !important;
+}
+
+/* Warm ivory reading panels with stronger body text. */
+#questionArea .story {
+  background: #f8f4e9 !important;
+  color: #283b2e !important;
+  border: 1px solid #c9b68e !important;
+  border-left: 5px solid #8c9b70 !important;
+  font-weight: 600 !important;
+  line-height: 1.75 !important;
+  box-shadow: 0 7px 18px rgba(55, 48, 34, .10) !important;
+}
+#questionArea .clue {
+  background: #f7f3e8 !important;
+  color: #26382a !important;
+  border: 1px solid #d4c39f !important;
+  border-left: 5px solid #bd9656 !important;
+  box-shadow: 0 5px 14px rgba(55, 48, 34, .09) !important;
+}
+#questionArea .clue b {
+  color: #24392a !important;
+  font-weight: 900 !important;
+}
+#questionArea .clue small {
+  color: #596653 !important;
+  font-weight: 650 !important;
+}
+#questionArea .clue:disabled {
+  background: #eae5d8 !important;
+  color: #596653 !important;
+  opacity: 1 !important;
+}
+#questionArea .clue:disabled small {
+  color: #68715f !important;
+}
+#questionArea .s {
+  background: #f5f0e4 !important;
+  color: #283c2d !important;
+  border: 1px solid #d4c39f !important;
+}
+#questionArea .s .tag {
+  color: #586b55 !important;
+}
+
+/* Progress text and supporting labels are darker and easier to scan. */
+#questionArea .hint,
+#questionArea #count,
+#questionArea #accHint {
+  color: #455746 !important;
+  background: #f0ecdf !important;
+  border: 1px solid #d7c9ad !important;
+  font-weight: 700 !important;
+}
+#questionArea .panel,
+#questionArea .end {
+  background: #fbf8ef !important;
+  color: #26382a !important;
+  border-color: #c9b995 !important;
+}
+#questionArea .panel p,
+#questionArea .panel label,
+#questionArea .end p,
+#questionArea .end label {
+  color: #2b3d30 !important;
+}
+#questionArea .opt {
+  color: #24392a !important;
+  font-weight: 750 !important;
+  border-color: #b8c5aa !important;
+}
+#questionArea .bar {
+  border-color: #a8b49e !important;
+}
+</style>
+
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
