@@ -713,6 +713,225 @@ body{background:transparent!important;color:#24372a!important}
 .clue{min-height:82px;padding:15px}
 .clue b{font-size:1.02rem;line-height:1.45}
 @media(max-width:560px){.panel{font-size:.98rem}.panel .say.ar{font-size:1.7rem}.clue{min-height:76px;padding:11px}}
+
+/* Pastikan tombol kembali dari foto puncak tetap terbaca pada latar putih. */
+#scr #snext{background:#fff!important;color:#315b40!important;border:1px solid #b7cdb9!important;box-shadow:0 4px 0 #a8b9a7!important;font-weight:800!important}
+#scr #snext:hover{background:#f0f6ef!important;color:#244c34!important}
+
+/* =========================================================
+   MISSION FINISH — SUMMIT CELEBRATION
+   Per-gunung summit photo, confetti, student avatar, team
+   celebration, and preserved score/progress actions.
+   ========================================================= */
+#scr main.finish-main{
+  width:100%!important;max-width:none!important;
+  min-height:100vh;margin:0!important;padding:0!important;
+}
+#scr .finish-page{
+  width:min(1160px,100%);margin:0 auto;
+  padding:clamp(14px,3vw,30px) clamp(12px,2.5vw,24px) 42px;
+  color:#203b2b;
+}
+#scr .finish-topline{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:0 0 14px;color:#42684c;font-size:.78rem;font-weight:900;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+#scr .finish-topline span{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 12px;border-radius:999px;
+  background:#fff;border:1px solid #d5e5d6;
+  box-shadow:0 4px 12px rgba(30,70,43,.06);
+}
+#scr .finish-hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:clamp(470px,68vh,650px);
+  border-radius:clamp(18px,3vw,30px);
+  background:#557a5d;
+  box-shadow:0 20px 48px rgba(22,52,32,.22);
+  display:flex;flex-direction:column;align-items:center;
+}
+#scr .finish-hero::before{
+  content:"";position:absolute;inset:0;z-index:-2;
+  background-image:linear-gradient(180deg,rgba(10,30,19,.60) 0%,rgba(10,30,19,.10) 42%,rgba(10,30,19,.12) 62%,rgba(9,28,18,.72) 100%),var(--finish-image);
+  background-size:cover;background-position:center 48%;
+  transform:scale(1.015);
+}
+#scr .finish-hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.18),transparent 50%);
+}
+#scr .finish-heading{
+  position:relative;z-index:4;width:min(850px,100%);
+  padding:clamp(24px,5vw,48px) 18px 0;text-align:center;color:#fff;
+  text-shadow:0 3px 14px rgba(0,0,0,.6);
+}
+#scr .finish-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 15px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.55);
+  background:rgba(13,43,27,.55);backdrop-filter:blur(8px);
+  color:#fff4c9;font-size:.78rem;font-weight:900;letter-spacing:.13em;
+}
+#scr .finish-heading h1{
+  margin:13px 0 5px;color:#fff!important;
+  font-size:clamp(1.75rem,5.5vw,3.5rem);font-weight:1000;
+  line-height:1.08;letter-spacing:.015em;
+  text-shadow:0 3px 0 rgba(24,54,34,.35),0 7px 22px rgba(0,0,0,.58);
+}
+#scr .finish-heading p{
+  margin:8px auto 0;max-width:680px;color:#fff!important;
+  font-size:clamp(.9rem,2vw,1.08rem);font-weight:700;
+  text-shadow:0 2px 8px rgba(0,0,0,.75);
+}
+#scr .finish-mountain-tag{
+  display:inline-flex;align-items:center;gap:8px;margin-top:13px;
+  padding:8px 14px;border-radius:12px;
+  background:rgba(255,249,226,.94);color:#31563b;
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 5px 18px rgba(0,0,0,.15);
+  font-size:.86rem;font-weight:950;letter-spacing:.045em;
+}
+#scr .finish-people{
+  position:absolute;z-index:3;left:0;right:0;bottom:0;
+  min-height:clamp(175px,26vw,245px);
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(3px,2.1vw,22px);padding:12px 10px 18px;
+  background:linear-gradient(180deg,transparent 0%,rgba(8,28,17,.12) 24%,rgba(8,28,17,.57) 100%);
+}
+#scr .finish-friend{
+  display:block;flex:0 1 clamp(48px,8vw,92px);
+  width:clamp(48px,8vw,92px);height:auto;max-height:178px;
+  overflow:visible;filter:drop-shadow(0 5px 5px rgba(0,0,0,.35));
+  transform-origin:50% 100%;animation:finish-cheer 1.25s ease-in-out infinite alternate;
+}
+#scr .finish-friend:nth-child(2n){animation-delay:-.45s}
+#scr .finish-friend:nth-child(3n){animation-delay:-.8s}
+#scr .finish-player{
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  flex:0 1 clamp(70px,11vw,122px);min-width:65px;
+  filter:drop-shadow(0 5px 6px rgba(0,0,0,.42));
+  animation:finish-player-bounce 1.05s ease-in-out infinite alternate;
+}
+#scr .finish-player svg{
+  display:block;width:clamp(70px,10vw,112px);height:auto;max-height:174px;
+  overflow:visible;
+}
+#scr .finish-player-label{
+  margin-top:2px;padding:3px 9px;border-radius:999px;
+  background:#fff5d9;color:#31563b;font-size:.7rem;font-weight:950;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);
+}
+#scr .finish-team-caption{
+  position:absolute;z-index:4;left:12px;right:12px;bottom:clamp(178px,25vw,235px);
+  text-align:center;color:#fff;font-size:clamp(.85rem,2vw,1.05rem);
+  font-weight:900;text-shadow:0 2px 8px #000b;
+}
+#scr .finish-team-caption span{
+  display:inline-block;padding:7px 13px;border-radius:999px;
+  background:rgba(12,42,26,.57);border:1px solid rgba(255,255,255,.4);
+  backdrop-filter:blur(5px);
+}
+#scr .finish-confetti{
+  position:fixed;inset:0;z-index:60;overflow:hidden;pointer-events:none;
+}
+#scr .finish-confetti i{
+  position:absolute;top:-18px;left:var(--x);width:var(--w);height:var(--h);
+  border-radius:var(--radius,2px);background:var(--color);
+  opacity:0;animation:finish-confetti-fall var(--duration) linear var(--delay) infinite;
+  will-change:transform,opacity;
+}
+#scr .finish-results{
+  margin:18px 0 0;padding:clamp(18px,3vw,28px);
+  border:1px solid #d3e3d3;border-radius:24px;
+  background:rgba(255,255,249,.97);
+  box-shadow:0 10px 28px rgba(34,67,43,.09);
+}
+#scr .finish-results-head{text-align:center}
+#scr .finish-results-head .finish-small-kicker{
+  color:#729178;font-size:.72rem;font-weight:950;letter-spacing:.15em;
+}
+#scr .finish-results-head h2{
+  display:block!important;width:auto!important;max-width:none!important;
+  margin:5px 0 6px!important;padding:0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  color:#28583b!important;font-size:clamp(1.35rem,3vw,2rem)!important;
+  text-align:center;text-shadow:none!important;
+}
+#scr .finish-results-head h2::before{display:none!important}
+#scr .finish-results-head p{margin:0;color:#627967;font-weight:600}
+#scr .finish-stats{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;margin:20px 0 14px;
+}
+#scr .finish-stat{
+  padding:15px 10px;text-align:center;border-radius:16px;
+  background:linear-gradient(145deg,#f0f6ed,#e4efe2);
+  border:1px solid #cbdcc9;
+}
+#scr .finish-stat small{display:block;color:#69816b;font-size:.75rem;font-weight:850}
+#scr .finish-stat strong{display:block;margin-top:4px;color:#28583b;font-size:clamp(1.25rem,3vw,1.8rem);font-weight:1000}
+#scr .finish-stars{
+  text-align:center;margin:10px 0 18px;color:#d69a2f;
+  font-size:clamp(1.4rem,4vw,2.2rem);letter-spacing:.08em;
+  text-shadow:0 2px 0 rgba(125,86,23,.12);
+}
+#scr .finish-stars-note{text-align:center;color:#55705b;font-weight:800;margin-top:-10px}
+#scr .finish-actions{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:20px;
+}
+#scr .finish-btn{
+  min-height:48px;padding:12px 18px;border-radius:14px;
+  border:1px solid #c8d9c7;background:#fff;color:#315a3c;
+  font:800 .95rem/1.2 system-ui,sans-serif;cursor:pointer;
+  box-shadow:0 3px 0 #d8e4d6;transition:transform .16s,box-shadow .16s;
+}
+#scr .finish-btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 #d8e4d6}
+#scr .finish-btn.primary{
+  background:#3b9165;color:#fff;border-color:#347f58;
+  box-shadow:0 4px 0 #286b48;
+}
+#scr .finish-btn.primary:hover{box-shadow:0 6px 0 #286b48}
+#scr .finish-footer-note{
+  margin:14px 0 0;text-align:center;color:#7b8e7d;font-size:.78rem;
+}
+@keyframes finish-confetti-fall{
+  0%{transform:translate3d(0,-12vh,0) rotate(0deg);opacity:0}
+  8%{opacity:1}
+  88%{opacity:.95}
+  100%{transform:translate3d(var(--drift),112vh,0) rotate(var(--spin));opacity:.1}
+}
+@keyframes finish-cheer{
+  from{transform:translateY(0) rotate(-2deg)}
+  to{transform:translateY(-10px) rotate(2deg)}
+}
+@keyframes finish-player-bounce{
+  from{transform:translateY(0) scale(1)}
+  to{transform:translateY(-9px) scale(1.025)}
+}
+@media(max-width:640px){
+  #scr .finish-page{padding:10px 10px 28px}
+  #scr .finish-topline{font-size:.65rem}
+  #scr .finish-topline span{padding:7px 9px}
+  #scr .finish-hero{min-height:470px;border-radius:18px;background-position:center}
+  #scr .finish-heading{padding:28px 12px 0}
+  #scr .finish-heading h1{font-size:clamp(1.55rem,7vw,2.3rem)}
+  #scr .finish-mountain-tag{font-size:.72rem;padding:7px 10px}
+  #scr .finish-people{min-height:170px;gap:2px;padding:10px 4px 14px}
+  #scr .finish-friend{flex-basis:clamp(42px,13vw,68px);width:clamp(42px,13vw,68px)}
+  #scr .finish-player{flex-basis:clamp(60px,17vw,82px);min-width:56px}
+  #scr .finish-player svg{width:clamp(62px,17vw,82px)}
+  #scr .finish-team-caption{bottom:174px}
+  #scr .finish-stats{gap:6px}
+  #scr .finish-stat{padding:12px 5px}
+  #scr .finish-stat small{font-size:.67rem}
+  #scr .finish-actions{display:grid;grid-template-columns:1fr}
+  #scr .finish-btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  #scr .finish-confetti i,#scr .finish-friend,#scr .finish-player{animation:none!important}
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1102,7 +1321,7 @@ const loop=now=>{if(done)return;if(birdPrompt){last=now;mvRaf=requestAnimationFr
  mvRaf=requestAnimationFrame(loop)}
 const SUMI=['puncak-slamet.jpg','puncak-sindoro.jpg','puncak-merbabu.jpg','puncak-lawu.jpg','puncak-rinjani.jpg'],SIMG={};
 function summit(cb){mvStop();const M=MT[mi],im=mimg(),pf=SUMI[mi],pim=pf?(SIMG[mi]||(SIMG[mi]=Object.assign(new Image(),{src:pf}))):null;$('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
- scr('<h2>Puncak '+M.n+' · '+(M.elev?M.elev.toLocaleString('id-ID')+' mdpl':'')+'</h2><div class="cvw"><canvas id="sc"></canvas><div id="fl"></div></div><p class="hint" style="text-align:center">🏔️ Kamu sampai di puncak! Jalan-jalan dengan ◀ ▶ dan ⤒, pilih gaya, lalu ambil foto.</p><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb jp" data-k="u">⤒ Lompat</button></div><div class="ots" id="em">'+['🧍 Berdiri','👋 Melambai','🚩 Bendera','💃 Joget','🦘 Lompat'].map((s,i)=>'<button class="chip'+(i?'':' on')+'" data-e="'+i+'">'+s+'</button>').join('')+'</div><p style="text-align:center"><button class="go" id="shot">📸 Foto</button> <button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" id="snext">Lanjut ke tuduhan →</button></p>');
+ scr('<h2>Puncak '+M.n+' · '+(M.elev?M.elev.toLocaleString('id-ID')+' mdpl':'')+'</h2><div class="cvw"><canvas id="sc"></canvas><div id="fl"></div></div><p class="hint" style="text-align:center">🏔️ Kamu sampai di puncak! Jalan-jalan dengan ◀ ▶ dan ⤒, pilih gaya, lalu ambil foto.</p><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb jp" data-k="u">⤒ Lompat</button></div><div class="ots" id="em">'+['🧍 Berdiri','👋 Melambai','🚩 Bendera','💃 Joget','🦘 Lompat'].map((s,i)=>'<button class="chip'+(i?'':' on')+'" data-e="'+i+'">'+s+'</button>').join('')+'</div><p style="text-align:center"><button class="go" id="shot">📸 Foto</button> <button class="go" id="snext" style="background:#fff;color:#315b40;border:1px solid #b7cdb9;box-shadow:0 4px 0 #a8b9a7">↩ Kembali ke tersangka</button></p>');
  const cv=$('sc'),c=cv.getContext('2d'),W=cv.parentNode.clientWidth||360,H=Math.max(220,Math.round(W/1.5)),dr=devicePixelRatio||1;cv.width=W*dr;cv.height=H*dr;cv.style.width=W+'px';cv.style.height=H+'px';c.scale(dr,dr);
  let em=0,tt=0,last=performance.now(),cap=0,done=0,ax=null,jy=0,vy=0,face=AV.facing==='left'?-1:1,cam=0,mov=0;mvKeys={};
  const ok=()=>pim&&pim.complete&&pim.naturalWidth,ww=()=>ok()?pim.naturalWidth*H/pim.naturalHeight:W;
@@ -2114,6 +2333,125 @@ function play(){
   }
   speak(c.ar,c.type==='dengar');
   drawPanel();
+}
+
+
+
+/* =========================================================
+   MISSION FINISH — per-gunung peak celebration
+   Reuses puncak-*.jpg and the student's selected avatar.
+   ========================================================= */
+function finishFriendSvg(shirt,skin,hair,flag,delay){
+  return `<svg class="finish-friend" viewBox="0 0 88 132" role="img" aria-label="Pendaki ikut merayakan">
+    <ellipse cx="44" cy="126" rx="19" ry="4" fill="#0005"/>
+    <path d="M32 87L26 119M55 87L62 119" stroke="#29384a" stroke-width="10" stroke-linecap="round"/>
+    <path d="M19 119h14M55 119h15" stroke="#3b2c22" stroke-width="7" stroke-linecap="round"/>
+    <rect x="55" y="57" width="18" height="29" rx="6" fill="#d99a36"/>
+    <path d="M32 55Q44 48 56 55L62 88Q44 96 26 88Z" fill="${shirt}" stroke="#ffffff88" stroke-width="1.5"/>
+    <path d="M31 61L18 43M57 61L70 39" stroke="${shirt}" stroke-width="12" stroke-linecap="round"/>
+    <path d="M18 43L12 24M70 39L77 19" stroke="${skin}" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="12" cy="22" r="5" fill="${skin}"/><circle cx="78" cy="17" r="5" fill="${skin}"/>
+    <rect x="39" y="43" width="10" height="13" rx="4" fill="${skin}"/>
+    <circle cx="44" cy="29" r="15" fill="${skin}"/>
+    <path d="M29 29Q27 10 43 10Q60 9 59 29L54 22Q45 28 32 22Z" fill="${hair}"/>
+    <circle cx="39" cy="30" r="1.4" fill="#243329"/><circle cx="49" cy="30" r="1.4" fill="#243329"/>
+    <path d="M39 36Q44 41 50 35" fill="none" stroke="#8a493e" stroke-width="1.8" stroke-linecap="round"/>
+    ${flag?'<path d="M78 18V2" stroke="#f8f2dd" stroke-width="2.5"/><path d="M79 3L87 6L79 10Z" fill="#e5484d"/>':''}
+    <path d="M29 58L23 78M59 58L65 78" stroke="#ffffff55" stroke-width="2.2"/>
+  </svg>`;
+}
+function finishConfettiMarkup(){
+  const colors=['#ffd166','#ef476f','#06d6a0','#4cc9f0','#ffffff','#f78c6b','#b8a1ff'];
+  return Array.from({length:68},(_,i)=>{
+    const x=(i*37.7+3)%100;
+    const delay=-((i*0.37)%5.2).toFixed(2);
+    const duration=(4.1+(i%7)*.42).toFixed(2);
+    const drift=((i%2?1:-1)*(18+(i*13)%68))+'px';
+    const spin=(240+(i*73)%620)+'deg';
+    const w=5+(i%4)*2,h=8+(i%5)*2;
+    const radius=i%5===0?'50%':'2px';
+    return `<i style="--x:${x}%;--delay:${delay}s;--duration:${duration}s;--drift:${drift};--spin:${spin};--w:${w}px;--h:${h}px;--radius:${radius};--color:${colors[i%colors.length]}"></i>`;
+  }).join('');
+}
+function renderMissionFinish(finalScore,stars,bonus){
+  mvStop();clearInterval(timer);
+  try{if(window.speechSynthesis)window.speechSynthesis.cancel()}catch(e){}
+  $('homeBtn').hidden=true;
+  $('hud').innerHTML='';$('ban').hidden=true;$('questionArea').hidden=true;
+  $('panel').innerHTML='';$('end').innerHTML='';
+  const mountain=MT[mi];
+  const image=SUMI[mi]||'';
+  const mdpl=SUMMIT_MDPL[mi]||'';
+  const profile=PF[CUR]||{};
+  const student=profile.n||currentProfile?.full_name||'Pendaki Hebat';
+  const title='PUNCAK GUNUNG '+mountain.n.replace(/^Gunung\s+/i,'').toUpperCase();
+  const friendsLeft=[
+    finishFriendSvg('#e56f51','#d9a47d','#3d2b24',false,0),
+    finishFriendSvg('#397cb7','#f0c9a6','#34251e',true,.2)
+  ].join('');
+  const friendsRight=[
+    finishFriendSvg('#d7a83d','#9b6547','#211c19',false,.4),
+    finishFriendSvg('#8b68bd','#edc4a2','#5b3528',true,.6)
+  ].join('');
+  const avatar=typeof avSvg==='function'?avSvg():'';
+  const message=mi===4?'Kamu telah menuntaskan seluruh ekspedisi!':'Kamu berhasil menuntaskan misi dan mencapai puncak!';
+  const nextLabel=mi<4?'⛰️ Lihat gunung berikutnya':'🏁 Lihat semua ekspedisi';
+  const content=`
+    <div class="finish-page">
+      <div class="finish-topline">
+        <span>🏆 MISI BERHASIL DISELESAIKAN</span>
+        <span>EKSPEDISI ${mi+1} / 5</span>
+      </div>
+      <section class="finish-hero" style="--finish-image:url('${esc(image)}')">
+        <div class="finish-confetti" aria-hidden="true">${finishConfettiMarkup()}</div>
+        <header class="finish-heading">
+          <span class="finish-kicker">🎉 SELAMAT, ${esc(student)}!</span>
+          <h1>KAMU BERHASIL MENCAPAI PUNCAK!</h1>
+          <p>${esc(message)}</p>
+          <div class="finish-mountain-tag">🏔️ ${esc(title)} · ${mdpl.toLocaleString('id-ID')} MDPL</div>
+        </header>
+        <div class="finish-team-caption"><span>🙌 Satu tim, satu perjuangan, satu puncak!</span></div>
+        <div class="finish-people">
+          ${friendsLeft}
+          <div class="finish-player">${avatar}<span class="finish-player-label">KAMU</span></div>
+          ${friendsRight}
+        </div>
+      </section>
+      <section class="finish-results">
+        <div class="finish-results-head">
+          <span class="finish-small-kicker">HASIL EKSPEDISI</span>
+          <h2>Petualangan Hebat! 🎊</h2>
+          <p>Semua bukti berhasil dikumpulkan dan misteri gunung berhasil dipecahkan.</p>
+        </div>
+        <div class="finish-stats">
+          <div class="finish-stat"><small>SKOR AKHIR</small><strong>${finalScore}<small style="display:inline;color:#78917b"> / 500</small></strong></div>
+          <div class="finish-stat"><small>BINTANG</small><strong>${stars} / 5</strong></div>
+          <div class="finish-stat"><small>SISA NYAWA</small><strong>❤️ ${lives}</strong></div>
+        </div>
+        <div class="finish-stars" aria-label="${stars} dari 5 bintang">${STR(stars)}</div>
+        <p class="finish-stars-note">${stars>=5?'Sempurna! Detektif legendaris! 🏆':stars>=4?'Hebat sekali! Terus pertahankan!':stars>=3?'Bagus! Kemampuan detektifmu berkembang!':'Terus berlatih, pendaki hebat!'}</p>
+        <div class="finish-actions">
+          <button class="finish-btn primary" onclick="pickMt()">${nextLabel}</button>
+          <button class="finish-btn" onclick="kodeGuru()">📤 Kirim hasil ke guru</button>
+          <button class="finish-btn" onclick="newGame()">↻ Ulangi ekspedisi ini</button>
+        </div>
+        <p class="finish-footer-note">Bonus penyelesaian: +${bonus} poin · Progres terbaik telah disimpan.</p>
+      </section>
+    </div>`;
+  scr(content);
+  const main=$('scr').querySelector('main');
+  if(main)main.classList.add('finish-main');
+  $('scr').scrollTop=0;
+  window.scrollTo(0,0);
+}
+function levelClear(){
+  const bonus=lives*200;
+  score+=bonus;
+  render();
+  const finalScore=SC(score,mi);
+  const stars=starsOf(score,mi);
+  saveRes(mi,finalScore,stars,lives);
+  renderMissionFinish(finalScore,stars,bonus);
 }
 
 
