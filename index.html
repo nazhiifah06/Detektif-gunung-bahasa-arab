@@ -2731,6 +2731,7 @@ function render(){
   $('accHint').textContent=over?'':keyMode?'':all?'Semua bukti terkumpul. Salah tuduh mengurangi nyawa.':'Buktikan semua petunjuk di pos ini, lalu naik ke puncak untuk menuduh.'}
 function openClue(i){
   if(over||open===i||locked(i))return;
+  clearTimeout(correctScrollTimer);
   if(open!==null&&!solved.has(open))left[open]=tleft;
   open=i;showTxt=false;showTr=false;vmsg=null;typed='';vfb=false;answerStatus=null;answerValue='';if(solved.has(i)){answerStatus='correct';const prior=L().clues[i];answerValue=prior.ans?.[0]||prior.o?.[prior.a]||'';typed=answerValue;}clearInterval(timer);
   tleft=left[i]!==undefined?left[i]:T;
@@ -2806,10 +2807,28 @@ function listenVoice(){
     vmsg={t:m[e.error]||('Terjadi masalah saat merekam: '+e.error)};drawPanel()};
   rec.onend=()=>{if(!got){vmsg={t:'Rekaman berhenti sebelum ada suara. Tekan tombol dan langsung bicara.'};drawPanel()}};
   try{rec.start()}catch(err){vfb=true;vmsg={t:'Gagal memulai rekaman: '+err.message};drawPanel()}}
+let correctScrollTimer=null;
 function solveClue(){
   clearInterval(timer);
   score+=Math.round((100+tleft*4)*(1+Math.min(streak,3)*.25))+lvi*30;
-  streak++;solved.add(open);answerStatus='correct';sfx(1);drawPanel();}
+  streak++;solved.add(open);answerStatus='correct';sfx(1);drawPanel();
+  // Give the green success feedback a brief moment, then return the player
+  // to the clue list automatically so they can choose the next clue without scrolling.
+  const answeredIndex=open;
+  clearTimeout(correctScrollTimer);
+  correctScrollTimer=setTimeout(()=>{
+    if(open!==answeredIndex||!solved.has(answeredIndex))return;
+    if(solved.size===L().clues.length){
+      // On the final clue, bring the "Selesaikan Pos" action into view.
+      const next=$('panel')?.querySelector('.answer-next-btn');
+      if(next)next.scrollIntoView({behavior:'smooth',block:'center'});
+      toast('🎉 Semua petunjuk terbukti! Tekan Selesaikan Pos.');
+    }else{
+      goClues();
+      toast('✅ Jawaban benar! Pilih petunjuk berikutnya di atas.');
+    }
+  },850);
+}
 function continueAfterAnswer(){
   if(open===null||!solved.has(open))return;
   const nt=L().clues[open].note;
