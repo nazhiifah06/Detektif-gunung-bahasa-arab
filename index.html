@@ -417,6 +417,74 @@ h2::before{background:#72a583!important}
   .climb-actions .go,.climb-actions .secondary-btn{width:100%}
 }
 
+
+/* =========================================================
+   FINAL VISUAL PASS — BACKGROUND, READABILITY & MUFRADAT
+   Scenic background remains visible, with soft overlays and
+   opaque reading surfaces to keep all learning text legible.
+   ========================================================= */
+body{background:transparent!important;color:#263b2e!important;isolation:isolate}
+#bgx{display:block!important;position:fixed!important;inset:0!important;z-index:0!important;pointer-events:none!important;overflow:hidden!important}
+#bgx .bgi{filter:saturate(.68) brightness(1.08)!important;opacity:.92!important}
+#bgx .bgo{background:linear-gradient(180deg,rgba(246,250,247,.48),rgba(239,247,241,.76))!important;opacity:1!important}
+#bgx .rays{opacity:.08!important}
+#bgx .bgf{opacity:.16!important}
+#bgc span{opacity:.15!important;filter:none!important}
+#bgt span{opacity:.08!important}
+#bgt .tg,#bgt .br{display:none!important}
+#bgp i{opacity:.2!important}
+body>main{position:relative;z-index:1}
+#scr{background:linear-gradient(180deg,rgba(247,250,247,.76),rgba(239,247,241,.88))!important;color:#263b2e!important;backdrop-filter:blur(1.5px)}
+#scr main{position:relative;z-index:1}
+#questionArea{background:rgba(255,255,255,.975)!important;border:1px solid #dce8df!important;box-shadow:0 14px 34px rgba(33,65,44,.09)!important}
+.story,.panel,.end,.clue,.s,.learning-card,.case-brief,.climb-panel,.vocab-quiz,.dashboard-head,.stat-card,.mountain-card,.auth-shell,.customize-shell{background:rgba(255,255,255,.97)!important;backdrop-filter:blur(5px)}
+.story{color:#2c4033!important}
+.panel,.end{color:#24382c!important}
+.clue{color:#2b4033!important}
+.hint{background:rgba(255,255,255,.78)!important;color:#5f7465!important;border:1px solid rgba(220,232,223,.75);border-radius:9px;padding:4px 9px}
+#scr .hint{background:rgba(255,255,255,.78)!important;color:#5f7465!important}
+.pos-card{background:rgba(255,255,255,.98)!important}
+.journey-hero{box-shadow:0 14px 34px rgba(33,65,44,.15)}
+/* Mufradat cards: botanical greens with restrained warm-gold accents. */
+.vocab-grid{gap:12px}
+.vocab-card{position:relative;overflow:hidden;min-height:146px;padding:15px 13px 13px;border:1px solid #dbe8dc!important;border-radius:18px!important;background:linear-gradient(145deg,#ffffff 0%,#f1f7ef 100%)!important;box-shadow:0 7px 18px rgba(42,86,54,.07);transition:transform .18s,box-shadow .18s}
+.vocab-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#438b62,#a8c88d,#d9a64b)}
+.vocab-card:nth-child(4n+2){background:linear-gradient(145deg,#fffefa 0%,#f8f1df 100%)!important}
+.vocab-card:nth-child(4n+2)::before{background:linear-gradient(90deg,#c38b35,#e7c77f,#6e9b70)}
+.vocab-card:nth-child(4n+3){background:linear-gradient(145deg,#fbfefd 0%,#eaf4f1 100%)!important}
+.vocab-card:nth-child(4n+3)::before{background:linear-gradient(90deg,#4d8d83,#a6c9b7,#d9a64b)}
+.vocab-card:nth-child(4n+4){background:linear-gradient(145deg,#fff 0%,#f2f3e9 100%)!important}
+.vocab-card:nth-child(4n+4)::before{background:linear-gradient(90deg,#78965c,#c0c98a,#d8a34a)}
+.vocab-card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(42,86,54,.12)}
+.vocab-index{position:absolute;top:10px;left:12px;color:#91a393;font-size:.68rem;font-weight:900;letter-spacing:.1em}
+.vocab-card button{position:absolute;top:9px;right:9px;float:none;display:grid;place-items:center;width:32px;height:32px;padding:0;border:1px solid #d5e5d8;border-radius:50%;background:#fff;color:#39724e;box-shadow:0 2px 7px rgba(39,82,52,.08)}
+.vocab-card .ar{display:block;margin:17px 0 3px;text-align:center;font-family:'Amiri',serif;font-size:1.85rem;line-height:1.55;color:#205b3b;font-weight:700}
+.vocab-card .latin{display:block;text-align:center;color:#8a9a8d;font-size:.74rem;letter-spacing:.035em}
+.vocab-card .meaning{display:block;margin-top:3px;text-align:center;color:#385a42;font-size:.93rem;font-weight:900}
+.vocab-actions{padding-top:5px}
+.word-count{background:#edf5e9!important;color:#4d7d54!important;border:1px solid #dce9d6}
+.vocab-quiz{border-top:4px solid #d8a34a!important}
+.vq-ar{display:inline-block;min-width:160px;margin:10px auto;padding:8px 22px;border-radius:15px;background:linear-gradient(135deg,#edf6eb,#f8f1df);border:1px solid #dce8d9;color:#205b3b}
+.vq-option{background:#fbfdf9;border-color:#dce8df}
+.vq-option.correct{background:#e5f3e8;border-color:#65a477}
+.vq-option.wrong{background:#fbe9e6;border-color:#c95d50}
+/* Bird ride confirmation */
+.bird-ride-modal{z-index:120!important;background:rgba(18,39,26,.66)!important;backdrop-filter:blur(6px)}
+.bird-ride-modal .overlay-card{border:1px solid #dce8df;border-top:5px solid #d8a34a;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.bird-ride-modal .big-icon{display:grid;place-items:center;width:76px;height:76px;margin:0 auto 10px;border-radius:24px;background:linear-gradient(145deg,#f8efd9,#eaf4e8);font-size:2.7rem}
+.bird-ride-modal .overlay-card h3{color:#2d5c40}
+.bird-ride-modal .overlay-card p{line-height:1.65}
+.bird-ride-modal .overlay-actions button{min-width:145px}
+@media(max-width:440px){
+ .vocab-card{min-height:136px;padding:12px 9px 10px}
+ .vocab-card .ar{font-size:1.58rem}
+ .vocab-card .meaning{font-size:.84rem}
+ .vocab-card button{width:29px;height:29px}
+ .bird-ride-modal .overlay-card{padding:20px 16px}
+ .bird-ride-modal .overlay-actions{display:grid;grid-template-columns:1fr}
+ .bird-ride-modal .overlay-actions button{width:100%}
+}
+
 </style>
 
 <style id="revision-theme">
@@ -836,7 +904,7 @@ const IMGS={};
 const mimg=()=>IMGS[mi]||(IMGS[mi]=Object.assign(new Image(),{src:MT[mi].im}));
 function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Math.round((2600+f*600)*TK.len),im=mimg();
  $('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
- scr('<h2>'+(t==5?'Menuju Puncak':'Menuju Pos '+t)+'</h2><div class="cvw"><canvas id="cv"></canvas></div><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb wb" id="wbtn" data-k="w">💧 Isi</button><button class="cb jp" data-k="u">⤒ Lompat</button></div><p class="hint trail-tip" style="text-align:center">Gunakan ◀ ▶ untuk bergerak dan ⤒ untuk melompat. Nikmati pemandangan selama pendakian.</p><p style="text-align:center"><button class="go" style="padding:6px 14px;font-size:.9rem" id="mskip">⏩ Lewati jalur</button></p>');
+ scr('<h2>'+(t==5?'Menuju Puncak':'Menuju Pos '+t)+'</h2><div class="cvw"><canvas id="cv"></canvas></div><div class="overlay-modal bird-ride-modal" id="birdConfirm" hidden role="dialog" aria-modal="true" aria-labelledby="birdConfirmTitle"><div class="overlay-card"><div class="big-icon">🦅</div><h3 id="birdConfirmTitle">Ada burung yang bisa membantumu!</h3><p>Burung ini bisa membawamu terbang melewati sebagian jalur pendakian. Apakah kamu ingin naik?</p><div class="overlay-actions"><button class="go" onclick="resolveBirdRide(true)">Ya, naik burung</button><button class="secondary-btn" onclick="resolveBirdRide(false)">Tidak, lanjut berjalan</button></div></div></div><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb wb" id="wbtn" data-k="w">💧 Isi</button><button class="cb jp" data-k="u">⤒ Lompat</button></div><p class="hint trail-tip" style="text-align:center">Gunakan ◀ ▶ untuk bergerak dan ⤒ untuk melompat. Nikmati pemandangan selama pendakian.</p><p style="text-align:center"><button class="go" style="padding:6px 14px;font-size:.9rem" id="mskip">⏩ Lewati jalur</button></p>');
  let sd=(mi+1)*977+f*131+7;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
  const WT=TK.wt,ob=[],bo=[],gy=x=>TK.gy(x,f),top=o=>gy(o.x+o.w/2)-o.h;
  const sl=x=>(gy(x+5)-gy(x-5))/10,fr=[],WL=[110].concat([...Array(Math.ceil(LEN/1300)-1)].map((_,i)=>Math.round(110+(LEN-260)*(i+1)/Math.ceil(LEN/1300))),[LEN-150]);let pt=-1;
@@ -852,7 +920,7 @@ function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Mat
  const cv=$('cv'),c=cv.getContext('2d'),W=cv.parentNode.clientWidth||360,H=Math.min(440,Math.round(innerHeight*.5)),dr=devicePixelRatio||1;
  cv.width=W*dr;cv.height=H*dr;cv.style.width=W+'px';cv.style.height=H+'px';c.scale(dr,dr);
  const bd=[];for(let i=0;i<2+f;i++){const q=ob[Math.floor(ob.length*(i+.5)/(2+f))];if(q){const x=q.x-190;if(x>200&&!WL.some(w=>Math.abs(w-x)<110))bd.push({x,u:0})}}
- let mnt=0,px=70,py=gy(70),vy=0,face=1,tt=0,last=performance.now(),cx=0,cy=py-H*.66,msg='',mt=0,arr=0,done=0,onG=true,st=0;mvKeys={};
+ let mnt=0,px=70,py=gy(70),vy=0,face=1,tt=0,last=performance.now(),cx=0,cy=py-H*.66,msg='',mt=0,arr=0,done=0,onG=true,st=0,birdPrompt=null;mvKeys={};
  window.mvDbg=()=>({px,py,LEN,ob,bo,onG,st,water,fr,WL,bd,mnt,zn,gust:(TK.fx=='wind'&&(tt%7.5)>.2&&(tt%7.5)<3.6)});window.mvSet=x=>{px=x};
  const go=()=>{if(done)return;done=1;mvStop();scr('');cb()};
  const poly=(pts,col)=>{const a=pts.split(' ').map(q=>q.split(',').map(Number));c.beginPath();a.forEach((q,i)=>i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]));c.closePath();c.fillStyle=col;c.fill()};
@@ -866,12 +934,20 @@ function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Mat
   c.fillStyle='#8b5a2b';c.beginPath();c.ellipse(0,0,28,12,0,0,7);c.fill();c.fillStyle='#e9d8b4';c.beginPath();c.ellipse(6,5,18,7,0,0,7);c.fill();
   c.fillStyle='#f4efe4';c.beginPath();c.arc(28,-5,9,0,7);c.fill();c.fillStyle='#f2b01e';c.beginPath();c.moveTo(35,-6);c.lineTo(46,-2);c.lineTo(35,0);c.fill();c.fillStyle='#222';c.beginPath();c.arc(30,-7,1.8,0,7);c.fill();
   c.save();c.translate(-4,-8);c.rotate(a);c.fillStyle='#5e3a18';c.beginPath();c.moveTo(-12,0);c.quadraticCurveTo(-40,-26,-8,-54);c.quadraticCurveTo(12,-30,14,0);c.closePath();c.fill();c.restore();c.restore()};
- const loop=now=>{if(done)return;const dt=Math.min((now-last)/1000,.04);last=now;tt+=dt;
+ window.resolveBirdRide = accept => {
+  if(!birdPrompt)return;
+  const bird=birdPrompt;birdPrompt=null;
+  const dialog=$('birdConfirm');if(dialog)dialog.hidden=true;
+  bird.u=1;mvKeys={};
+  if(accept){mnt=7;vy=0;onG=false;msg='Kamu memilih naik burung!';mt=1.8;}
+  else{msg='Kamu memilih melanjutkan pendakian dengan berjalan kaki.';mt=2.2;}
+};
+const loop=now=>{if(done)return;if(birdPrompt){last=now;mvRaf=requestAnimationFrame(loop);return;}const dt=Math.min((now-last)/1000,.04);last=now;tt+=dt;
   const zin=zn.find(z=>px>z.x&&px<z.x+z.w),wp=tt%7.5,gust=TK.fx=='wind'&&wp>1.4&&wp<3.6,warn=TK.fx=='wind'&&wp>.2&&wp<=1.4;
   const dir=st>0?0:(mvKeys.r?1:0)-(mvKeys.l?1:0);st=Math.max(0,st-dt);const spd=(onG?Math.max(.55,Math.min(1.3,1+(sl(px)>0?sl(px)*.4:sl(px)*.9))):1)*(water<=0?.8:water<25?.92:1)*(mnt>0?1.35:1)*(onG&&zin&&zin.t=='mud'?.5:1)*(onG&&zin&&zin.t=='sand'?.82:1);let nx=Math.max(30,Math.min(LEN-20,px+dir*170*spd*dt));if(dir)face=dir;if(gust&&mnt<=0)nx=Math.max(30,nx-100*dt);water=Math.max(0,water-(dir?1.6:.3)*(TK.heat||1)*dt);
   for(const o of ob)if(mnt<=0&&SOL.has(o.ty)&&py>top(o)+8&&nx+11>o.x&&nx-11<o.x+o.w)nx=dir>0?o.x-11:o.x+o.w+11;
   px=nx;if(mvKeys.u&&onG&&st<=0){vy=(water<=0?-540:-560)*(zin&&zin.t=='sand'?.88:1);water=Math.max(0,water-1.5);onG=false;mvKeys.u=0}
-  for(const b of bd)if(!b.u&&mnt<=0&&Math.abs(px-b.x)<34&&Math.abs(py-30-(gy(b.x)-70))<70){b.u=1;mnt=7;vy=0;msg='Naik burung! Terbang!';mt=1.8}
+  for(const b of bd)if(!b.u&&!birdPrompt&&mnt<=0&&Math.abs(px-b.x)<34&&Math.abs(py-30-(gy(b.x)-70))<70){birdPrompt=b;mvKeys={};const dialog=$('birdConfirm');if(dialog)dialog.hidden=false;msg='Burung menawarkan bantuan. Pilih naik atau lanjut berjalan.';mt=1.8}
   if(mnt>0){mnt-=dt;const g0=gy(px),f0=flo(px),tg=Math.min(g0,f0<1e8?f0:g0)-105;py+=(tg-py)*Math.min(1,dt*7);vy=0;onG=false;if(mnt<=0&&f0>1e8)mnt=.2}
   else{vy+=1500*dt;py+=vy*dt;const fl=flo(px);if(fl<1e8&&py>=fl&&vy>=0){py=fl;vy=0;onG=true}else onG=false}
   for(const o of ob)if(o.ty==3&&st<=0&&mnt<=0&&Math.abs(px-(o.x+o.w/2))<o.w/2+8&&py>gy(o.x+o.w/2)-o.h-4)hurt('Tertusuk semak berduri!',80);
@@ -1579,15 +1655,19 @@ function shuffleItems(items){
   return out;
 }
 function setBg(i){
-  const bg=$('bgx');
-  if(bg)bg.style.display='none';
-  document.body.style.background='#f3f7f3';
+  const idx=Number.isInteger(i)&&i>=0&&i<BGP.length?i:0;
+  const bg=$('bgx');if(bg)bg.style.display='block';
+  document.body.style.background='transparent';
   document.body.style.color='#263b2e';
   const area=$('bgi');
-  if(area)area.style.backgroundImage='none';
+  if(area){area.style.backgroundImage='url("'+BGP[idx]+'")';area.style.backgroundSize='cover';area.style.backgroundPosition='center';}
+  const overlay=document.querySelector('.bgo');
+  if(overlay)overlay.style.opacity='1';
   const bgt=$('bgt'),bgc=$('bgc');
   if(bgt)bgt.innerHTML='';
-  if(bgc)bgc.innerHTML='';
+  const quiet=['☁️','🌤️','🌙','⭐','✨','🍃','🍂','🌿','🌅','🏔️','☀️'];
+  const accents=(IC[idx]||[]).filter(q=>quiet.includes(q[0])).slice(0,4);
+  if(bgc)bgc.innerHTML=accents.map(q=>'<span class="'+(q[4]||'')+'" style="left:'+q[1]+'%;top:'+q[2]+'%;font-size:'+Math.min(q[3],46)+'px;animation-delay:'+q[5]+'s">'+q[0]+'</span>').join('');
   if(i>=0&&MT[i])document.documentElement.style.setProperty('--amber','#d99a36');
 }
 function pickMt(){
@@ -1672,11 +1752,12 @@ function customize(cb){
 }
 function intro(){
   clearInterval(timer);mvStop();$('hud').innerHTML='';$('end').innerHTML='';$('panel').innerHTML='';
-  setBg(-1);
+  setBg(mi);
   const mountain=MT[mi],cs=CASES[mi],mode=CASE_MODES[mi],vocab=VOCAB_SETS[mi];
   const baseImage=cs.bc&&cs.bc[0]?cs.bc[0]:(mountain.im||'');
-  const vocabCards=vocab.map(v=>`<article class="vocab-card">
-    <button type="button" aria-label="Dengarkan ${esc(v.ar)}" onclick="speak('${esc(v.ar)}')">🔊</button>
+  const vocabCards=vocab.map((v,i)=>`<article class="vocab-card vocab-card-${i%4}">
+    <span class="vocab-index">KATA ${String(i+1).padStart(2,'0')}</span>
+    <button type="button" aria-label="Dengarkan ${esc(v.ar)}" title="Dengarkan pelafalan" onclick="speak('${esc(v.ar)}')">🔊</button>
     <span class="ar" lang="ar">${v.ar}</span><span class="latin">${esc(v.latin)}</span><span class="meaning">${esc(v.id)}</span>
   </article>`).join('');
   const suspects=SUS.map(s=>`<div class="s"><span class="em">${s.em}</span><span class="ar" lang="ar">${s.ar}</span><b>${esc(s.n)}</b></div>`).join('');
@@ -1786,10 +1867,11 @@ function load(){
     </div>
   </section>`;
   $('questionArea').hidden=true;$('posReturn').hidden=false;
-  setBg(lvi);render();window.scrollTo(0,0);
+  setBg(mi);render();window.scrollTo(0,0);
 }
 function startTrip(){
   if(!mset){mset=1;mtog();syncMu()}
+  setBg(mi);
   showMap(0,1,()=>load());
 }
 function keyCard(){
@@ -1867,6 +1949,40 @@ function keyAns(j){
 }
 function openClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=false}
 function closeClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=true}
+
+
+
+/* Arabic audio focus: stop background music during Istima playback,
+   then resume it only if it was playing before the Arabic audio began. */
+let arabicSpeechActive=false, resumeMusicAfterSpeech=false, arabicSpeechSeq=0;
+function muTog(){
+  if(arabicSpeechActive){toast('Musik dijeda sementara audio Bahasa Arab diputar.');return;}
+  mset=1;mtog();syncMu();
+}
+function speak(t,pauseMusic=true){
+  if(!('speechSynthesis' in window)){alert('Browser ini tidak mendukung suara. Coba Chrome atau Safari.');return;}
+  const seq=++arabicSpeechSeq;
+  try{speechSynthesis.cancel()}catch(e){}
+  if(pauseMusic&&mus){resumeMusicAfterSpeech=true;mtog();syncMu();}
+  arabicSpeechActive=true;
+  const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.8;
+  const finish=()=>{
+    if(seq!==arabicSpeechSeq)return;
+    arabicSpeechActive=false;
+    if(resumeMusicAfterSpeech){resumeMusicAfterSpeech=false;if(!mus){mtog();syncMu();}}
+  };
+  u.onend=finish;u.onerror=finish;
+  speechSynthesis.speak(u);
+}
+function play(){
+  const l=L(),c=l.clues[open];
+  if(c.type==='dengar'&&!solved.has(open)){
+    if((plays[open]||0)>=l.plays)return;
+    plays[open]=(plays[open]||0)+1;
+  }
+  speak(c.ar,c.type==='dengar');
+  drawPanel();
+}
 
 
 initSupabase();
