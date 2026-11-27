@@ -1776,6 +1776,453 @@ body {
 }
 </style>
 
+
+<style id="expedition-controls-vintage-colors">
+/* Harmonized expedition controls: forest green, sage and warm cocoa. */
+.ctl .cb {
+  background: linear-gradient(145deg, #607b55, #456444) !important;
+  color: #fffaf0 !important;
+  border: 2px solid #f8f0e2 !important;
+  box-shadow: 0 4px 0 #344d35, 0 5px 12px rgba(61,48,29,.18) !important;
+  border-radius: 15px !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 1px rgba(28,42,27,.25);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+.ctl .cb[data-k="l"],
+.ctl .cb[data-k="r"] {
+  background: linear-gradient(145deg, #5d7d53, #3f6242) !important;
+}
+.ctl .cb.wb,
+.ctl .cb[data-k="w"] {
+  background: linear-gradient(145deg, #87956a, #66794f) !important;
+  color: #fffdf4 !important;
+  box-shadow: 0 4px 0 #4f603e, 0 5px 12px rgba(61,48,29,.16) !important;
+}
+.ctl .cb.jp,
+.ctl .cb[data-k="u"] {
+  background: linear-gradient(145deg, #b98a4f, #98703d) !important;
+  color: #fffaf0 !important;
+  box-shadow: 0 4px 0 #75532f, 0 5px 12px rgba(61,48,29,.16) !important;
+}
+.ctl .cb:focus-visible,
+#mskip:focus-visible {
+  outline: 3px solid #d5ad69 !important;
+  outline-offset: 3px !important;
+}
+.ctl .cb:active {
+  transform: translateY(2px);
+  filter: brightness(.96);
+  box-shadow: 0 2px 0 #344d35 !important;
+}
+#mskip {
+  background: linear-gradient(145deg, #607b55, #456444) !important;
+  color: #fffaf0 !important;
+  border: 2px solid #f8f0e2 !important;
+  border-radius: 13px !important;
+  box-shadow: 0 4px 0 #344d35, 0 5px 12px rgba(61,48,29,.14) !important;
+  font-weight: 900 !important;
+  letter-spacing: .01em;
+}
+#mskip:hover {
+  filter: brightness(1.06) saturate(1.08);
+}
+#mskip:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #344d35 !important;
+}
+/* The hint label uses the same warm parchment tone as the rest of the UI. */
+.trail-tip {
+  background: #f5ead8 !important;
+  color: #4d4938 !important;
+  border: 1px solid #cbb895 !important;
+  border-radius: 10px !important;
+  font-weight: 750 !important;
+}
+</style>
+
+
+<style id="vintage-bold-color-system">
+/* ==========================================================
+   BOLDER VINTAGE COLOR SYSTEM
+   Rich forest greens + honey amber + terracotta + warm paper.
+   Designed to feel lively while keeping readable contrast.
+   ========================================================== */
+:root {
+  --bg: #e2d0b2 !important;
+  --card: #fff5e4 !important;
+  --line: #bd9b69 !important;
+  --paper: #fff2dc !important;
+  --paper2: #e9d5b5 !important;
+  --ink: #30271d !important;
+  --amber: #d18b2e !important;
+  --red: #b6533d !important;
+  --green: #376b43 !important;
+  --mute: #5c503e !important;
+  --text: #302d22 !important;
+  --pr: #3e754c !important;
+  --or: #c9822b !important;
+  --shadow: 0 13px 30px rgba(67, 46, 22, .17) !important;
+}
+html, body {
+  background-color: #e2d0b2 !important;
+  color: #30271d !important;
+}
+body {
+  background-image:
+    radial-gradient(ellipse at 8% 8%, rgba(255,248,230,.65), transparent 42%),
+    radial-gradient(ellipse at 92% 88%, rgba(178,132,70,.13), transparent 44%) !important;
+}
+
+/* Stronger but still soft warm parchment backgrounds. */
+#bgx:not(.forest-mode) .bgi {
+  background-image:
+    radial-gradient(ellipse at 12% 14%, rgba(255,249,232,.95), transparent 43%),
+    radial-gradient(ellipse at 88% 78%, rgba(188,143,78,.24), transparent 42%),
+    repeating-linear-gradient(0deg, rgba(103,72,34,.035) 0 1px, transparent 1px 4px),
+    linear-gradient(145deg, #f1e3ca 0%, #e4cfad 53%, #d4bb91 100%) !important;
+  opacity: 1 !important;
+}
+#bgx:not(.forest-mode) .bgo {
+  background: linear-gradient(180deg, rgba(255,249,233,.04), rgba(119,78,36,.10)) !important;
+}
+#bgx.forest-mode .bgi {
+  background-image:
+    radial-gradient(ellipse 42% 26% at 0% 3%, rgba(110,139,70,.48) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 28% at 100% 4%, rgba(119,145,73,.44) 0%, transparent 100%),
+    radial-gradient(ellipse 48% 32% at 50% 0%, rgba(255,245,218,.82) 0%, transparent 100%),
+    radial-gradient(ellipse 72% 35% at 50% 100%, rgba(158,119,64,.31) 0%, transparent 100%),
+    linear-gradient(180deg, #e8d9bd 0%, #ddc8a5 48%, #cbb28a 100%) !important;
+}
+#bgx.forest-mode .bgo {
+  background: linear-gradient(180deg, rgba(255,248,226,.02), rgba(103,75,38,.17)) !important;
+}
+
+/* Brand and section titles: deep forest, high contrast. */
+.brand h1,
+.brand .ar,
+.dashboard-v2 h2,
+.dashboard-v2 .dashboard-head h2,
+#questionArea h2,
+main h2 {
+  color: #2f5d3b !important;
+  text-shadow: 0 1px 0 rgba(255,248,229,.55) !important;
+  font-weight: 950 !important;
+}
+.section-kicker,
+.eyebrow {
+  color: #95652d !important;
+  font-weight: 950 !important;
+  letter-spacing: .12em !important;
+}
+#questionArea h2::before {
+  background: linear-gradient(180deg, #d69a3e, #47754b) !important;
+}
+
+/* Main action buttons: richer forest green with golden edge. */
+.go,
+.finish-btn.primary,
+button.primary,
+button[type="submit"] {
+  background: linear-gradient(135deg, #4f8551 0%, #356642 55%, #2e5738 100%) !important;
+  color: #fffaf0 !important;
+  border: 1.5px solid #315b39 !important;
+  box-shadow: 0 4px 0 #24482e, 0 7px 15px rgba(47,76,43,.19) !important;
+  font-weight: 950 !important;
+  text-shadow: 0 1px 1px rgba(22,42,24,.28) !important;
+}
+.go:hover,
+.finish-btn.primary:hover,
+button.primary:hover,
+button[type="submit"]:hover {
+  filter: brightness(1.08) saturate(1.13) !important;
+}
+.go:active,
+.finish-btn.primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #24482e !important;
+}
+.secondary-btn,
+.finish-btn:not(.primary) {
+  background: linear-gradient(135deg, #fff4df, #ead7b7) !important;
+  color: #4b603e !important;
+  border: 1.5px solid #bd9b69 !important;
+  box-shadow: 0 3px 0 #c8ae83 !important;
+  font-weight: 900 !important;
+}
+
+/* Top HUD and status chips. */
+.hud {
+  background: linear-gradient(135deg, #fff8e9, #efdfc2) !important;
+  color: #36583b !important;
+  border: 2px solid #c7a36c !important;
+  box-shadow: 0 8px 20px rgba(67,46,22,.16) !important;
+  font-weight: 900 !important;
+}
+.hud .h,
+.hud span {
+  color: #36583b !important;
+  font-weight: 950 !important;
+}
+.hint,
+.trail-tip,
+#questionArea .hint,
+#questionArea #count,
+#questionArea #accHint {
+  background: #f8ecd6 !important;
+  color: #4a3b27 !important;
+  border: 1.5px solid #c9a873 !important;
+  font-weight: 850 !important;
+}
+
+/* Story panels and instructions. */
+.story,
+#questionArea .story {
+  background: linear-gradient(135deg, #fff5e3, #f0dfc2) !important;
+  color: #342b20 !important;
+  border: 1.5px solid #c49a5d !important;
+  border-left: 6px solid #4e7849 !important;
+  box-shadow: 0 8px 19px rgba(74,49,21,.15) !important;
+  font-weight: 750 !important;
+}
+
+/* Clue cards have visible frames and a lively, coordinated paper palette. */
+#questionArea .clue,
+.clues .clue {
+  background: linear-gradient(145deg, #fff3dd, #f1dfbf) !important;
+  color: #342b20 !important;
+  border: 2px solid #c49a5d !important;
+  border-left: 6px solid #c08331 !important;
+  box-shadow: 0 7px 16px rgba(74,49,21,.15) !important;
+  font-weight: 850 !important;
+}
+#questionArea .clue:nth-child(3n+2),
+.clues .clue:nth-child(3n+2) {
+  background: linear-gradient(145deg, #f0f3df, #dce7cd) !important;
+  border-color: #82955d !important;
+  border-left-color: #47764a !important;
+}
+#questionArea .clue:nth-child(3n),
+.clues .clue:nth-child(3n) {
+  background: linear-gradient(145deg, #f8e8d8, #edd1bd) !important;
+  border-color: #c28a68 !important;
+  border-left-color: #b45f42 !important;
+}
+#questionArea .clue b,
+.clues .clue b {
+  color: #2f4932 !important;
+  font-weight: 950 !important;
+}
+#questionArea .clue small,
+.clues .clue small {
+  color: #51432f !important;
+  font-weight: 850 !important;
+}
+#questionArea .clue.done,
+.clues .clue.done {
+  background: linear-gradient(145deg, #e2efd6, #c9dfb8) !important;
+  border-color: #64834e !important;
+}
+#questionArea .clue.open,
+.clues .clue.open {
+  outline: 3px solid #d18b2e !important;
+  outline-offset: 2px !important;
+}
+#questionArea .clue:disabled,
+.clues .clue:disabled {
+  background: #e5d8c1 !important;
+  color: #655238 !important;
+  border-color: #b99a6b !important;
+  opacity: 1 !important;
+}
+
+/* Suspect cards: distinct subtle colors, vivid icon badges. */
+#questionArea .s,
+.s {
+  background: linear-gradient(145deg, #fff4e1, #ecddc3) !important;
+  color: #342b20 !important;
+  border: 2px solid #c6a16a !important;
+  box-shadow: 0 8px 17px rgba(74,49,21,.15) !important;
+  opacity: 1 !important;
+}
+#questionArea .s:nth-child(4n+2),
+.s:nth-child(4n+2) {
+  background: linear-gradient(145deg, #eff2df, #dce6c9) !important;
+  border-color: #84985f !important;
+}
+#questionArea .s:nth-child(4n+3),
+.s:nth-child(4n+3) {
+  background: linear-gradient(145deg, #f8e8d8, #edd0bb) !important;
+  border-color: #c58b68 !important;
+}
+#questionArea .s:nth-child(4n),
+.s:nth-child(4n) {
+  background: linear-gradient(145deg, #e7efeb, #cbded6) !important;
+  border-color: #789c8d !important;
+}
+#questionArea .s .em,
+.s .em {
+  background: linear-gradient(145deg, #355f43, #1f4231) !important;
+  border: 3px solid #d6a34d !important;
+  box-shadow: 0 4px 10px rgba(48,36,20,.28) !important;
+  filter: saturate(2) contrast(1.2) !important;
+}
+#questionArea .s .ar,
+.s .ar {
+  color: #2f613d !important;
+  font-weight: 900 !important;
+}
+#questionArea .s .tag,
+.s .tag {
+  background: rgba(255,248,231,.78) !important;
+  color: #58432a !important;
+  border: 1px solid rgba(166,126,66,.35) !important;
+  font-weight: 850 !important;
+}
+
+/* Dashboard: open expeditions = saturated sage/forest; locked = clear honey/terracotta. */
+.mountain-card {
+  box-shadow: 0 10px 23px rgba(67,46,22,.17) !important;
+}
+.mountain-card:not(.locked) {
+  background: #e1ebd3 !important;
+  border: 2px solid #64824d !important;
+}
+.mountain-card:not(.locked) .mountain-info {
+  background: linear-gradient(180deg, #eef4e2, #dce8ca) !important;
+}
+.mountain-card:not(.locked) .mountain-state {
+  color: #fff !important;
+  background: linear-gradient(135deg, #4f7b45, #315e39) !important;
+  border: 1px solid #315b36 !important;
+  box-shadow: 0 2px 5px rgba(43,76,39,.18) !important;
+}
+.mountain-card.locked {
+  background: #f0dfc2 !important;
+  border: 2px solid #bd8b4e !important;
+}
+.mountain-card.locked .mountain-info {
+  background: linear-gradient(180deg, #f7ead5, #ead5b5) !important;
+}
+.mountain-card.locked .mountain-state {
+  color: #fffaf0 !important;
+  background: linear-gradient(135deg, #b77b3d, #945d32) !important;
+  border: 1px solid #8d572e !important;
+  box-shadow: 0 2px 5px rgba(97,57,27,.18) !important;
+}
+.mountain-card h3 {
+  color: #285a38 !important;
+  font-weight: 950 !important;
+}
+.mountain-card.locked h3 {
+  color: #754a2b !important;
+}
+.mountain-card .mountain-meta {
+  color: #405b3e !important;
+  font-weight: 850 !important;
+}
+.mountain-card.locked .mountain-meta {
+  color: #694d31 !important;
+}
+.mountain-card .stars {
+  color: #d48616 !important;
+  font-size: 1.12rem !important;
+  font-weight: 950 !important;
+  text-shadow: 0 1px 0 rgba(74,47,10,.25) !important;
+}
+.mountain-card:not(.locked) .go {
+  background: linear-gradient(135deg, #4f8551, #2f603b) !important;
+}
+.mountain-card.locked .go:disabled {
+  background: linear-gradient(135deg, #b77b3d, #925d34) !important;
+  border-color: #85542f !important;
+  box-shadow: 0 4px 0 #71472b !important;
+  color: #fffaf0 !important;
+  opacity: 1 !important;
+}
+
+/* Movement buttons: same vivid forest/honey color family. */
+.ctl .cb,
+.ctl .cb[data-k="l"],
+.ctl .cb[data-k="r"] {
+  background: linear-gradient(145deg, #5d8a50, #356440) !important;
+  border: 2px solid #fff4df !important;
+  color: #fffaf0 !important;
+  box-shadow: 0 4px 0 #254a30, 0 6px 13px rgba(52,43,27,.2) !important;
+}
+.ctl .cb.wb,
+.ctl .cb[data-k="w"] {
+  background: linear-gradient(145deg, #879d5b, #5e7845) !important;
+  box-shadow: 0 4px 0 #465e37, 0 6px 13px rgba(52,43,27,.18) !important;
+}
+.ctl .cb.jp,
+.ctl .cb[data-k="u"] {
+  background: linear-gradient(145deg, #d59a42, #ad702c) !important;
+  box-shadow: 0 4px 0 #805024, 0 6px 13px rgba(52,43,27,.18) !important;
+}
+#mskip {
+  background: linear-gradient(145deg, #5d8a50, #356440) !important;
+  border: 2px solid #fff4df !important;
+  box-shadow: 0 4px 0 #254a30, 0 6px 13px rgba(52,43,27,.18) !important;
+}
+
+/* Chips, badges, input fields, navigation and result surfaces. */
+.chip {
+  background: linear-gradient(135deg, #fff5e3, #e8d7b9) !important;
+  color: #3d613f !important;
+  border: 1.5px solid #c39b60 !important;
+  font-weight: 850 !important;
+}
+.chip.on {
+  background: linear-gradient(135deg, #5b854e, #35623c) !important;
+  color: #fffaf0 !important;
+  border-color: #315b37 !important;
+}
+input, select, textarea {
+  background: #fff7e9 !important;
+  color: #342b20 !important;
+  border: 1.5px solid #bd9b69 !important;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 3px solid rgba(198,139,49,.28) !important;
+  border-color: #b67b2e !important;
+}
+.page-nav,
+.journey-hero,
+.finish-card,
+.finish-panel {
+  border-color: #c39d66 !important;
+}
+.journey-hero {
+  background: linear-gradient(135deg, #e8edda, #d6e1c9) !important;
+}
+.finish-btn:not(.primary) {
+  background: linear-gradient(135deg, #fff4df, #e9d7b8) !important;
+  color: #4a633e !important;
+}
+.stat-card,
+.dashboard-v2 .stat-card {
+  background: linear-gradient(145deg, #fff4df, #ead8b8) !important;
+  border: 1.5px solid #c49d66 !important;
+  color: #443622 !important;
+}
+
+/* Emoji / decorative icons: bring back natural saturation without tinting photos. */
+#bgc span, #bgt span,
+.s .em, .chip, .mountain-state {
+  filter: saturate(1.65) contrast(1.12) !important;
+}
+#bgc span, #bgt span {
+  opacity: 1 !important;
+  filter: saturate(1.85) contrast(1.16) drop-shadow(0 2px 4px rgba(54,39,20,.34)) !important;
+}
+
+/* Keep disabled controls legible, not faded. */
+button:disabled {
+  opacity: .94 !important;
+}
+</style>
+
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
