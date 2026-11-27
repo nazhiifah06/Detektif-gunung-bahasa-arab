@@ -2505,6 +2505,106 @@ button:disabled {
 }
 </style>
 
+
+<style id="persistent-answer-feedback">
+/* Persistent answer feedback across every question and challenge. */
+.opt.ok, #scr .opt.ok, .opt.ok:disabled {
+  background: linear-gradient(135deg,#dff3e4,#c9e9d2) !important;
+  border: 2px solid #26834c !important;
+  color: #155b32 !important;
+  font-weight: 850 !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  box-shadow: inset 0 0 0 1px rgba(38,131,76,.12) !important;
+}
+.opt.no, #scr .opt.no, .opt.no:disabled {
+  background: linear-gradient(135deg,#fde8e4,#f7d2cc) !important;
+  border: 2px solid #c94336 !important;
+  color: #852b24 !important;
+  font-weight: 850 !important;
+  text-decoration: none !important;
+  opacity: 1 !important;
+  box-shadow: inset 0 0 0 1px rgba(201,67,54,.10) !important;
+}
+.opt.ok::after { content:"✓ BENAR"; margin-left:auto; padding:3px 8px; border-radius:999px; background:#26834c; color:#fff; font-size:.7rem; font-weight:900; white-space:nowrap; }
+.opt.no::after { content:"✕ SALAH"; margin-left:auto; padding:3px 8px; border-radius:999px; background:#c94336; color:#fff; font-size:.7rem; font-weight:900; white-space:nowrap; }
+.answer-feedback { display:block; margin:10px 0; padding:11px 14px; border-radius:12px; font-weight:800; line-height:1.55; }
+.answer-feedback.success { background:#e0f3e5 !important; border:1.5px solid #39945c !important; color:#185b34 !important; }
+.answer-feedback.wrong { background:#fde9e5 !important; border:1.5px solid #cf5a4c !important; color:#842f27 !important; }
+.answer-input-row { align-items:stretch; }
+.ti.answer-correct, .final-input.answer-correct { background:#e0f3e5 !important; border:2px solid #39945c !important; color:#185b34 !important; box-shadow:0 0 0 3px rgba(57,148,92,.12) !important; }
+.ti.answer-wrong, .final-input.answer-wrong { background:#fde9e5 !important; border:2px solid #cf5a4c !important; color:#842f27 !important; box-shadow:0 0 0 3px rgba(207,90,76,.10) !important; }
+.final-pick.correct-answer, .final-pick.correct-answer:disabled { background:#e0f3e5 !important; border:2px solid #39945c !important; color:#185b34 !important; opacity:1 !important; }
+.final-pick.correct-answer::after { content:"✓ BENAR"; float:right; margin-left:8px; padding:2px 7px; border-radius:999px; background:#26834c; color:white; font-size:.68rem; }
+.final-pick.wrong-answer, .final-pick.wrong-answer:disabled { background:#fde9e5 !important; border:2px solid #cf5a4c !important; color:#842f27 !important; opacity:1 !important; }
+.final-pick.wrong-answer::after { content:"✕ SALAH"; float:right; margin-left:8px; padding:2px 7px; border-radius:999px; background:#c94336; color:white; font-size:.68rem; }
+.vq-option.correct, .vq-option.correct:disabled { background:#e0f3e5 !important; border:2px solid #39945c !important; color:#185b34 !important; opacity:1 !important; }
+.vq-option.correct::after { content:"✓"; float:right; font-weight:950; }
+.vq-option.wrong, .vq-option.wrong:disabled { background:#fde9e5 !important; border:2px solid #cf5a4c !important; color:#842f27 !important; opacity:1 !important; }
+.vq-option.wrong::after { content:"✕"; float:right; font-weight:950; }
+.answer-next-btn { display:block; width:100%; margin-top:12px; padding:13px 16px; font-weight:900; }
+@media(max-width:420px){
+  .opt.ok::after,.opt.no::after { font-size:.58rem; padding:2px 5px; }
+  .opt { gap:7px; padding:9px 10px; }
+}
+</style>
+
+<style>
+
+/* ===== Stronger CTA for start climbing panel ===== */
+#scr .climb-panel{position:relative;overflow:visible!important}
+#scr .climb-panel .section-kicker{display:block;margin-bottom:6px}
+#scr .climb-panel h2{font-size:clamp(1.45rem,2.4vw,2rem)!important;font-weight:950!important;color:#244c34!important}
+#scr .climb-cta-note{
+  display:inline-flex;align-items:center;gap:10px;
+  margin:0 auto 14px;padding:10px 16px;
+  background:linear-gradient(135deg,#fff1b9,#ffd66e)!important;
+  color:#5b3d00!important;border:2px solid #d89d15!important;
+  border-radius:999px;box-shadow:0 8px 18px rgba(191,129,11,.18)!important;
+  font-weight:950!important;font-size:.96rem;letter-spacing:.01em;
+  animation:climbHintFloat 1.4s ease-in-out infinite;
+}
+#scr .climb-cta-note::before{content:"👇";font-size:1.05rem;animation:climbHintBounce 1s ease-in-out infinite}
+#scr .climb-actions{gap:16px!important;align-items:stretch}
+#scr .climb-actions .go{
+  position:relative;isolation:isolate;
+  min-width:260px!important;padding:16px 26px!important;
+  font-size:1.08rem!important;letter-spacing:.01em;
+  background:linear-gradient(135deg,#2fbf5b 0%,#1f9e49 46%,#147a39 100%)!important;
+  border:2px solid #0e6f31!important;color:#fff!important;
+  box-shadow:0 6px 0 #0d5d2b,0 14px 26px rgba(20,122,57,.34)!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.22)!important;
+  animation:climbPulse 1.55s infinite;
+}
+#scr .climb-actions .go::after{
+  content:"KLIK UNTUK MULAI";
+  position:absolute;left:50%;bottom:-16px;transform:translateX(-50%);
+  background:#fff!important;color:#0d6b31!important;border:2px solid #26a34c!important;
+  border-radius:999px;padding:4px 10px;font-size:.7rem;font-weight:950;letter-spacing:.07em;
+  box-shadow:0 6px 14px rgba(12,89,40,.18);white-space:nowrap;
+}
+#scr .climb-actions .go:hover{transform:translateY(-2px) scale(1.02)!important;filter:brightness(1.08) saturate(1.16)!important}
+#scr .climb-actions .go:active{transform:translateY(2px) scale(.995)!important;box-shadow:0 2px 0 #0d5d2b,0 8px 14px rgba(20,122,57,.22)!important}
+#scr .climb-actions .secondary-btn{
+  min-width:260px!important;padding:15px 22px!important;font-size:1rem!important;
+  background:linear-gradient(135deg,#fffdf8,#f2e9da)!important;color:#586e55!important;
+  border:2px solid #cdb694!important;box-shadow:0 4px 0 #c1a67b!important;opacity:.96;
+}
+#scr .climb-actions .secondary-btn:hover{filter:brightness(1.02)!important}
+@keyframes climbPulse{
+  0%,100%{box-shadow:0 6px 0 #0d5d2b,0 14px 26px rgba(20,122,57,.34),0 0 0 0 rgba(47,191,91,.18)}
+  50%{box-shadow:0 6px 0 #0d5d2b,0 16px 28px rgba(20,122,57,.42),0 0 0 10px rgba(47,191,91,0)}
+}
+@keyframes climbHintFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes climbHintBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@media (max-width:680px){
+  #scr .climb-cta-note{font-size:.9rem;padding:9px 14px}
+  #scr .climb-actions{gap:18px!important}
+  #scr .climb-actions .go,#scr .climb-actions .secondary-btn{min-width:100%!important;width:100%!important}
+  #scr .climb-actions .go::after{bottom:-15px;font-size:.68rem}
+}
+
+</style>
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
@@ -2573,6 +2673,7 @@ let LV=[
 LV.forEach(l=>{l.sus=SUS;l.culprit='yusuf';l.key=KEY});
 const narm=s=>s.replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[^\u0621-\u064A0-9\s]/g,' ').replace(/\s+/g,' ').trim().split(' ').map(w=>w.length>3?w.replace(/^ال/,''):w).join(' ');
 let lvi,lives,score,streak,solved,open,tleft,timer,showTxt,showTr,over,failed,left,plays,keyMode,keyFail,T;
+let answerStatus=null,answerValue='';
 let hist=[],peak=false;
 const $=id=>document.getElementById(id);
 const L=()=>LV[lvi];
@@ -2596,9 +2697,9 @@ function scare(cb){
 let scareSnd=null;{const a=new Audio();a.preload='auto';a.oncanplaythrough=()=>{scareSnd=a};a.src='scare.mp3'}
 let scareImg=false;{const im=new Image();im.onload=()=>{scareImg=true};im.src='scare.jpg'}
 $('scareTgl').checked=scareOn;
-function newGame(){lives=3;score=0;lvi=0;hist=[];peak=false;shufAll();water=100;intro()}
+function newGame(){lives=3;score=0;lvi=0;hist=[];peak=false;finalChallengeFeedback=null;finalArabicAnswer='';keySuccess=false;answerStatus=null;answerValue='';typed='';shufAll();water=100;intro()}
 function load(){
-  const l=L();T=l.T;streak=0;solved=new Set();open=null;showTxt=false;showTr=false;over=false;failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();
+  const l=L();T=l.T;streak=0;solved=new Set();open=null;showTxt=false;showTr=false;over=false;failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();answerStatus=null;answerValue='';typed='';
   clearInterval(timer);$('panel').innerHTML='';$('end').innerHTML='';
   $('title').textContent=l.title;$('story').textContent=l.story;document.documentElement.style.setProperty('--amber',PCOL[lvi]);$('ban').innerHTML=l.img?ph(l.img,1):'';setBg(lvi);
   render();window.scrollTo(0,0)}
@@ -2631,7 +2732,7 @@ function render(){
 function openClue(i){
   if(over||open===i||locked(i))return;
   if(open!==null&&!solved.has(open))left[open]=tleft;
-  open=i;showTxt=false;showTr=false;vmsg=null;typed='';vfb=false;clearInterval(timer);
+  open=i;showTxt=false;showTr=false;vmsg=null;typed='';vfb=false;answerStatus=null;answerValue='';if(solved.has(i)){answerStatus='correct';const prior=L().clues[i];answerValue=prior.ans?.[0]||prior.o?.[prior.a]||'';typed=answerValue;}clearInterval(timer);
   tleft=left[i]!==undefined?left[i]:T;
   if(!solved.has(i))timer=setInterval(tick,100);
   drawPanel();setTimeout(()=>{const p=$('panel');p.style.scrollMarginTop='90px';p.scrollIntoView({behavior:'smooth',block:'start'})},60)}
@@ -2650,9 +2751,13 @@ function drawPanel(msg){
   const l=L(),c=l.clues[open],ok=solved.has(open),mode=c.mode||'pilih',hide=c.type==='dengar'&&!ok&&!showTxt;
   const rem=l.plays-(plays[open]||0),lim=c.type==='dengar'&&!ok;
   let ans='';
-  if(mode==='pilih')ans=c.o.map((o,j)=>{const f=failed.has(open+'-'+j);return `<button class="opt ${ok&&j===c.a?'ok':''} ${f?'no':''}" ${ok||f?'disabled':''} onclick="answer(${j})">${o}</button>`}).join('');
-  else if(!ok&&mode==='ketik')ans=`<p class="hint" style="color:#555">Jawab dengan <b>menulis huruf Arab</b>. Harakat tidak wajib.</p><div class="row"><input class="ti" id="ti" type="text" dir="rtl" lang="ar" autocomplete="off" style="font-family:'Amiri',serif;font-size:1.4rem" placeholder="اكتب إجابتك هنا" value="${typed.replace(/"/g,'&quot;')}" oninput="typed=this.value" onkeydown="if(event.key==='Enter')submitType()" aria-label="Ketik jawaban dalam bahasa Arab"><button class="mini" onclick="submitType()">Kirim</button></div>`;
-  else if(!ok)ans=`<p class="hint" style="color:#555">Jawab dengan <b>mengucapkan bahasa Arab</b>. Tekan tombol lalu bicara dengan jelas.</p><button class="mini" style="font-size:1.1rem;padding:10px 20px" onclick="listenVoice()">🎤 Ucapkan jawabanmu</button>${vmsg?`<p class="note"><b>${vmsg.t}</b></p>`:''}${vfb?`<p class="hint" style="color:#555">Mikrofon tidak bisa dipakai? Kamu boleh menjawab dengan menulis huruf Arab (skor -50).</p>`+inputBox():''}`;
+  if(mode==='pilih')ans=c.o.map((o,j)=>{
+    const f=failed.has(open+'-'+j);
+    const revealCorrect=(ok||failed.size>0)&&j===c.a;
+    return `<button class="opt ${revealCorrect?'ok':''} ${f?'no':''}" ${ok||f?'disabled':''} onclick="answer(${j})">${o}</button>`
+  }).join('');
+  else if(mode==='ketik')ans=`<p class="hint">Jawab dengan <b>menulis huruf Arab</b>. Harakat tidak wajib.</p><div class="row answer-input-row"><input class="ti ${answerStatus==='correct'?'answer-correct':answerStatus==='wrong'?'answer-wrong':''}" id="ti" type="text" dir="rtl" lang="ar" autocomplete="off" style="font-family:'Amiri',serif;font-size:1.4rem" placeholder="اكتب إجابتك هنا" value="${typed.replace(/"/g,'&quot;')}" ${ok?'disabled':''} oninput="typed=this.value;answerStatus=null;answerValue=this.value" onkeydown="if(event.key==='Enter'&&!${ok})submitType()" aria-label="Ketik jawaban dalam bahasa Arab"><button class="mini" ${ok?'disabled':''} onclick="submitType()">Kirim</button></div>${answerStatus==='wrong'?`<div class="answer-feedback wrong">✕ Jawaban belum tepat. Periksa kembali lalu coba lagi.</div>`:''}${answerStatus==='correct'?`<div class="answer-feedback success">✓ Jawaban benar!</div>`:''}`;
+  else if(mode==='suara')ans=ok?`<div class="answer-feedback success">✓ Pengucapan benar! <span class="ar" lang="ar">${answerValue?answerValue.replace(/</g,'&lt;').replace(/>/g,'&gt;'):c.ans[0]}</span></div>`:`<p class="hint">Jawab dengan <b>mengucapkan bahasa Arab</b>. Tekan tombol lalu bicara dengan jelas.</p><button class="mini" style="font-size:1.1rem;padding:10px 20px" onclick="listenVoice()">🎤 Ucapkan jawabanmu</button>${answerStatus==='wrong'?`<div class="answer-feedback wrong">✕ Jawaban belum tepat: <span class="ar" lang="ar">${String(answerValue).replace(/</g,'&lt;').replace(/>/g,'&gt;')}</span>. Coba ucapkan sekali lagi.</div>`:''}${vmsg?`<p class="note"><b>${vmsg.t}</b></p>`:''}${vfb?`<p class="hint">Mikrofon tidak bisa dipakai? Kamu boleh menjawab dengan menulis huruf Arab (skor -50).</p>`+inputBox():''}`;
   $('panel').innerHTML=`<div class="panel"><b>${c.t}</b>${mode!=='pilih'?` <span class="hint" style="color:#555">· Mode ${mode==='ketik'?'tulis Arab':'ucap Arab'}</span>`:''}
   ${ok?'':'<div class="tbar" id="tb"><i></i></div>'}
   ${hide?`<div class="say h2">Teks disembunyikan. Tekan Dengarkan dan simak baik-baik.</div>`:`<div class="say ar" lang="ar">${c.ar}</div>`}
@@ -2663,20 +2768,21 @@ function drawPanel(msg){
   ${msg?`<p class="note" style="border-color:var(--red);background:#fde3dd"><b>${msg}</b> Nyawa berkurang.</p>`:''}
   <p><b>${c.q}</b></p>
   ${ans}
-  ${ok?`<div class="note"><b>Catatan detektif:</b> ${c.note}${mode!=='pilih'?`<br><b>Jawaban Arab:</b> <span class="ar" lang="ar">${c.ans[0]}</span>`:''}</div>`:''}</div>`}
+  ${ok?`<div class="note"><b>Catatan detektif:</b> ${c.note}${mode!=='pilih'?`<br><b>Jawaban Arab:</b> <span class="ar" lang="ar">${c.ans[0]}</span>`:''}</div><div class="answer-feedback success">✓ Jawaban benar dan tersimpan. Warna hijau menandai jawaban yang tepat.</div><button class="go answer-next-btn" onclick="continueAfterAnswer()">${solved.size===L().clues.length?'Selesaikan Pos ✓':'Lanjut ke Petunjuk Berikutnya →'}</button>`:''}</div>`}
 let vmsg=null,rec=null,typed='',vfb=false;
-function inputBox(){return `<div class="row"><input class="ti" id="ti" type="text" dir="rtl" lang="ar" autocomplete="off" style="font-family:'Amiri',serif;font-size:1.4rem" placeholder="اكتب إجابتك هنا" value="${typed.replace(/"/g,'&quot;')}" oninput="typed=this.value" onkeydown="if(event.key==='Enter')submitType()" aria-label="Ketik jawaban dalam bahasa Arab"><button class="mini" onclick="submitType()">Kirim</button></div>`}
+function inputBox(){return `<div class="row answer-input-row"><input class="ti ${answerStatus==='correct'?'answer-correct':answerStatus==='wrong'?'answer-wrong':''}" id="ti" type="text" dir="rtl" lang="ar" autocomplete="off" style="font-family:'Amiri',serif;font-size:1.4rem" placeholder="اكتب إجابتك هنا" value="${typed.replace(/"/g,'&quot;')}" ${answerStatus==='correct'?'disabled':''} oninput="typed=this.value;answerStatus=null;answerValue=this.value" onkeydown="if(event.key==='Enter')submitType()" aria-label="Ketik jawaban dalam bahasa Arab"><button class="mini" ${answerStatus==='correct'?'disabled':''} onclick="submitType()">Kirim</button></div>${answerStatus==='wrong'?`<div class="answer-feedback wrong">✕ Jawaban belum tepat. Coba periksa kembali.</div>`:''}`}
 function okAr(alts,c){
   return alts.some(a=>{const h=narm(a).split(' ');
     return c.ans.some(x=>{const t=narm(x).split(' ').filter(Boolean);return t.length&&t.filter(w=>h.includes(w)).length>=Math.ceil(t.length*.8)})})}
 function judge(alts,lbl){
-  vmsg=null;const c=L().clues[open];
-  if(okAr(alts,c))solveClue();
-  else{streak=0;loseLife('Jawaban belum tepat. '+lbl+': «'+alts[0]+'».')}}
+  vmsg=null;const c=L().clues[open];answerValue=String(alts[0]||'');
+  if(okAr(alts,c)){answerStatus='correct';solveClue();}
+  else{answerStatus='wrong';streak=0;loseLife('Jawaban belum tepat. '+lbl+': «'+alts[0]+'».')}}
 function submitType(){
   const v=(typed||'').trim();
   if(!v){drawPanel('Tulis jawabanmu dulu.');return}
-  typed='';if((L().clues[open].mode)==='suara')score=Math.max(0,score-50);judge([v],'Kamu menulis')}
+  if((L().clues[open].mode)==='suara')score=Math.max(0,score-50);
+  judge([v],'Kamu menulis')}
 function listenVoice(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){vfb=true;vmsg={t:'Browser ini tidak mendukung rekam suara. Ini sering terjadi di browser dalam aplikasi (WhatsApp, Instagram, dll). Buka tautan web ini lewat Chrome.'};drawPanel();return}
@@ -2703,11 +2809,18 @@ function listenVoice(){
 function solveClue(){
   clearInterval(timer);
   score+=Math.round((100+tleft*4)*(1+Math.min(streak,3)*.25))+lvi*30;
-  streak++;solved.add(open);sfx(1);drawPanel();const nt=L().clues[open].note;if(solved.size===L().clues.length)setTimeout(posDone,700);else setTimeout(()=>{open=null;drawPanel();goClues();toast('✅ Benar! '+nt)},900)}
+  streak++;solved.add(open);answerStatus='correct';sfx(1);drawPanel();}
+function continueAfterAnswer(){
+  if(open===null||!solved.has(open))return;
+  const nt=L().clues[open].note;
+  if(solved.size===L().clues.length){posDone();return;}
+  open=null;answerStatus=null;answerValue='';typed='';drawPanel();goClues();toast('✅ Benar! '+nt);
+}
 function answer(j){
   const c=L().clues[open];
-  if(j===c.a)solveClue();
-  else{failed.add(open+'-'+j);streak=0;loseLife('Jawaban salah!')}}
+  if(j===c.a){answerStatus='correct';answerValue=c.o[j];solveClue();}
+  else{failed.add(open+'-'+j);answerStatus='wrong';answerValue=c.o[j];streak=0;loseLife('Jawaban salah!')}
+}
 function modal(cls,html){$('end').innerHTML=`<div class="modal" role="alertdialog" aria-modal="true"><div class="box ${cls}">${html}</div></div>`;const b=$('mbtn');if(b)b.focus()}
 function gameOver(){
   clearInterval(timer);over=true;render();$('panel').innerHTML='';
@@ -2717,13 +2830,13 @@ function gameOver(){
   <button class="go" id="mbtn" onclick="newGame()">Mulai dari Basecamp</button>`))}
 function accuse(k){
   const l=L();
-  if(k===l.culprit){keyMode=true;render();keyCard()}
+  if(k===l.culprit){keyMode=true;finalChallengeFeedback=null;finalArabicAnswer='';keySuccess=false;render();keyCard()}
   else{const s=l.sus.find(x=>x.k===k);streak=0;loseLife('Salah tuduh!');
     if(!over)$('end').innerHTML=`<div class="end"><h3>${s.n} bukan pelakunya.</h3><p>Cek ulang siapa yang punya alibi dan siapa yang berbohong.</p></div>`}}
 function keyCard(){
   const q=L().key;
   $('end').innerHTML=`<div class="end"><h3>Tuduhanmu diterima hakim. Apa alasanmu?</h3><p><b>${q.q}</b></p>
-  ${q.o.map((o,j)=>{const f=keyFail.has(j);return `<button class="opt ${f?'no':''}" ${f?'disabled':''} onclick="keyAns(${j})">${o}</button>`}).join('')}</div>`;
+  ${q.o.map((o,j)=>{const f=keyFail.has(j),correct=(keyFail.size>0||keySuccess)&&j===q.a;return `<button class="opt ${correct?'ok':''} ${f?'no':''}" ${f||keySuccess?'disabled':''} onclick="keyAns(${j})">${o}</button>`}).join('')}${keySuccess?'<div class="answer-feedback success">✓ Benar! Alasanmu tepat.</div>':''}</div>`;
   $('end').scrollIntoView({behavior:'smooth',block:'center'})}
 function keyAns(j){
   if(j===L().key.a){levelClear();return}
@@ -3383,7 +3496,7 @@ function showPosStage(){
 }
 function load(){
   const l=L(); T=l.T; streak=0; solved=new Set(); open=null; showTxt=false; showTr=false; over=false;
-  failed=new Set(); left={}; plays={}; keyMode=false; keyFail=new Set();
+  failed=new Set(); left={}; plays={}; keyMode=false; keyFail=new Set(); answerStatus=null; answerValue=''; typed='';
   clearInterval(timer); $('panel').innerHTML=''; $('end').innerHTML='';
   $('title').textContent=l.title; $('story').textContent=l.story;
   document.documentElement.style.setProperty('--amber',PCOL[lvi]);
@@ -3594,6 +3707,9 @@ const VOCAB_SETS = [
 ];
 let vocabQuizState = null;
 let finalChallengeState = [];
+let finalChallengeFeedback = null;
+let finalArabicAnswer = '';
+let keySuccess = false;
 
 function shuffleItems(items){
   const out=[...items];
@@ -3815,6 +3931,7 @@ function intro(){
     <section class="climb-panel">
       <span class="section-kicker">SIAP MEMULAI PETUALANGAN?</span>
       <h2>Mau mendaki ${esc(mountain.n)}?</h2>
+      <div class="climb-cta-note">Tekan tombol hijau untuk mulai mendaki</div>
       <div class="climb-actions"><button class="go" onclick="startTrip()">⛰️ Ya, aku mau mendaki</button><button class="secondary-btn" onclick="pickMt()">Belum, kembali ke pilihan gunung</button></div>
     </section>
     <section class="vocab-quiz" id="vocabQuiz" hidden></section>
@@ -3864,7 +3981,7 @@ function closeVocabQuiz(){
 }
 function load(){
   const l=L();T=l.T;streak=0;solved=new Set();open=null;showTxt=false;showTr=false;over=false;
-  failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();finalChallengeState=[];
+  failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();answerStatus=null;answerValue='';typed='';finalChallengeState=[];
   clearInterval(timer);$('panel').innerHTML='';$('end').innerHTML='';
   $('title').textContent=l.title;$('story').textContent=l.story+' '+CASE_MODES[mi].desc;
   document.documentElement.style.setProperty('--amber','#d99a36');
@@ -3892,7 +4009,7 @@ function keyCard(){
   const q=L().key;
   if(mi===0){
     $('end').innerHTML=`<div class="end"><h3>Tuduhanmu diterima hakim. Apa alasanmu?</h3><p><b>${q.q}</b></p>
-      ${q.o.map((o,j)=>{const f=keyFail.has(j);return `<button class="opt ${f?'no':''}" ${f?'disabled':''} onclick="keyAns(${j})">${o}</button>`}).join('')}</div>`;
+      ${q.o.map((o,j)=>{const f=keyFail.has(j),correct=(keyFail.size>0||keySuccess)&&j===q.a;return `<button class="opt ${correct?'ok':''} ${f?'no':''}" ${f||keySuccess?'disabled':''} onclick="keyAns(${j})">${o}</button>`}).join('')}${keySuccess?'<div class="answer-feedback success">✓ Benar! Alasanmu tepat.</div>':''}</div>`;
     $('end').scrollIntoView({behavior:'smooth',block:'center'});return;
   }
   finalChallengeState=[];
@@ -3901,27 +4018,29 @@ function keyCard(){
     const events=['Kamera terakhir terlihat di atas batu dekat dapur.','Hind terlihat berada di dekat batu tersebut.','Kamera ditemukan di dalam tas hitam milik Hind.'];
     content=`<h3>Susun kronologi kejadian</h3><p>Urutkan tiga peristiwa berikut dari awal sampai bukti terakhir ditemukan.</p>
       <div class="final-sequence" id="finalSequence"><span>Belum ada urutan dipilih</span></div>
-      ${shuffleItems(events.map((text,i)=>({text,order:i}))).map(item=>`<button class="final-pick" id="order${item.order}" onclick="chooseFinalOrder(${item.order})">${esc(item.text)}</button>`).join('')}
+      ${finalChallengeFeedback?.type==='order'?`<div class="answer-feedback wrong">✕ Urutan pilihanmu belum tepat. Urutan yang benar: <b>1. ${esc(events[0])}</b> → <b>2. ${esc(events[1])}</b> → <b>3. ${esc(events[2])}</b>.</div>`:''}${finalChallengeFeedback?.type==='order-correct'?'<div class="answer-feedback success">✓ Urutan kronologi benar!</div>':''}
+      ${shuffleItems(events.map((text,i)=>({text,order:i}))).map(item=>`<button class="final-pick ${finalChallengeFeedback?.type==='order-correct'?'correct-answer':''} ${finalChallengeFeedback?.type==='order'&&finalChallengeFeedback.selected.includes(item.order)?'wrong-answer':''}" id="order${item.order}" ${finalChallengeFeedback?.type==='order-correct'?'disabled':''} onclick="chooseFinalOrder(${item.order})">${esc(item.text)}</button>`).join('')}
       <button class="go" onclick="submitFinalOrder()">Periksa urutan</button>`;
   }else if(mi===2){
     const choices=['Senter ditemukan di saku Ahmad.','Hind melihat Khalid di dekat tenda kuning.','Maryam minum teh bersama Yusuf.'];
     content=`<h3>Forensik barang</h3><p>${esc(q.q)} Pilih bukti fisik yang paling kuat, bukan sekadar dugaan.</p>
-      ${choices.map((v,i)=>`<button class="final-pick" onclick="submitFinalEvidence(${i})">${esc(v)}</button>`).join('')}`;
+      ${finalChallengeFeedback?.type==='evidence-correct'?'<div class="answer-feedback success">✓ Bukti fisik yang kamu pilih benar!</div>':''}${choices.map((v,i)=>`<button class="final-pick ${((finalChallengeFeedback?.type==='evidence'&&i===0)||(finalChallengeFeedback?.type==='evidence-correct'&&i===0))?'correct-answer':''} ${finalChallengeFeedback?.type==='evidence'&&finalChallengeFeedback.chosen===i?'wrong-answer':''}" ${finalChallengeFeedback?.type==='evidence-correct'?'disabled':''} onclick="submitFinalEvidence(${i})">${esc(v)}</button>`).join('')}`;
   }else if(mi===3){
     const choices=['Jejak sepatu kuning ditemukan dekat tenda Maryam.','Dompet ditemukan di dalam tenda Maryam.','Yusuf menemukan kuncinya sendiri.','Maryam berkata bahwa ia tidak keluar dari tenda.'];
     content=`<h3>Pilih dua bukti kunci</h3><p>Pilih tepat dua bukti yang paling kuat dan saling menguatkan untuk membuktikan tuduhanmu.</p>
-      ${choices.map((v,i)=>`<button class="final-pick" id="pair${i}" onclick="toggleFinalPair(${i})">${esc(v)}</button>`).join('')}
+      ${finalChallengeFeedback?.type==='pair-correct'?'<div class="answer-feedback success">✓ Dua bukti kunci benar dan saling menguatkan!</div>':''}${choices.map((v,i)=>`<button class="final-pick ${['pair','pair-correct'].includes(finalChallengeFeedback?.type)&&finalChallengeFeedback.correct.includes(i)?'correct-answer':''} ${finalChallengeFeedback?.type==='pair'&&finalChallengeFeedback.selected.includes(i)?'wrong-answer':''}" id="pair${i}" ${finalChallengeFeedback?.type==='pair-correct'?'disabled':''} onclick="toggleFinalPair(${i})">${esc(v)}</button>`).join('')}
       <button class="go" onclick="submitFinalPair()">Kunci dua bukti</button>`;
   }else{
     content=`<h3>Kesimpulan dalam Bahasa Arab</h3><p>Kasus ini terungkap karena Khalid mengaku membutuhkan uang. Tuliskan kata <b>“uang”</b> dalam Bahasa Arab.</p>
-      <input class="final-input" id="finalArabic" type="text" lang="ar" dir="rtl" placeholder="اكتب هنا">
-      <button class="go" onclick="submitFinalArabic()">Periksa jawaban</button>`;
+      <input class="final-input ${finalChallengeFeedback?.type==='arabic'?'answer-wrong':finalChallengeFeedback?.type==='arabic-correct'?'answer-correct':''}" id="finalArabic" type="text" lang="ar" dir="rtl" placeholder="اكتب هنا" value="${esc(finalArabicAnswer)}" ${finalChallengeFeedback?.type==='arabic-correct'?'disabled':''} oninput="finalArabicAnswer=this.value;if(finalChallengeFeedback?.type==='arabic'){finalChallengeFeedback=null;this.classList.remove('answer-wrong');const f=this.nextElementSibling;if(f)f.remove();}">${finalChallengeFeedback?.type==='arabic'?`<div class="answer-feedback wrong">✕ Belum tepat. Jawaban yang benar: <span class="ar" lang="ar">الْمَالَ</span></div>`:finalChallengeFeedback?.type==='arabic-correct'?'<div class="answer-feedback success">✓ Penulisan Bahasa Arab benar!</div>':''}
+      <button class="go" ${finalChallengeFeedback?.type==='arabic-correct'?'disabled':''} onclick="submitFinalArabic()">Periksa jawaban</button>`;
   }
   $('end').innerHTML=`<div class="end"><span class="investigation-label">🧩 TANTANGAN AKHIR · ${esc(CASE_MODES[mi].name)}</span><p><b>${esc(q.q)}</b></p><div class="final-challenge">${content}</div></div>`;
   $('end').scrollIntoView({behavior:'smooth',block:'center'});
 }
 function chooseFinalOrder(i){
   if(finalChallengeState.includes(i))return;
+  if(finalChallengeFeedback){finalChallengeFeedback=null;document.querySelectorAll('.final-pick').forEach(b=>b.classList.remove('wrong-answer','correct-answer'));const reveal=document.querySelector('.final-challenge .answer-feedback');if(reveal)reveal.remove();}
   finalChallengeState.push(i);
   const sequence=$('finalSequence');
   if(sequence)sequence.innerHTML=finalChallengeState.map((n,k)=>`<span>${k+1}. ${['Kamera terakhir terlihat di atas batu dekat dapur.','Hind terlihat berada di dekat batu tersebut.','Kamera ditemukan di dalam tas hitam milik Hind.'][n]}</span>`).join('');
@@ -3929,14 +4048,17 @@ function chooseFinalOrder(i){
 }
 function submitFinalOrder(){
   if(finalChallengeState.length!==3){toast('Pilih ketiga peristiwa terlebih dahulu.');return}
-  if(finalChallengeState.join(',')==='0,1,2'){levelClear();return}
+  if(finalChallengeState.join(',')==='0,1,2'){finalChallengeFeedback={type:'order-correct',selected:[...finalChallengeState],correct:[0,1,2]};keyCard();setTimeout(levelClear,850);return}
+  finalChallengeFeedback={type:'order',selected:[...finalChallengeState],correct:[0,1,2]};
   failFinalChallenge('Urutan kronologi belum tepat.');
 }
 function submitFinalEvidence(i){
-  if(i===0){levelClear();return}
+  if(i===0){finalChallengeFeedback={type:'evidence-correct',chosen:i};keyCard();setTimeout(levelClear,850);return}
+  finalChallengeFeedback={type:'evidence',chosen:i};
   failFinalChallenge('Bukti fisik yang dipilih belum paling kuat.');
 }
 function toggleFinalPair(i){
+  if(finalChallengeFeedback){finalChallengeFeedback=null;document.querySelectorAll('.final-pick').forEach(b=>b.classList.remove('wrong-answer','correct-answer'));const reveal=document.querySelector('.final-challenge .answer-feedback');if(reveal)reveal.remove();}
   const at=finalChallengeState.indexOf(i);
   if(at>=0)finalChallengeState.splice(at,1);
   else if(finalChallengeState.length<2)finalChallengeState.push(i);
@@ -3945,12 +4067,14 @@ function toggleFinalPair(i){
 }
 function submitFinalPair(){
   if(finalChallengeState.length!==2){toast('Pilih tepat dua bukti.');return}
-  if([...finalChallengeState].sort().join(',')==='0,1'){levelClear();return}
+  if([...finalChallengeState].sort().join(',')==='0,1'){finalChallengeFeedback={type:'pair-correct',selected:[...finalChallengeState],correct:[0,1]};keyCard();setTimeout(levelClear,850);return}
+  finalChallengeFeedback={type:'pair',selected:[...finalChallengeState],correct:[0,1]};
   failFinalChallenge('Kombinasi bukti belum tepat.');
 }
 function submitFinalArabic(){
-  const value=$('finalArabic')?.value||'';
-  if(typeof narm==='function'&&narm(value)==='المال'){levelClear();return}
+  const value=$('finalArabic')?.value||'';finalArabicAnswer=value;
+  if(typeof narm==='function'&&narm(value)==='المال'){finalChallengeFeedback={type:'arabic-correct',value};keyCard();setTimeout(levelClear,850);return}
+  finalChallengeFeedback={type:'arabic',value};
   failFinalChallenge('Kata Bahasa Arab belum tepat. Petunjuk: الْمَالَ');
 }
 function failFinalChallenge(message){
@@ -3958,7 +4082,7 @@ function failFinalChallenge(message){
   if(!over)keyCard();
 }
 function keyAns(j){
-  if(j===L().key.a){levelClear();return}
+  if(j===L().key.a){keySuccess=true;keyCard();setTimeout(levelClear,850);return}
   keyFail.add(j);streak=0;loseLife('Alasan salah!');if(!over)keyCard();
 }
 function openClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=false}
