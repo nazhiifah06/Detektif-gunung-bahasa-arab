@@ -468,21 +468,21 @@ body>main{position:relative;z-index:1}
 .vq-option{background:#fbfdf9;border-color:#dce8df}
 .vq-option.correct{background:#e5f3e8;border-color:#65a477}
 .vq-option.wrong{background:#fbe9e6;border-color:#c95d50}
-/* Bird ride confirmation */
-.bird-ride-modal{z-index:120!important;background:rgba(18,39,26,.66)!important;backdrop-filter:blur(6px)}
-.bird-ride-modal .overlay-card{border:1px solid #dce8df;border-top:5px solid #d8a34a;box-shadow:0 24px 70px rgba(0,0,0,.28)}
-.bird-ride-modal .big-icon{display:grid;place-items:center;width:76px;height:76px;margin:0 auto 10px;border-radius:24px;background:linear-gradient(145deg,#f8efd9,#eaf4e8);font-size:2.7rem}
-.bird-ride-modal .overlay-card h3{color:#2d5c40}
-.bird-ride-modal .overlay-card p{line-height:1.65}
-.bird-ride-modal .overlay-actions button{min-width:145px}
+/* Porter assistance confirmation */
+.porter-help-modal{z-index:120!important;background:rgba(18,39,26,.66)!important;backdrop-filter:blur(6px)}
+.porter-help-modal .overlay-card{border:1px solid #dce8df;border-top:5px solid #d8a34a;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.porter-help-modal .big-icon{display:grid;place-items:center;width:76px;height:76px;margin:0 auto 10px;border-radius:24px;background:linear-gradient(145deg,#f8efd9,#eaf4e8);font-size:2.7rem}
+.porter-help-modal .overlay-card h3{color:#2d5c40}
+.porter-help-modal .overlay-card p{line-height:1.65}
+.porter-help-modal .overlay-actions button{min-width:145px}
 @media(max-width:440px){
  .vocab-card{min-height:136px;padding:12px 9px 10px}
  .vocab-card .ar{font-size:1.58rem}
  .vocab-card .meaning{font-size:.84rem}
  .vocab-card button{width:29px;height:29px}
- .bird-ride-modal .overlay-card{padding:20px 16px}
- .bird-ride-modal .overlay-actions{display:grid;grid-template-columns:1fr}
- .bird-ride-modal .overlay-actions button{width:100%}
+ .porter-help-modal .overlay-card{padding:20px 16px}
+ .porter-help-modal .overlay-actions{display:grid;grid-template-columns:1fr}
+ .porter-help-modal .overlay-actions button{width:100%}
 }
 
 </style>
@@ -667,10 +667,10 @@ body{background:#e6eee7!important;color:#24372a!important}
 #scr .avatar-control-group>span{min-width:88px;color:#405d48;font-size:.84rem;font-weight:900}
 #scr .avp svg{transform:perspective(650px) rotateY(var(--avatar-yaw,0deg));transform-origin:50% 55%;transition:transform .32s ease}
 #scr .avs{background:linear-gradient(180deg,#e7f0e6,#d4e3d2 72%,#b5cdb5)!important;border:1px solid #c0d2c0!important;box-shadow:inset 0 1px 0 #fff,0 8px 20px rgba(39,73,48,.10)!important}
-#scr .bird-ride-modal{position:fixed!important;inset:0!important;z-index:9999!important;display:grid!important;place-items:center!important;background:rgba(18,37,25,.72)!important}
-#scr .bird-ride-modal[hidden]{display:none!important}
-#scr .bird-ride-modal .overlay-card{border:2px solid #c7d8c4;background:#fffdf6;color:#24382a}
-#scr .bird-ride-modal .overlay-card p{color:#405846!important}
+#scr .porter-help-modal{position:fixed!important;inset:0!important;z-index:9999!important;display:grid!important;place-items:center!important;background:rgba(18,37,25,.72)!important}
+#scr .porter-help-modal[hidden]{display:none!important}
+#scr .porter-help-modal .overlay-card{border:2px solid #c7d8c4;background:#fffdf6;color:#24382a}
+#scr .porter-help-modal .overlay-card p{color:#405846!important}
 @media(max-width:560px){#scr .avatar-control-group{gap:6px}#scr .avatar-control-group>span{width:100%;text-align:center}#scr .avatar-control-group .chip{min-height:40px;padding:6px 11px}#scr .panel{padding:15px}#scr .clues{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
 
 
@@ -1232,7 +1232,7 @@ const IMGS={};
 const mimg=()=>IMGS[mi]||(IMGS[mi]=Object.assign(new Image(),{src:MT[mi].im}));
 function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Math.round((2600+f*600)*TK.len),im=mimg();
  $('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
- scr('<h2>'+(t==5?'Menuju Puncak':'Menuju Pos '+t)+'</h2><div class="cvw"><canvas id="cv"></canvas></div><div class="overlay-modal bird-ride-modal" id="birdConfirm" hidden role="dialog" aria-modal="true" aria-labelledby="birdConfirmTitle"><div class="overlay-card"><div class="big-icon">🦅</div><h3 id="birdConfirmTitle">Mau naik burung?</h3><p>Burung ini bisa membawamu melewati sebagian jalur. Pilih <b>Ya</b> untuk naik, atau <b>Tidak</b> untuk melanjutkan berjalan kaki.</p><div class="overlay-actions"><button class="go" onclick="resolveBirdRide(true)">Ya, naik burung</button><button class="secondary-btn" onclick="resolveBirdRide(false)">Tidak, lanjut berjalan</button></div></div></div><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb wb" id="wbtn" data-k="w">💧 Isi</button><button class="cb jp" data-k="u">⤒ Lompat</button></div><p class="hint trail-tip" style="text-align:center">Gunakan ◀ ▶ untuk bergerak dan ⤒ untuk melompat. Nikmati pemandangan selama pendakian.</p><p style="text-align:center"><button class="go" style="padding:6px 14px;font-size:.9rem" id="mskip">⏩ Lewati jalur</button></p>');
+ scr('<h2>'+(t==5?'Menuju Puncak':'Menuju Pos '+t)+'</h2><div class="cvw"><canvas id="cv"></canvas></div><div class="overlay-modal porter-help-modal" id="porterConfirm" hidden role="dialog" aria-modal="true" aria-labelledby="porterConfirmTitle"><div class="overlay-card"><div class="big-icon">🎒</div><h3 id="porterConfirmTitle">Mau digendong porter?</h3><p>Porter gunung siap membantumu melewati sebagian jalur yang menanjak. Pilih <b>Ya</b> untuk digendong porter, atau <b>Tidak</b> untuk melanjutkan pendakian sendiri.</p><div class="overlay-actions"><button class="go" onclick="resolvePorterHelp(true)">🎒 Ya, gendong aku</button><button class="secondary-btn" onclick="resolvePorterHelp(false)">Tidak, aku lanjut sendiri</button></div></div></div><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb wb" id="wbtn" data-k="w">💧 Isi</button><button class="cb jp" data-k="u">⤒ Lompat</button></div><p class="hint trail-tip" style="text-align:center">Gunakan ◀ ▶ untuk bergerak dan ⤒ untuk melompat. Nikmati pemandangan selama pendakian.</p><p style="text-align:center"><button class="go" style="padding:6px 14px;font-size:.9rem" id="mskip">⏩ Lewati jalur</button></p>');
  let sd=(mi+1)*977+f*131+7;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
  const WT=TK.wt,ob=[],bo=[],gy=x=>TK.gy(x,f),top=o=>gy(o.x+o.w/2)-o.h;
  const sl=x=>(gy(x+5)-gy(x-5))/10,fr=[],WL=[110].concat([...Array(Math.ceil(LEN/1300)-1)].map((_,i)=>Math.round(110+(LEN-260)*(i+1)/Math.ceil(LEN/1300))),[LEN-150]);let pt=-1;
@@ -1248,7 +1248,7 @@ function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Mat
  const cv=$('cv'),c=cv.getContext('2d'),W=cv.parentNode.clientWidth||360,H=Math.min(440,Math.round(innerHeight*.5)),dr=devicePixelRatio||1;
  cv.width=W*dr;cv.height=H*dr;cv.style.width=W+'px';cv.style.height=H+'px';c.scale(dr,dr);
  const bd=[];for(let i=0;i<2+f;i++){const q=ob[Math.floor(ob.length*(i+.5)/(2+f))];if(q){const x=q.x-190;if(x>200&&!WL.some(w=>Math.abs(w-x)<110))bd.push({x,u:0})}}
- let mnt=0,px=70,py=gy(70),vy=0,face=AV.facing==='left'?-1:1,tt=0,last=performance.now(),cx=0,cy=py-H*.66,msg='',mt=0,arr=0,done=0,onG=true,st=0,birdPrompt=null;mvKeys={};
+ let mnt=0,px=70,py=gy(70),vy=0,face=AV.facing==='left'?-1:1,tt=0,last=performance.now(),cx=0,cy=py-H*.66,msg='',mt=0,arr=0,done=0,onG=true,st=0,porterPrompt=null;mvKeys={};
  window.mvDbg=()=>({px,py,LEN,ob,bo,onG,st,water,fr,WL,bd,mnt,zn,gust:(TK.fx=='wind'&&(tt%7.5)>.2&&(tt%7.5)<3.6)});window.mvSet=x=>{px=x};
  const go=()=>{if(done)return;done=1;mvStop();scr('');cb()};
  const poly=(pts,col)=>{const a=pts.split(' ').map(q=>q.split(',').map(Number));c.beginPath();a.forEach((q,i)=>i?c.lineTo(q[0],q[1]):c.moveTo(q[0],q[1]));c.closePath();c.fillStyle=col;c.fill()};
@@ -1257,25 +1257,51 @@ function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Mat
  $('mskip').onclick=()=>{px=LEN-40;arr=.35};
  document.addEventListener('keydown',mvKd);document.addEventListener('keyup',mvKu);
  const sign=(x,txt,flag)=>{const y=gy(x);c.fillStyle='#4a3020';c.fillRect(x-3,y-70,6,70);c.fillStyle='#6b4423';c.fillRect(x-34,y-92,68,26);c.fillStyle='#fff';c.font='800 14px sans-serif';c.textAlign='center';c.fillText(txt,x,y-74);if(flag){c.fillStyle='#e63946';c.fillRect(x+3,y-124,30,16);c.fillStyle='#fff';c.fillRect(x+3,y-108,30,10)}};
- const birdD=(x,y,s,fc)=>{c.save();c.translate(x,y);c.scale(fc*s,s);const a=Math.sin(tt*11)*.5-.15;
-  c.fillStyle='#6f4520';c.beginPath();c.moveTo(-34,2);c.lineTo(-52,10);c.lineTo(-34,10);c.closePath();c.fill();
-  c.fillStyle='#8b5a2b';c.beginPath();c.ellipse(0,0,28,12,0,0,7);c.fill();c.fillStyle='#e9d8b4';c.beginPath();c.ellipse(6,5,18,7,0,0,7);c.fill();
-  c.fillStyle='#f4efe4';c.beginPath();c.arc(28,-5,9,0,7);c.fill();c.fillStyle='#f2b01e';c.beginPath();c.moveTo(35,-6);c.lineTo(46,-2);c.lineTo(35,0);c.fill();c.fillStyle='#222';c.beginPath();c.arc(30,-7,1.8,0,7);c.fill();
-  c.save();c.translate(-4,-8);c.rotate(a);c.fillStyle='#5e3a18';c.beginPath();c.moveTo(-12,0);c.quadraticCurveTo(-40,-26,-8,-54);c.quadraticCurveTo(12,-30,14,0);c.closePath();c.fill();c.restore();c.restore()};
- window.resolveBirdRide = accept => {
-  if(!birdPrompt)return;
-  const bird=birdPrompt;birdPrompt=null;
-  const dialog=$('birdConfirm');if(dialog)dialog.hidden=true;
-  bird.u=1;mvKeys={};
-  if(accept){mnt=7;vy=0;onG=false;msg='Kamu memilih naik burung!';mt=1.8;}
+ const porterD=(x,y,s,fc,carrying=false)=>{
+   c.save();c.translate(x,y);c.scale(fc*s,s);
+   const rounded=(rx,ry,rw,rh,rr,color)=>{
+    c.fillStyle=color;c.beginPath();c.moveTo(rx+rr,ry);c.lineTo(rx+rw-rr,ry);c.quadraticCurveTo(rx+rw,ry,rx+rw,ry+rr);c.lineTo(rx+rw,ry+rh-rr);c.quadraticCurveTo(rx+rw,ry+rh,rx+rw-rr,ry+rh);c.lineTo(rx+rr,ry+rh);c.quadraticCurveTo(rx,ry+rh,rx,ry+rh-rr);c.lineTo(rx,ry+rr);c.quadraticCurveTo(rx,ry,rx+rr,ry);c.closePath();c.fill();
+   };
+   c.fillStyle='rgba(0,0,0,.22)';c.beginPath();c.ellipse(0,2,18,4,0,0,Math.PI*2);c.fill();
+   // Boots and hiking trousers
+   c.lineCap='round';c.lineJoin='round';c.strokeStyle='#344536';c.lineWidth=8;
+   c.beginPath();c.moveTo(-5,-16);c.lineTo(-9,-3);c.moveTo(5,-16);c.lineTo(10,-3);c.stroke();
+   c.strokeStyle='#513b2b';c.lineWidth=7;c.beginPath();c.moveTo(-9,-3);c.lineTo(-15,-2);c.moveTo(10,-3);c.lineTo(16,-2);c.stroke();
+   // Porter backpack
+   rounded(-21,-48,15,29,4,'#b97835');rounded(-18,-43,9,17,3,'#d49a4b');
+   c.strokeStyle='#674827';c.lineWidth=2;c.beginPath();c.moveTo(-18,-47);c.lineTo(-18,-20);c.stroke();
+   // Jacket and reflective straps
+   rounded(-12,-46,24,31,6,'#397a50');
+   c.strokeStyle='#f0c45e';c.lineWidth=2.5;c.beginPath();c.moveTo(-7,-43);c.lineTo(-2,-18);c.moveTo(7,-43);c.lineTo(2,-18);c.stroke();
+   c.strokeStyle='#e8d6a8';c.lineWidth=2;c.beginPath();c.moveTo(-10,-25);c.lineTo(10,-25);c.stroke();
+   // Arms support the passenger
+   c.strokeStyle='#397a50';c.lineWidth=6;c.beginPath();c.moveTo(-10,-39);c.quadraticCurveTo(-20,-31,-13,-23);c.moveTo(10,-39);c.quadraticCurveTo(20,-31,13,-23);c.stroke();
+   c.fillStyle='#dca47f';c.beginPath();c.arc(-13,-23,3.2,0,Math.PI*2);c.arc(13,-23,3.2,0,Math.PI*2);c.fill();
+   // Neck and friendly face
+   rounded(-4,-54,8,10,3,'#dca47f');
+   c.fillStyle='#dca47f';c.beginPath();c.arc(0,-57,9.5,0,Math.PI*2);c.fill();
+   c.fillStyle='#3a2b22';c.beginPath();c.arc(-3,-58,1.1,0,Math.PI*2);c.arc(3,-58,1.1,0,Math.PI*2);c.fill();
+   c.strokeStyle='#874b3d';c.lineWidth=1.5;c.beginPath();c.arc(0,-55,3.2,.2,Math.PI-.2);c.stroke();
+   // Outdoor cap
+   c.fillStyle='#d9a441';c.beginPath();c.arc(0,-62,8,Math.PI,Math.PI*2);c.fill();c.fillRect(-9,-62,18,2.8);
+   c.fillStyle='#4b7049';c.fillRect(-2,-67,4,4);
+   if(carrying){c.strokeStyle='#dca47f';c.lineWidth=3;c.beginPath();c.moveTo(-13,-23);c.lineTo(-18,-28);c.moveTo(13,-23);c.lineTo(18,-28);c.stroke();}
+   c.restore();
+  };
+ window.resolvePorterHelp = accept => {
+  if(!porterPrompt)return;
+  const porter=porterPrompt;porterPrompt=null;
+  const dialog=$('porterConfirm');if(dialog)dialog.hidden=true;
+  porter.u=1;mvKeys={};
+  if(accept){mnt=7;vy=0;onG=false;msg='Porter menggendongmu melewati jalur ini!';mt=1.8;}
   else{msg='Kamu memilih melanjutkan pendakian dengan berjalan kaki.';mt=2.2;}
 };
-const loop=now=>{if(done)return;if(birdPrompt){last=now;mvRaf=requestAnimationFrame(loop);return;}const dt=Math.min((now-last)/1000,.04);last=now;tt+=dt;
+const loop=now=>{if(done)return;if(porterPrompt){last=now;mvRaf=requestAnimationFrame(loop);return;}const dt=Math.min((now-last)/1000,.04);last=now;tt+=dt;
   const zin=zn.find(z=>px>z.x&&px<z.x+z.w),wp=tt%7.5,gust=TK.fx=='wind'&&wp>1.4&&wp<3.6,warn=TK.fx=='wind'&&wp>.2&&wp<=1.4;
   const dir=st>0?0:(mvKeys.r?1:0)-(mvKeys.l?1:0);st=Math.max(0,st-dt);const spd=(onG?Math.max(.55,Math.min(1.3,1+(sl(px)>0?sl(px)*.4:sl(px)*.9))):1)*(water<=0?.8:water<25?.92:1)*(mnt>0?1.35:1)*(onG&&zin&&zin.t=='mud'?.5:1)*(onG&&zin&&zin.t=='sand'?.82:1);let nx=Math.max(30,Math.min(LEN-20,px+dir*170*spd*dt));if(dir)face=dir;if(gust&&mnt<=0)nx=Math.max(30,nx-100*dt);water=Math.max(0,water-(dir?1.6:.3)*(TK.heat||1)*dt);
   for(const o of ob)if(mnt<=0&&SOL.has(o.ty)&&py>top(o)+8&&nx+11>o.x&&nx-11<o.x+o.w)nx=dir>0?o.x-11:o.x+o.w+11;
   px=nx;if(mvKeys.u&&onG&&st<=0){vy=(water<=0?-540:-560)*(zin&&zin.t=='sand'?.88:1);water=Math.max(0,water-1.5);onG=false;mvKeys.u=0}
-  for(const b of bd)if(!b.u&&!birdPrompt&&mnt<=0&&Math.abs(px-b.x)<34&&Math.abs(py-30-(gy(b.x)-70))<70){birdPrompt=b;mvKeys={};const dialog=$('birdConfirm');if(dialog)dialog.hidden=false;msg='Burung menawarkan bantuan. Pilih naik atau lanjut berjalan.';mt=1.8}
+  for(const b of bd)if(!b.u&&!porterPrompt&&mnt<=0&&Math.abs(px-b.x)<34&&Math.abs(py-30-(gy(b.x)-70))<70){porterPrompt=b;mvKeys={};const dialog=$('porterConfirm');if(dialog)dialog.hidden=false;msg='Porter siap membantu. Pilih digendong atau lanjut berjalan.';mt=1.8}
   if(mnt>0){mnt-=dt;const g0=gy(px),f0=flo(px),tg=Math.min(g0,f0<1e8?f0:g0)-105;py+=(tg-py)*Math.min(1,dt*7);vy=0;onG=false;if(mnt<=0&&f0>1e8)mnt=.2}
   else{vy+=1500*dt;py+=vy*dt;const fl=flo(px);if(fl<1e8&&py>=fl&&vy>=0){py=fl;vy=0;onG=true}else onG=false}
   for(const o of ob)if(o.ty==3&&st<=0&&mnt<=0&&Math.abs(px-(o.x+o.w/2))<o.w/2+8&&py>gy(o.x+o.w/2)-o.h-4)hurt('Tertusuk semak berduri!',80);
@@ -1300,9 +1326,9 @@ const loop=now=>{if(done)return;if(birdPrompt){last=now;mvRaf=requestAnimationFr
   for(const b of bo)if(b.x>-9e3&&b.x!=null){c.save();c.translate(b.x,gy(b.x)-22);c.rotate(-tt*6);c.fillStyle='#6f675c';c.beginPath();c.arc(0,0,22,0,7);c.fill();c.strokeStyle='#4a443c';c.lineWidth=3;c.beginPath();c.moveTo(-14,-6);c.lineTo(2,4);c.lineTo(14,-8);c.stroke();c.restore()}
   WL.forEach(x=>{const y=gy(x);c.fillStyle='#8a8f98';c.fillRect(x-20,y-26,40,26);c.fillStyle='#6f737a';for(let k=0;k<3;k++)c.fillRect(x-20,y-26+k*9,40,1.5);c.fillStyle='#3a9ec8';c.fillRect(x-14,y-28,28,4);c.fillStyle='#6b4423';c.fillRect(x-22,y-62,4,38);c.fillRect(x+18,y-62,4,38);c.fillStyle='#b5502f';c.beginPath();c.moveTo(x-30,y-60);c.lineTo(x,y-82);c.lineTo(x+30,y-60);c.fill();c.fillStyle='#fff';c.font='800 11px sans-serif';c.textAlign='center';c.fillText('💧 SUMUR',x,y-88);if(Math.abs(px-x)<46){c.fillStyle='#ffe27a';c.fillText('Tahan 💧 untuk isi air',x,y-102)}});
   for(const q of fr)if(q.x!=null&&q.x>-9e3){const gx=gy(q.x);if(q.t<=1){c.fillStyle='rgba(255,60,60,'+(.35+Math.sin(tt*20)*.25)+')';c.beginPath();c.ellipse(q.x,gx+2,26,6,0,0,7);c.fill();c.fillStyle='#fff';c.font='800 16px sans-serif';c.textAlign='center';c.fillText('⚠',q.x,gx-40)}else{c.fillStyle='#6f675c';c.beginPath();c.arc(q.x,q.y,16,0,7);c.fill()}}
-  for(const b of bd)if(!b.u){const y=gy(b.x)-70+Math.sin(tt*3+b.x)*6;c.fillStyle='rgba(255,226,122,.35)';c.beginPath();c.arc(b.x,y-6,34,0,7);c.fill();birdD(b.x,y,.8,-1);c.fillStyle='#fff';c.font='800 11px sans-serif';c.textAlign='center';c.fillText('Naik burung',b.x,y-48)}
+  for(const b of bd)if(!b.u){const y=gy(b.x);c.fillStyle='rgba(255,226,122,.28)';c.beginPath();c.arc(b.x,y-38,34,0,Math.PI*2);c.fill();porterD(b.x,y,.82,-1,false);c.fillStyle='#fff';c.font='800 11px sans-serif';c.textAlign='center';c.shadowColor='#000';c.shadowBlur=3;c.fillText('Porter siap membantu',b.x,y-82);c.shadowBlur=0}
   sign(40,f==0?'Basecamp':'Pos '+f);sign(LEN-45,t==5?'Puncak':'Pos '+t,t==5);
-  if(mnt>0){birdD(px,py+6,1.35,face);dav(c,px,py-6,face,tt,0,true)}else dav(c,px,py,face,tt,dir&&onG?1:0,!onG);
+  if(mnt>0){porterD(px,py+6,1.2,face,true);dav(c,px-face*18,py-22,face,tt,0,true,0,.68)}else dav(c,px,py,face,tt,dir&&onG?1:0,!onG);
   for(const o of ob)if(o.ty==2){const y=gy(o.x+o.w/2);if(TK.pit){const g3=c.createLinearGradient(0,y-6,0,y+160);g3.addColorStop(0,'#241810');g3.addColorStop(1,'#000');c.fillStyle=g3;c.fillRect(o.x,y-6,o.w,cy+H+80-y);c.strokeStyle='#6a5240';c.lineWidth=3;c.beginPath();for(let x=0;x<=o.w;x+=10)c.lineTo(o.x+x,y-6+(x%20?3:-2));c.stroke()}else{c.fillStyle='#3a9ec8cc';c.fillRect(o.x,y-4,o.w,cy+H+80-y);c.strokeStyle='#ffffffaa';c.lineWidth=2;c.beginPath();for(let x=0;x<=o.w;x+=8)c.lineTo(o.x+x,y-4+Math.sin(tt*5+x/6)*2);c.stroke()}}
   c.restore();
   if(TK.fx=='rain'){c.strokeStyle='rgba(200,220,255,.55)';c.lineWidth=1.3;for(let i=0;i<70;i++){const x=((i*53+tt*160)%(W+80))-40,y=((i*97+tt*520)%(H+40))-20;c.beginPath();c.moveTo(x,y);c.lineTo(x-6,y+16);c.stroke()}c.fillStyle='rgba(20,35,50,.22)';c.fillRect(0,0,W,H)}
@@ -1314,7 +1340,7 @@ const loop=now=>{if(done)return;if(birdPrompt){last=now;mvRaf=requestAnimationFr
   c.fillStyle='rgba(255,255,255,'+prog*.12+')';c.fillRect(0,0,W,H);
   c.fillStyle='#0006';c.fillRect(10,10,W-20,10);c.fillStyle='#ffd34d';c.fillRect(10,10,(W-20)*Math.max(0,Math.min(1,(px-70)/(LEN-145))),10);
   c.fillStyle='#fff';c.font='700 12px sans-serif';c.textAlign='left';c.shadowColor='#000';c.shadowBlur=3;c.fillText(Math.max(0,Math.round((LEN-42-px)/10))+' m lagi',12,36);c.shadowBlur=0;const bx=W-34;c.fillStyle='#0006';c.fillRect(bx,8,22,40);c.fillStyle=water<25?'#ff6b6b':'#3cc4ea';c.fillRect(bx+2,10+36*(1-water/100),18,36*water/100);c.strokeStyle='#fff';c.lineWidth=2;c.strokeRect(bx,8,22,40);c.textAlign='right';c.fillText('💧'+Math.round(water)+'%',bx-6,26);if(water<25&&Math.sin(tt*6)>0){c.fillStyle='#ffb0b0';c.font='800 13px sans-serif';c.textAlign='center';c.fillText(water<=0?'HAUS! Cari sumur 💧':'Air menipis! Cari sumur',W/2,84)}if(water<=0){const v=c.createRadialGradient(W/2,H/2,H*.3,W/2,H/2,H*.8);v.addColorStop(0,'rgba(120,0,0,0)');v.addColorStop(1,'rgba(120,0,0,.45)');c.fillStyle=v;c.fillRect(0,0,W,H)}c.shadowBlur=0;
-  if(mnt>0){c.fillStyle='#ffe27a';c.font='800 13px sans-serif';c.textAlign='left';c.shadowColor='#000';c.shadowBlur=3;c.fillText('🦅 Naik burung '+Math.max(0,mnt).toFixed(1)+' dtk',12,54);c.shadowBlur=0}
+  if(mnt>0){c.fillStyle='#ffe27a';c.font='800 13px sans-serif';c.textAlign='left';c.shadowColor='#000';c.shadowBlur=3;c.fillText('🎒 Digendong porter '+Math.max(0,mnt).toFixed(1)+' dtk',12,54);c.shadowBlur=0}
   if(tt<2.8){c.save();c.globalAlpha=Math.min(1,(2.8-tt)/.7);c.fillStyle='rgba(0,0,0,.42)';c.fillRect(10,110,W-20,58);c.fillStyle='#ffe9ae';c.font='800 14px sans-serif';c.textAlign='left';c.fillText('Menuju '+M.n,20,132);c.fillStyle='#fff';c.font='600 12px sans-serif';c.fillText('Jelajahi jalur dan hindari rintangan.',20,152);c.restore()}
   if(mt>0){mt-=dt;c.fillStyle='#fff';c.font='700 18px sans-serif';c.textAlign='center';c.shadowColor='#000';c.shadowBlur=4;c.fillText(msg,W/2,64);c.shadowBlur=0}
   mvRaf=requestAnimationFrame(loop)};
