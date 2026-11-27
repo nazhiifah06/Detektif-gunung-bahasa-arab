@@ -2382,6 +2382,129 @@ button:disabled {
 }
 </style>
 
+
+<style id="summit-clarity-upgrade">
+/* PUNCAK: keep the mountain sign unobstructed and make the player easy to spot. */
+#scr .summit-canvas-wrap{
+  position:relative!important;
+  overflow:hidden!important;
+  border:2px solid rgba(255,250,235,.92)!important;
+  border-radius:18px!important;
+  box-shadow:0 12px 28px rgba(45,40,26,.18)!important;
+  background:#dce5d5!important;
+}
+#scr .summit-canvas-wrap canvas{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+}
+#scr .summit-photo-hint{
+  margin:12px 0 8px!important;
+  padding:11px 14px!important;
+  border:1px solid #d9c9a7!important;
+  border-radius:12px!important;
+  background:#fffaf0!important;
+  color:#40583d!important;
+  font-weight:700!important;
+  line-height:1.55!important;
+}
+#scr .summit-next-guide{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  max-width:680px!important;
+  margin:18px auto 8px!important;
+  padding:13px 16px!important;
+  border:2px solid #c9a66d!important;
+  border-radius:15px!important;
+  background:linear-gradient(135deg,#fff8e8,#f2e5c9)!important;
+  color:#4b3a24!important;
+  box-shadow:0 6px 16px rgba(73,55,29,.10)!important;
+  text-align:left!important;
+}
+#scr .summit-guide-arrow{
+  flex:none!important;
+  display:grid!important;
+  place-items:center!important;
+  width:42px!important;height:42px!important;
+  border-radius:50%!important;
+  background:#d99a36!important;
+  color:#fff!important;
+  font-size:25px!important;
+  font-weight:950!important;
+  box-shadow:0 3px 0 #9e6a24!important;
+  animation:summitArrowBounce 1s ease-in-out infinite!important;
+}
+#scr .summit-next-guide strong{
+  display:block!important;
+  margin-bottom:3px!important;
+  color:#785326!important;
+  font-size:.78rem!important;
+  letter-spacing:.09em!important;
+}
+#scr .summit-next-guide span:not(.summit-guide-arrow){
+  display:block!important;
+  color:#514630!important;
+  font-size:.92rem!important;
+  font-weight:650!important;
+  line-height:1.45!important;
+}
+#scr .summit-actions{
+  display:flex!important;
+  justify-content:center!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+  gap:12px!important;
+  margin:8px auto 24px!important;
+}
+#scr .summit-actions .go{margin:0!important;min-height:48px!important}
+#scr .summit-actions #shot{
+  background:linear-gradient(135deg,#fffaf0,#e9dfcb)!important;
+  color:#536348!important;
+  border:1.5px solid #c9b995!important;
+  box-shadow:0 4px 0 #b7a580!important;
+}
+#scr .summit-actions #snext,
+#scr .summit-actions .summit-next-btn{
+  padding:13px 22px!important;
+  border:2px solid #fff4df!important;
+  border-radius:13px!important;
+  background:linear-gradient(135deg,#5e914f,#2e673d)!important;
+  color:#fffdf4!important;
+  font-size:1rem!important;
+  font-weight:950!important;
+  box-shadow:0 5px 0 #234d30,0 9px 18px rgba(37,75,43,.20)!important;
+  animation:summitButtonPulse 1.8s ease-in-out infinite!important;
+}
+#scr .summit-actions #snext:hover{
+  filter:brightness(1.08) saturate(1.08)!important;
+  transform:translateY(-2px)!important;
+}
+#scr .summit-actions #snext:active{
+  transform:translateY(3px)!important;
+  box-shadow:0 2px 0 #234d30!important;
+}
+@keyframes summitArrowBounce{
+  0%,100%{transform:translateY(-2px)}
+  50%{transform:translateY(5px)}
+}
+@keyframes summitButtonPulse{
+  0%,100%{box-shadow:0 5px 0 #234d30,0 0 0 0 rgba(83,133,67,0)}
+  50%{box-shadow:0 5px 0 #234d30,0 0 0 7px rgba(83,133,67,.18)}
+}
+@media(max-width:560px){
+  #scr .summit-next-guide{align-items:flex-start;padding:11px 12px!important;gap:10px!important}
+  #scr .summit-guide-arrow{width:36px!important;height:36px!important;font-size:22px!important}
+  #scr .summit-next-guide span:not(.summit-guide-arrow){font-size:.86rem!important}
+  #scr .summit-actions{display:grid!important;grid-template-columns:1fr!important;width:100%!important}
+  #scr .summit-actions .go{width:100%!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #scr .summit-guide-arrow,#scr .summit-actions #snext{animation:none!important}
+}
+</style>
+
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
@@ -2703,7 +2826,21 @@ function showMap(f,t,cb){mvStop();const M=MT[mi],TK=TRK[mi],prog=(t-1)/5,LEN=Mat
  document.querySelectorAll('.cb').forEach(b=>{const k=b.dataset.k;b.onpointerdown=e=>{e.preventDefault();mvKeys[k]=1};['pointerup','pointerleave','pointercancel'].forEach(ev=>b['on'+ev]=()=>{mvKeys[k]=0})});
  $('mskip').onclick=()=>{px=LEN-40;arr=.35};
  document.addEventListener('keydown',mvKd);document.addEventListener('keyup',mvKu);
- const sign=(x,txt,flag)=>{const y=gy(x);c.fillStyle='#4a3020';c.fillRect(x-3,y-70,6,70);c.fillStyle='#6b4423';c.fillRect(x-34,y-92,68,26);c.fillStyle='#fff';c.font='800 14px sans-serif';c.textAlign='center';c.fillText(txt,x,y-74);if(flag){c.fillStyle='#e63946';c.fillRect(x+3,y-124,30,16);c.fillStyle='#fff';c.fillRect(x+3,y-108,30,10)}};
+ const sign=(x,txt,flag)=>{
+  const y=gy(x);
+  c.save();
+  c.fillStyle='#4a3020';c.fillRect(x-3,y-70,6,70);
+  c.font='900 14px sans-serif';c.textAlign='center';
+  const bw=Math.max(76,c.measureText(txt).width+20),by=y-96,bh=30;
+  c.shadowColor='rgba(0,0,0,.30)';c.shadowBlur=5;c.shadowOffsetY=2;
+  c.fillStyle='#4f3522';c.fillRect(x-bw/2,by,bw,bh);
+  c.shadowBlur=0;c.shadowOffsetY=0;
+  c.strokeStyle='#f2dfb8';c.lineWidth=2;c.strokeRect(x-bw/2,by,bw,bh);
+  c.lineWidth=3;c.strokeStyle='rgba(35,23,14,.9)';c.strokeText(txt,x,y-76);
+  c.fillStyle='#fffaf0';c.fillText(txt,x,y-76);
+  if(flag){c.fillStyle='#d94336';c.fillRect(x+3,y-124,30,16);c.fillStyle='#fff';c.fillRect(x+3,y-108,30,10)}
+  c.restore();
+};
  const porterD=(x,y,s,fc,carrying=false)=>{
    c.save();c.translate(x,y);c.scale(fc*s,s);
    const rounded=(rx,ry,rw,rh,rr,color)=>{
@@ -2794,7 +2931,7 @@ const loop=now=>{if(done)return;if(porterPrompt){last=now;mvRaf=requestAnimation
  mvRaf=requestAnimationFrame(loop)}
 const SUMI=['puncak-slamet.jpg','puncak-sindoro.jpg','puncak-merbabu.jpg','puncak-lawu.jpg','puncak-rinjani.jpg'],SIMG={};
 function summit(cb){mvStop();const M=MT[mi],im=mimg(),pf=SUMI[mi],pim=pf?(SIMG[mi]||(SIMG[mi]=Object.assign(new Image(),{src:pf}))):null;$('scr').style.background='linear-gradient(#8fd3ff,#e3f7e6) fixed';
- scr('<h2>Puncak '+M.n+' · '+(M.elev?M.elev.toLocaleString('id-ID')+' mdpl':'')+'</h2><div class="cvw"><canvas id="sc"></canvas><div id="fl"></div></div><p class="hint" style="text-align:center">🏔️ Kamu sampai di puncak! Jalan-jalan dengan ◀ ▶ dan ⤒, pilih gaya, lalu ambil foto.</p><div class="ctl"><div><button class="cb" data-k="l">◀</button><button class="cb" data-k="r">▶</button></div><button class="cb jp" data-k="u">⤒ Lompat</button></div><div class="ots" id="em">'+['🧍 Berdiri','👋 Melambai','🚩 Bendera','💃 Joget','🦘 Lompat'].map((s,i)=>'<button class="chip'+(i?'':' on')+'" data-e="'+i+'">'+s+'</button>').join('')+'</div><p style="text-align:center"><button class="go" id="shot">📸 Foto</button> <button class="go" id="snext" style="background:#fff;color:#315b40;border:1px solid #b7cdb9;box-shadow:0 4px 0 #a8b9a7">↩ Kembali ke tersangka</button></p>');
+ scr('<h2>Puncak '+M.n+' · '+(M.elev?M.elev.toLocaleString('id-ID')+' mdpl':'')+'</h2><div class="cvw summit-canvas-wrap"><canvas id="sc"></canvas><div id="fl"></div></div><p class="hint summit-photo-hint" style="text-align:center">🏔️ Kamu sudah sampai di puncak! Gunakan ◀ ▶ untuk bergerak, ⤒ untuk melompat, pilih gaya, lalu ambil foto jika ingin.</p><div class="ctl"><div><button class="cb" data-k="l" aria-label="Bergerak ke kiri">◀</button><button class="cb" data-k="r" aria-label="Bergerak ke kanan">▶</button></div><button class="cb jp" data-k="u">⤒ Lompat</button></div><div class="ots" id="em">'+['🧍 Berdiri','👋 Melambai','🚩 Bendera','💃 Joget','🦘 Lompat'].map((s,i)=>'<button class="chip'+(i?'':' on')+'" data-e="'+i+'">'+s+'</button>').join('')+'</div><div class="summit-next-guide"><span class="summit-guide-arrow" aria-hidden="true">⬇</span><div><strong>LANGKAH BERIKUTNYA</strong><span>Setelah selesai melihat puncak atau berfoto, tekan tombol hijau untuk lanjut memilih pelaku dan menyelesaikan misteri.</span></div></div><div class="summit-actions"><button class="go" id="shot">📸 Ambil Foto</button><button class="go summit-next-btn" id="snext">🔎 Lanjut ke Tahap Tuduhan</button></div>');
  const cv=$('sc'),c=cv.getContext('2d'),W=cv.parentNode.clientWidth||360,H=Math.max(220,Math.round(W/1.5)),dr=devicePixelRatio||1;cv.width=W*dr;cv.height=H*dr;cv.style.width=W+'px';cv.style.height=H+'px';c.scale(dr,dr);
  let em=0,tt=0,last=performance.now(),cap=0,done=0,ax=null,jy=0,vy=0,face=AV.facing==='left'?-1:1,cam=0,mov=0;mvKeys={};
  const ok=()=>pim&&pim.complete&&pim.naturalWidth,ww=()=>ok()?pim.naturalWidth*H/pim.naturalHeight:W;
@@ -2803,12 +2940,18 @@ function summit(cb){mvStop();const M=MT[mi],im=mimg(),pf=SUMI[mi],pim=pf?(SIMG[m
  document.querySelectorAll('#scr .cb').forEach(b=>{const k=b.dataset.k;b.onpointerdown=e=>{e.preventDefault();mvKeys[k]=1};['pointerup','pointerleave','pointercancel'].forEach(ev=>b['on'+ev]=()=>{mvKeys[k]=0})});
  document.addEventListener('keydown',mvKd);document.addEventListener('keyup',mvKu);
  window.smDbg=()=>({ax,cam,jy,ww:ww(),W,photo:!!ok()});
- const step=dt=>{const w=ww();if(ax===null)ax=ok()?w*.3:W*.4;const d=(mvKeys.r?1:0)-(mvKeys.l?1:0);mov=d?1:0;if(d){face=d;if(em)setEm(0)}ax=Math.max(40,Math.min(w-40,ax+d*150*dt));if(mvKeys.u){if(jy<=0){vy=520;if(em)setEm(0)}mvKeys.u=0}jy+=vy*dt;vy-=1500*dt;if(jy<0){jy=0;vy=0}cam+=(Math.max(0,Math.min(Math.max(0,w-W),ax-W/2))-cam)*Math.min(1,dt*6)};
+ const step=dt=>{const w=ww();if(ax===null){if(ok()){ax=Math.min(w-48,w*.86);cam=Math.max(0,Math.min(Math.max(0,w-W),ax-W*.86));}else if(!pim||pim.complete){ax=W*.4;cam=0;}}if(ax===null)return;const d=(mvKeys.r?1:0)-(mvKeys.l?1:0);mov=d?1:0;if(d){face=d;if(em)setEm(0)}ax=Math.max(40,Math.min(w-40,ax+d*150*dt));if(mvKeys.u){if(jy<=0){vy=520;if(em)setEm(0)}mvKeys.u=0}jy+=vy*dt;vy-=1500*dt;if(jy<0){jy=0;vy=0}cam+=(Math.max(0,Math.min(Math.max(0,w-W),ax-W/2))-cam)*Math.min(1,dt*6)};
  const draw=()=>{const w=ww(),g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,M.c1);g.addColorStop(1,M.c2);c.fillStyle=g;c.fillRect(0,0,W,H);
   if(ok()){c.drawImage(pim,-cam,0,w,H);for(let i=0;i<4;i++){const x=((i*190-cam*.4+tt*12)%(W+300)+W+300)%(W+300)-150;cl(c,x,H*.6+(i%2)*26,150,22,.4)}
    const tg=c.createLinearGradient(0,0,0,H*.3);tg.addColorStop(0,'rgba(0,0,0,.35)');tg.addColorStop(1,'rgba(0,0,0,0)');c.fillStyle=tg;c.fillRect(0,0,W,H*.3);
    c.save();c.textAlign='center';c.shadowColor='rgba(0,0,0,.65)';c.shadowBlur=8;c.fillStyle='#fff';c.font='700 '+Math.round(W*.075)+'px Amiri,serif';c.fillText('قِمَّةُ '+M.ar.replace('جَبَلُ','جَبَلِ'),W/2,H*.09);c.restore();
-   dav(c,ax-cam,H*.915-jy,face,tt,mov&&jy<=0?1:0,jy>0,mov?0:em,2)}
+   const playerX=ax-cam,playerY=H*.915-jy;
+   c.save();c.shadowColor='rgba(32,22,13,.78)';c.shadowBlur=7;c.shadowOffsetY=3;
+   dav(c,playerX,playerY,face,tt,mov&&jy<=0?1:0,jy>0,mov?0:em,3);
+   c.restore();
+   c.save();const badgeText='KAMU';c.font='900 11px "Bricolage Grotesque",system-ui,sans-serif';const badgeW=c.measureText(badgeText).width+16,badgeY=playerY-3*55-23;
+   c.fillStyle='rgba(36,75,47,.96)';c.beginPath();c.roundRect(playerX-badgeW/2,badgeY,badgeW,19,7);c.fill();
+   c.strokeStyle='#fff4d8';c.lineWidth=1.5;c.stroke();c.fillStyle='#fffaf0';c.textAlign='center';c.textBaseline='middle';c.fillText(badgeText,playerX,badgeY+9.5);c.restore();}
   else{
   if(im.complete&&im.naturalWidth){const iw=im.naturalWidth,ih=im.naturalHeight,sy=ih*.38,sh=ih*.62,scl=Math.max(W/iw,H/sh),dw=iw*scl,dh=sh*scl;c.save();c.translate(W/2,H/2);const z=1+Math.sin(tt*.2)*.03;c.scale(z,z);c.drawImage(im,0,sy,iw,sh,-W/2-(dw-W)/2*(1+Math.sin(tt*.12)*.8)+(dw-W)/2,-H/2-(dh-H)/2,dw,dh);c.restore()}
   const sun=c.createRadialGradient(W*.8,H*.12,4,W*.8,H*.12,W*.6);sun.addColorStop(0,'rgba(255,240,180,.6)');sun.addColorStop(1,'rgba(255,240,180,0)');c.fillStyle=sun;c.fillRect(0,0,W,H);
@@ -2824,7 +2967,7 @@ function summit(cb){mvStop();const M=MT[mi],im=mimg(),pf=SUMI[mi],pim=pf?(SIMG[m
   c.font='800 '+Math.round(W*.05)+'px "Bricolage Grotesque",system-ui,sans-serif';if('letterSpacing' in c)c.letterSpacing='3px';c.fillStyle='#ffe9a8';c.fillText('PUNCAK '+M.n.replace('Gunung ','GUNUNG ').toUpperCase(),W/2,H*.265);
   c.shadowBlur=0;c.shadowOffsetY=0;if('letterSpacing' in c)c.letterSpacing='0px';c.fillStyle='#ffe9a8';c.fillRect(W*.3,H*.295,W*.4,2);c.restore();
   const fx=W*.66,fy=gh(fx)+6;c.fillStyle='#4a3020';c.fillRect(fx-3,fy-120,6,120);c.fillStyle='#e63946';c.fillRect(fx+3,fy-120,38+Math.sin(tt*4)*4,18);c.fillStyle='#fff';c.fillRect(fx+3,fy-102,38+Math.sin(tt*4)*4,12);
-  dav(c,ax,gh(ax)+10-jy,face,tt,mov&&jy<=0?1:0,jy>0,mov?0:em,2.3)}
+  if(ax!==null)dav(c,ax,gh(ax)+10-jy,face,tt,mov&&jy<=0?1:0,jy>0,mov?0:em,2.6)}
   if(cap){c.fillStyle='rgba(0,0,0,.5)';c.fillRect(0,H-34,W,34);c.fillStyle='#fff';c.font='700 15px sans-serif';c.textAlign='left';c.fillText('📸 Puncak '+M.n+' · '+new Date().toLocaleDateString('id-ID'),12,H-12)}
   else{c.strokeStyle='#ffffffcc';c.lineWidth=3;[[10,10,1,1],[W-10,10,-1,1],[10,H-10,1,-1],[W-10,H-10,-1,-1]].forEach(q=>{c.beginPath();c.moveTo(q[0],q[1]+q[3]*26);c.lineTo(q[0],q[1]);c.lineTo(q[0]+q[2]*26,q[1]);c.stroke()})}};
  const lp=n=>{if(done)return;const dt=Math.min((n-last)/1000,.05);last=n;tt+=dt;step(dt);draw();mvRaf=requestAnimationFrame(lp)};mvRaf=requestAnimationFrame(lp);
