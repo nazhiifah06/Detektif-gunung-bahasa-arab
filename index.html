@@ -234,6 +234,189 @@ h2::before{background:#fff!important}
 .gtw{overflow:auto;background:#fff;border-radius:12px;box-shadow:0 4px 14px #0003}.gt{border-collapse:collapse;min-width:560px;width:100%;font-size:.8rem;color:#1c2a22}.gt th,.gt td{border:1px solid #d9e2dc;padding:6px 8px;text-align:center}.gt th{background:#2E9E5B;color:#fff}.gt td:first-child{text-align:left}.gt .stars{font-size:.85rem;letter-spacing:0}
 .gta{width:100%;border:2px solid #2E9E5B;border-radius:12px;padding:10px;font-size:.8rem;margin-top:8px}
 #tst{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;transition:.3s;z-index:60;max-width:90%;background:#145a35;color:#fff;padding:10px 16px;border-radius:14px;font-weight:700;font-size:.95rem;text-align:center;pointer-events:none;box-shadow:0 6px 16px #0006}#tst.show{opacity:1;transform:translate(-50%,0)}
+
+/* =========================================================
+   VISUAL REFINEMENT — DETEKTIF GUNUNG
+   Palette tenang: forest green, ivory, sage, warm sand.
+   Mengurangi dekorasi latar agar fokus belajar lebih baik.
+   ========================================================= */
+:root{
+  --bg:#f3f7f3;--card:#ffffff;--line:#dce8df;
+  --paper:#ffffff;--paper2:#f1f6f1;--ink:#24382c;
+  --amber:#d99a36;--red:#c95d50;--green:#438b62;
+  --mute:#718477;--text:#263b2e;
+  --r:18px;--shadow:0 10px 28px rgba(33,65,44,.09);
+  --pr:#438b62;--or:#d99a36;
+}
+body{background:#f3f7f3!important;color:#263b2e!important}
+#bgx{display:none!important}
+main{max-width:1080px;padding:22px 20px 80px}
+.brand{padding:8px 0 14px}
+.brand h1{font-size:clamp(2.2rem,7vw,3.5rem);color:#2d6546!important;text-shadow:none!important}
+.brand .sub{background:transparent;color:#6b7f70!important;padding:0;text-shadow:none!important}
+.switch{background:#fff;color:#627568!important;text-shadow:none!important;border:1px solid #e0e9e2}
+#muBtn{background:#fff!important;color:#3e7553!important;border:1px solid #d7e5da!important}
+.hud{background:#fff!important;color:#365441!important;border:1px solid #dce8df;box-shadow:0 5px 18px rgba(33,65,44,.07)}
+h2{display:flex;width:100%;max-width:none;padding:0 0 9px;margin:26px 0 12px;background:transparent!important;color:#2d5c40!important;border-bottom:1px solid #e3ece5;border-radius:0;box-shadow:none!important;text-shadow:none!important}
+h2::before{background:#72a583!important}
+.sub,.switch,.hint{color:#718477!important;text-shadow:none!important}
+.hint{background:transparent!important;padding:0}
+.story,.s{background:#fff!important;color:#2c4033!important;backdrop-filter:none!important;border:1px solid #e0e9e2}
+.story{border-left:4px solid #80aa8a;box-shadow:0 4px 14px rgba(33,65,44,.04)}
+.s .tag{color:#718477!important}
+.clue{background:#fbfdfb;color:#2b4033;border:1px solid #e0e9e2;border-left:4px solid #88ad91;box-shadow:0 4px 12px rgba(33,65,44,.05)}
+.clue.done{background:#edf6ef}
+.clue:disabled{background:#f1f4f1;color:#a0aaa2}
+.panel,.end{background:#fff;border:1px solid #e0e9e2;border-top:4px solid #d99a36;box-shadow:0 8px 22px rgba(33,65,44,.07)}
+.opt{background:#fbfdfb;border:1.5px solid #dce8df;color:#2c4033}
+.opt.ok{background:#e4f3e8;border-color:#438b62}
+.opt.no{background:#fae9e6;border-color:#c95d50}
+.go{background:#438b62;color:#fff;box-shadow:0 4px 0 #2f6d49;border-radius:13px}
+.go:active{box-shadow:0 1px 0 #2f6d49}
+.mini{border:1.5px solid #cbdccf;color:#3f674d;background:#fff}
+#questionArea{padding:clamp(16px,3vw,28px);background:#fff;border:1px solid #e0e9e2;border-radius:24px;box-shadow:0 12px 34px rgba(33,65,44,.07);margin:16px auto 0}
+#questionArea h2{margin-top:24px}
+#homeBtn{background:#438b62;border-color:#fff}
+#scr{background:linear-gradient(180deg,#f7faf7,#edf4ee)!important;color:#263b2e!important}
+#scr main{max-width:1080px;padding:22px 20px 84px}
+#scr h2{display:flex!important;width:100%!important;max-width:none!important;background:transparent!important;color:#2d5c40!important;border-bottom:1px solid #e3ece5!important;border-radius:0!important;box-shadow:none!important;text-shadow:none!important;padding:0 0 9px!important}
+#scr h2::before{display:block!important;background:#72a583!important}
+#scr .sub{background:transparent!important;color:#718477!important}
+#scr .go{background:#438b62;color:#fff;box-shadow:0 4px 0 #2f6d49}
+#scr .chip{border:1px solid #dce8df;background:#fff;color:#45634f}
+#scr .chip.on{background:#438b62;color:#fff;border-color:#438b62}
+.dashboard-head{background:#fff;border:1px solid #e0e9e2;box-shadow:0 7px 22px rgba(33,65,44,.06)}
+.stat-card{border:1px solid #e0e9e2;box-shadow:0 5px 16px rgba(33,65,44,.05)}
+.stat-card strong{color:#2e704c}
+.mountain-card{border:1px solid #dce8df;box-shadow:0 8px 22px rgba(33,65,44,.08);transition:transform .2s,box-shadow .2s}
+.mountain-card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(33,65,44,.12)}
+.mountain-card .mountain-photo{height:190px}
+.mountain-card h3{color:#28543a}
+.pos-card{grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);border:1px solid #dce8df;box-shadow:0 10px 28px rgba(33,65,44,.08)}
+.pos-card-visual{min-height:270px}
+.pos-photo img{min-height:270px;object-fit:cover}
+.pos-card-copy h3{color:#28543a}
+.pos-kicker{background:#eaf4ec;color:#347b54}
+.auth-shell{background:#fff;border:1px solid #dce8df;box-shadow:0 14px 36px rgba(33,65,44,.09)}
+.auth-title{color:#28543a}
+.auth-mark .mountain-mark{background:#e7f2e9}
+.auth-tabs .auth-tab.active{background:#438b62;border-color:#438b62}
+.avs{background:linear-gradient(180deg,#eaf3eb,#d6e8da 72%,#a7c7ae);border:1px solid #dce8df;box-shadow:inset 0 1px 0 #fff}
+.avp svg{width:180px;height:250px}
+@media(max-width:640px){
+  main{padding:14px 13px 76px}
+  #scr main{padding:14px 13px 76px}
+  #questionArea{padding:14px;border-radius:18px}
+  .pos-card{grid-template-columns:1fr}
+  .pos-card-visual,.pos-card-visual .ph,.pos-card-visual .cvr,.pos-photo{min-height:205px}
+  .pos-photo img{min-height:205px}
+  .pos-card-copy{padding:18px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .mountain-card .mountain-photo{height:170px}
+  .avp svg{width:160px;height:220px}
+}
+@media(max-width:380px){.stat-grid{grid-template-columns:1fr}.auth-tabs{grid-template-columns:1fr 1fr}}
+
+/* New screens */
+.journey-shell,.dashboard-v2,.customize-shell{max-width:1000px;margin:0 auto}
+.page-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.page-nav .brand-mini{font-weight:900;letter-spacing:.08em;color:#356b4a;font-size:.82rem}
+.page-nav .nav-actions{display:flex;gap:8px;flex-wrap:wrap}
+.journey-hero{position:relative;min-height:260px;overflow:hidden;border-radius:24px;background:#335e43;box-shadow:0 14px 34px rgba(33,65,44,.15);isolation:isolate}
+.journey-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.journey-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,36,23,.82),rgba(13,36,23,.38) 62%,rgba(13,36,23,.08));z-index:-1}
+.journey-hero-copy{padding:28px clamp(18px,4vw,42px);max-width:680px;color:#fff}
+.journey-hero-copy .eyebrow{display:inline-block;padding:5px 10px;border-radius:999px;background:#ffffff26;border:1px solid #ffffff45;font-size:.76rem;font-weight:800;letter-spacing:.08em}
+.journey-hero-copy h1{margin:12px 0 4px;font-size:clamp(2rem,6vw,3.4rem);line-height:1.05;color:#fff}
+.journey-hero-copy p{margin:8px 0;color:#edf5ee;max-width:520px}
+.hero-facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.hero-facts span{padding:6px 10px;border-radius:10px;background:#ffffff22;border:1px solid #ffffff45;font-size:.82rem;font-weight:700}
+.journey-columns{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:16px;margin-top:16px;align-items:start}
+.learning-card,.case-brief,.climb-panel{padding:20px;background:#fff;border:1px solid #dce8df;border-radius:20px;box-shadow:0 6px 20px rgba(33,65,44,.05)}
+.section-kicker{color:#7a9882;font-size:.72rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.section-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.section-title-row h2,.case-brief h2,.climb-panel h2{margin:4px 0 12px!important}
+.word-count{flex:none;padding:5px 9px;border-radius:999px;background:#edf5ef;color:#4d805e;font-size:.76rem;font-weight:800}
+.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.vocab-card{padding:12px;border:1px solid #e2ebe4;border-radius:14px;background:#fbfdfb;min-width:0}
+.vocab-card .ar{display:block;font-size:1.45rem;color:#24563a;font-weight:700}
+.vocab-card .latin{display:block;color:#8b9a8e;font-size:.75rem}
+.vocab-card .meaning{display:block;color:#344c3b;font-size:.9rem;font-weight:800}
+.vocab-card button{float:right;border:0;background:#eaf3ec;color:#4b805d;border-radius:8px;padding:4px 7px}
+.vocab-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.secondary-btn{padding:10px 15px;border:1px solid #d5e3d8;border-radius:12px;background:#f8fbf8;color:#3d684b;font-weight:800}
+.case-brief p{color:#687c6d}
+.case-mode{padding:11px 12px;margin:12px 0;border-radius:13px;background:#f1f6f1;border:1px solid #e0e9e2;color:#3f684c;font-size:.88rem}
+.case-brief .sus{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.case-brief .s{padding:9px 7px;box-shadow:none;border-radius:12px}
+.case-brief .s .em{width:36px;height:36px;font-size:1.3rem;background:#f0f5f1}
+.case-brief .s .ar{font-size:1.2rem}
+.case-brief .s .tag{font-size:.7rem}
+.rules-list{display:grid;gap:7px;margin-top:12px;color:#63796a;font-size:.86rem}
+.rules-list span{display:flex;gap:8px;align-items:flex-start}
+.climb-panel{margin-top:16px;text-align:center;background:linear-gradient(135deg,#f5faf5,#eaf4ec)}
+.climb-panel h2{justify-content:center;border:0!important}
+.climb-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.climb-actions .go,.climb-actions .secondary-btn{min-width:190px}
+.overlay-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;background:rgba(17,35,24,.62);backdrop-filter:blur(5px)}
+.overlay-modal[hidden]{display:none}
+.overlay-card{width:min(100%,430px);padding:24px;background:#fff;border-radius:22px;box-shadow:0 20px 60px #0004;text-align:center}
+.overlay-card .big-icon{font-size:3rem}
+.overlay-card h3{margin:5px 0;color:#2d5c40;font-size:1.5rem}
+.overlay-card p{color:#708175}
+.overlay-actions{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.vocab-quiz{margin-top:16px;padding:20px;background:#fff;border:1px solid #dce8df;border-radius:20px;box-shadow:0 8px 22px rgba(33,65,44,.06)}
+.vocab-quiz[hidden]{display:none}
+.vq-progress{height:8px;background:#edf2ed;border-radius:99px;overflow:hidden;margin:12px 0}
+.vq-progress i{display:block;height:100%;background:#6a9b76}
+.vq-question{font-size:1.12rem;font-weight:800;color:#2c5038}
+.vq-ar{font-family:'Amiri',serif;direction:rtl;font-size:2rem;color:#285d3d}
+.vq-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+.vq-option{padding:12px;border:1px solid #dce8df;border-radius:12px;background:#fbfdfb;color:#35513d;font-weight:700}
+.vq-option.correct{background:#e5f3e8;border-color:#65a477}
+.vq-option.wrong{background:#fbe9e6;border-color:#c95d50}
+.vq-feedback{margin-top:12px;padding:10px 12px;border-radius:12px;background:#f1f6f1;color:#47674f}
+.dashboard-v2 .dashboard-intro{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:22px 0 10px}
+.dashboard-v2 .dashboard-intro h1{margin:0;color:#2c5c3e;font-size:clamp(1.6rem,4vw,2.3rem)}
+.dashboard-v2 .dashboard-intro p{margin:4px 0;color:#748679}
+.dashboard-v2 .mountain-card{border-radius:20px}
+.dashboard-v2 .mountain-card .mountain-photo{height:190px}
+.dashboard-v2 .mountain-info{padding:16px}
+.mountain-state{display:inline-block;margin:7px 0 2px;padding:4px 8px;border-radius:999px;background:#edf5ef;color:#4c805e;font-size:.72rem;font-weight:900}
+.mountain-card.locked .mountain-state{background:#f1f2ef;color:#8b938d}
+.mountain-card .mountain-meta{margin-top:4px}
+.dashboard-v2 .dashboard-head h2{border:0!important;padding:0!important}
+.customize-shell{padding:clamp(16px,3vw,26px);background:#fff;border:1px solid #dce8df;border-radius:24px;box-shadow:0 10px 28px rgba(33,65,44,.07)}
+.customize-head{text-align:center}
+.customize-head h1{margin:0;color:#2d5c40;font-size:clamp(1.6rem,4vw,2.2rem)}
+.customize-head p{margin:4px 0 12px;color:#748679}
+.customize-shell .avs{max-width:420px;margin:16px auto}
+.customize-shell .ots{margin:16px 0}
+.customize-shell .go{display:block;min-width:190px;margin:18px auto 0}
+.investigation-label{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:999px;background:#edf5ef;color:#467655;font-size:.78rem;font-weight:900}
+.final-challenge{padding:18px;margin-top:14px;border-radius:18px;background:#f7faf7;border:1px solid #dfe9e1}
+.final-challenge h3{margin:0 0 6px;color:#2d5c40}
+.final-sequence{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.final-sequence span{padding:7px 10px;border-radius:10px;background:#eaf3ec;color:#456b50;font-size:.82rem;font-weight:800}
+.final-pick{width:100%;text-align:left;margin:7px 0;padding:12px 14px;border:1px solid #dce8df;border-radius:12px;background:#fff;color:#334c3a;font-weight:700}
+.final-pick.selected{border-color:#438b62;background:#eaf4ec}
+.final-pick:disabled{opacity:.55}
+.final-input{width:100%;padding:13px;border:1.5px solid #cddfd1;border-radius:12px;font:1.4rem 'Amiri',serif;text-align:right;direction:rtl;color:#2b5038;background:#fff}
+@media(max-width:760px){
+  .journey-columns{grid-template-columns:1fr}
+  .journey-hero{min-height:230px}
+  .journey-hero-copy{padding:24px 20px}
+  .dashboard-v2 .dashboard-intro{display:block}
+}
+@media(max-width:440px){
+  .vocab-grid{grid-template-columns:1fr 1fr;gap:7px}
+  .vocab-card{padding:9px}
+  .vocab-card .ar{font-size:1.25rem}
+  .vq-options{grid-template-columns:1fr}
+  .case-brief .sus{grid-template-columns:1fr 1fr}
+  .climb-actions .go,.climb-actions .secondary-btn{width:100%}
+}
+
 </style>
 
 <style id="revision-theme">
@@ -1312,6 +1495,379 @@ function gPin(){ login('teacher-login'); }
 function guru(){ return teacherDashboard(); }
 function kodeGuru(){ toast('☁️ Progres tersimpan otomatis di Supabase dan dapat dilihat guru.'); }
 function doLogin(){ return doAuth(); }
+
+
+/* =========================================================
+   REVISI SESUAI CATATAN PENGGUNA — POS, MUFRADAT, GAME FLOW
+   Semua aset pos diletakkan satu folder dengan index.html.
+   ========================================================= */
+const POS_IMAGE_FILES = [
+  ['pos1-slamet.jpg','pos2-slamet.jpg','pos3-slamet.jpg','pos4-slamet.jpg'],
+  ['pos1-sindoro.jpg','pos2-sindoro.jpg','pos3-sindoro.jpg','pos4-sindoro.jpg'],
+  ['pos1-merbabu.jpg','pos2-merbabu.jpg','pos3-merbabu.jpg','pos4-merbabu.jpg'],
+  ['pos1-lawu.jpg','pos2-lawu.jpg','pos3-lawu.jpg','pos4-lawu.jpg'],
+  ['pos1-rinjani.jpg','pos2-rinjani.jpg','pos3-rinjani.jpg','pos4-rinjani.jpg']
+];
+CASES.forEach((cs,k)=>cs.lv.forEach((lv,i)=>{lv.img=POS_IMAGE_FILES[k][i]}));
+
+const CASE_MODES = [
+  {name:'Investigasi Bukti',desc:'Kumpulkan petunjuk, periksa kesaksian, lalu pilih alasan yang paling kuat untuk membuktikan tuduhan.'},
+  {name:'Kronologi Kejadian',desc:'Susun urutan peristiwa dari benda terakhir terlihat sampai bukti ditemukan. Urutan yang tepat membuka kesimpulan.'},
+  {name:'Forensik Barang',desc:'Teliti barang yang hilang dan tentukan bukti fisik yang paling kuat menghubungkan barang dengan pelaku.'},
+  {name:'Dua Bukti Kunci',desc:'Pilih dua bukti yang saling menguatkan. Kamu harus membedakan petunjuk penting dari informasi pengalih.'},
+  {name:'Kesimpulan Bahasa Arab',desc:'Setelah mengumpulkan bukti, tulis kata kunci dalam Bahasa Arab untuk menyelesaikan deduksi akhir.'}
+];
+
+const VOCAB_SETS = [
+  [
+    {ar:'الْجَبَلُ',latin:'al-jabal',id:'gunung'},
+    {ar:'الْمَسَارُ',latin:'al-masār',id:'jalur pendakian'},
+    {ar:'الْغَابَةُ',latin:'al-ghābah',id:'hutan'},
+    {ar:'الْحَجَرُ',latin:'al-ḥajar',id:'batu'},
+    {ar:'الْحَقِيبَةُ',latin:'al-ḥaqībah',id:'tas'},
+    {ar:'الْمَاءُ',latin:'al-mā’',id:'air'},
+    {ar:'الْمُرْشِدُ',latin:'al-murshid',id:'pemandu'},
+    {ar:'الْقِمَّةُ',latin:'al-qimmah',id:'puncak'}
+  ],
+  [
+    {ar:'الْمِصْبَاحُ',latin:'al-miṣbāḥ',id:'senter'},
+    {ar:'الْخَيْمَةُ',latin:'al-khaymah',id:'tenda'},
+    {ar:'النَّهْرُ',latin:'an-nahr',id:'sungai'},
+    {ar:'الظَّلَامُ',latin:'aẓ-ẓalām',id:'kegelapan'},
+    {ar:'الْمَطَرُ',latin:'al-maṭar',id:'hujan'},
+    {ar:'الْحِذَاءُ',latin:'al-ḥidhā’',id:'sepatu'},
+    {ar:'الْوَادِي',latin:'al-wādī',id:'lembah'},
+    {ar:'الْحَطَبُ',latin:'al-ḥaṭab',id:'kayu bakar'}
+  ],
+  [
+    {ar:'الضَّبَابُ',latin:'aḍ-ḍabāb',id:'kabut'},
+    {ar:'الْمَرْعَى',latin:'al-mar‘ā',id:'padang rumput'},
+    {ar:'الْعُشْبُ',latin:'al-‘ushb',id:'rumput'},
+    {ar:'الْخَرِيطَةُ',latin:'al-kharīṭah',id:'peta'},
+    {ar:'الْمِنْظَارُ',latin:'al-minẓār',id:'teropong'},
+    {ar:'الْمُخَيَّمُ',latin:'al-mukhayyam',id:'perkemahan'},
+    {ar:'الْمَصْدَرُ',latin:'al-maṣdar',id:'sumber'},
+    {ar:'الْمَمَرُّ',latin:'al-mamarr',id:'lintasan'}
+  ],
+  [
+    {ar:'الْغَيْمُ',latin:'al-ghaym',id:'awan'},
+    {ar:'الْبَرْدُ',latin:'al-bard',id:'udara dingin'},
+    {ar:'الْقُفَّازُ',latin:'al-quffāz',id:'sarung tangan'},
+    {ar:'الْجَوْرَبُ',latin:'al-jawrab',id:'kaus kaki'},
+    {ar:'الْمَأْوَى',latin:'al-ma’wā',id:'tempat berlindung'},
+    {ar:'الْمِعْطَفُ',latin:'al-mi‘ṭaf',id:'jaket'},
+    {ar:'الْحَبْلُ',latin:'al-ḥabl',id:'tali'},
+    {ar:'الْمَمَرُّ',latin:'al-mamarr',id:'jalan setapak'}
+  ],
+  [
+    {ar:'الْبُحَيْرَةُ',latin:'al-buḥayrah',id:'danau'},
+    {ar:'الْفُوَّهَةُ',latin:'al-fuwwahah',id:'kawah'},
+    {ar:'الْبُرْكَانُ',latin:'al-burkān',id:'gunung berapi'},
+    {ar:'الْمُرْتَفَعُ',latin:'al-murtafa‘',id:'dataran tinggi'},
+    {ar:'الْمُخَيَّمُ',latin:'al-mukhayyam',id:'perkemahan'},
+    {ar:'الْمَاءُ',latin:'al-mā’',id:'air'},
+    {ar:'الْجِبَالُ',latin:'al-jibāl',id:'pegunungan'},
+    {ar:'الْمَنْظَرُ',latin:'al-manẓar',id:'pemandangan'}
+  ]
+];
+let vocabQuizState = null;
+let finalChallengeState = [];
+
+function shuffleItems(items){
+  const out=[...items];
+  for(let i=out.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[out[i],out[j]]=[out[j],out[i]]}
+  return out;
+}
+function setBg(i){
+  const bg=$('bgx');
+  if(bg)bg.style.display='none';
+  document.body.style.background='#f3f7f3';
+  document.body.style.color='#263b2e';
+  const area=$('bgi');
+  if(area)area.style.backgroundImage='none';
+  const bgt=$('bgt'),bgc=$('bgc');
+  if(bgt)bgt.innerHTML='';
+  if(bgc)bgc.innerHTML='';
+  if(i>=0&&MT[i])document.documentElement.style.setProperty('--amber','#d99a36');
+}
+function pickMt(){
+  if(!currentUser||currentRole!=='student')return login('student-login');
+  mvStop();$('homeBtn').hidden=true;clearInterval(timer);
+  $('end').innerHTML='';$('panel').innerHTML='';$('hud').innerHTML='';setBg(-1);
+  const p=PF[CUR]||{n:currentProfile?.full_name||'Siswa',c:currentProfile?.class_name||'',pr:{}};
+  PF[CUR]=p;
+  let totalStars=0,totalScore=0,completed=0;
+  for(let k=0;k<5;k++){const b=bst(k);if(b){totalStars+=b.st;totalScore+=b.s;completed++;}}
+  const cards=MT.map((m,k)=>{
+    const unlocked=unl(k),best=bst(k);
+    const image=m.im||'';
+    return `<article class="mountain-card ${unlocked?'':'locked'}">
+      <div class="mountain-photo">
+        <img src="${esc(image)}" alt="${esc(m.n)}" onerror="this.style.display='none'">
+        <span class="photo-shade"></span>
+      </div>
+      <div class="mountain-info">
+        <span class="mountain-state">${unlocked?'TERBUKA':'🔒 TERKUNCI'}</span>
+        <h3>${esc(m.n)}</h3>
+        <div class="mountain-meta">📍 ${esc(m.loc)} · ${m.elev.toLocaleString('id-ID')} mdpl</div>
+        <div class="stars">${STR(best?best.st:0)}</div>
+        <div class="mountain-meta">${best?'Skor terbaik: '+best.s+' / 500':(unlocked?'Belum diselesaikan':'Selesaikan '+esc(MT[k-1].n)+' terlebih dahulu')}</div>
+        <button class="go" ${unlocked?'':'disabled'} onclick="startCase(${k})">${unlocked?(best?'Ulangi ekspedisi':'Pilih gunung ini'):'🔒 Belum terbuka'}</button>
+      </div>
+    </article>`;
+  }).join('');
+  scr(`<div class="dashboard-v2">
+    <header class="dashboard-head">
+      <div><span class="section-kicker">RUANG EKSPEDISI</span><h2>Dashboard Siswa</h2><b style="color:#2e704c">${esc(p.n)}</b><div class="mountain-meta">${esc(p.c||'Kelas belum diisi')} · Akun siswa</div></div>
+      <div class="dashboard-actions"><button class="chip" onclick="customize(()=>pickMt())">🎒 Avatar</button><button class="chip" onclick="logout()">Keluar</button></div>
+    </header>
+    <div class="stat-grid">
+      <div class="stat-card"><small>Gunung selesai</small><strong>${completed}/5</strong></div>
+      <div class="stat-card"><small>Total bintang</small><strong>⭐ ${totalStars}/25</strong></div>
+      <div class="stat-card"><small>Total skor terbaik</small><strong>${totalScore}</strong></div>
+    </div>
+    <div class="dashboard-intro"><div><span class="section-kicker">PILIH PETUALANGANMU</span><h1>Ke mana kita mendaki?</h1><p>Selesaikan ekspedisi secara berurutan untuk membuka gunung berikutnya.</p></div><span class="word-count">5 EKSPEDISI</span></div>
+    <div class="mountain-grid">${cards}</div>
+    <p class="hint" id="mtmsg" style="margin-top:14px"></p>
+  </div>`);
+}
+function avSvg(){
+  const j=AVJ[AV.jk],p=AVP[AV.pt],s=AVS[AV.sh],b=AVB[AV.bg],k=AVK[AV.sk];
+  const hats=[
+    '<path d="M16 7a6 5 0 0 1 12 0z" fill="#3a2a1e"/>',
+    '<path d="M12 7h20v2H12z" fill="#6B4528"/><path d="M16 7a6 5 0 0 1 12 0z" fill="#8B5E3C"/>',
+    '<path d="M15 7a7 6 0 0 1 14 0z" fill="#E5484D"/><rect x="15" y="6" width="14" height="2" fill="#B02A30"/>',
+    '<path d="M16 7a6 5 0 0 1 12 0z" fill="#1F8FD6"/><rect x="25" y="7" width="8" height="2" fill="#14609a"/>',
+    '<path d="M17 7l2-5h8l2 5z" fill="#C9B27C"/><rect x="14" y="7" width="18" height="2" fill="#A8925F"/>'
+  ][AV.hat]||'';
+  return `<svg viewBox="0 0 44 58" aria-label="Avatar pendaki tampak depan">
+    <ellipse cx="22" cy="55" rx="11" ry="2.2" fill="#0002"/>
+    <g class="bd">
+      <g class="lg b"><rect x="13.5" y="42" width="6" height="10" rx="2" fill="${p}"/><rect x="12" y="50" width="9" height="4" rx="1.8" fill="${s}"/></g>
+      <rect x="7" y="17" width="7" height="17" rx="3.5" fill="${b}"/>
+      <rect x="30" y="17" width="7" height="17" rx="3.5" fill="${b}"/>
+      <rect x="10" y="16" width="24" height="25" rx="5" fill="${j}"/>
+      <path d="M15 18v21M29 18v21" stroke="#ffffff88" stroke-width="1.2"/>
+      <rect x="19.5" y="18" width="5" height="22" rx="2" fill="#00000012"/>
+      <path d="M11 24h22" stroke="#ffffff44" stroke-width="1.2"/>
+      <g class="lg"><rect x="24.5" y="42" width="6" height="10" rx="2" fill="${p}"/><rect x="23" y="50" width="9" height="4" rx="1.8" fill="${s}"/></g>
+      <circle cx="22" cy="10.5" r="7" fill="${k}"/>
+      <circle cx="19.5" cy="10" r=".8" fill="#263329"/><circle cx="24.5" cy="10" r=".8" fill="#263329"/>
+      <path d="M19.5 13q2.5 2 5 0" fill="none" stroke="#7d4438" stroke-width=".9" stroke-linecap="round"/>
+      ${hats}
+      <g class="pl"><path d="M31 22l5 12" stroke="${j}" stroke-width="3.2" stroke-linecap="round"/><circle cx="36" cy="34" r="2" fill="${k}"/></g>
+    </g>
+  </svg>`;
+}
+function customize(cb){
+  avCb=cb;avTab=0;setBg(-1);
+  scr(`<section class="customize-shell">
+    <div class="customize-head"><span class="section-kicker">PERSIAPAN EKSPEDISI</span><h1>Atur Penampilan Pendakimu</h1><p>Avatar ditampilkan menghadap ke depan. Pilih perlengkapan yang paling kamu suka.</p></div>
+    <div class="avs"><div class="avp" id="avp"></div></div>
+    <div class="tabs" id="avtabs"></div><div class="opts" id="avopts"></div>
+    <div class="ots">${OT.map((o,i)=>'<button class="chip" onclick="avPre('+i+')">✨ '+o[0]+'</button>').join('')}<button class="chip" onclick="avRnd()">🎲 Acak</button></div>
+    <button class="go" onclick="avDone()">Simpan Avatar & Lanjut</button>
+  </section>`);
+  avR();
+}
+function intro(){
+  clearInterval(timer);mvStop();$('hud').innerHTML='';$('end').innerHTML='';$('panel').innerHTML='';
+  setBg(-1);
+  const mountain=MT[mi],cs=CASES[mi],mode=CASE_MODES[mi],vocab=VOCAB_SETS[mi];
+  const baseImage=cs.bc&&cs.bc[0]?cs.bc[0]:(mountain.im||'');
+  const vocabCards=vocab.map(v=>`<article class="vocab-card">
+    <button type="button" aria-label="Dengarkan ${esc(v.ar)}" onclick="speak('${esc(v.ar)}')">🔊</button>
+    <span class="ar" lang="ar">${v.ar}</span><span class="latin">${esc(v.latin)}</span><span class="meaning">${esc(v.id)}</span>
+  </article>`).join('');
+  const suspects=SUS.map(s=>`<div class="s"><span class="em">${s.em}</span><span class="ar" lang="ar">${s.ar}</span><b>${esc(s.n)}</b></div>`).join('');
+  scr(`<div class="journey-shell">
+    <div class="page-nav"><span class="brand-mini">لُغْزُ الْجَبَلِ · DETEKTIF GUNUNG</span><div class="nav-actions"><button class="secondary-btn" onclick="pickMt()">← Pilih gunung</button><button class="secondary-btn" onclick="customize(intro)">👕 Ganti avatar</button></div></div>
+    <section class="journey-hero">
+      <img src="${esc(baseImage)}" alt="Basecamp ${esc(mountain.n)}">
+      <div class="journey-hero-copy">
+        <span class="eyebrow">EKSPEDISI ${String(mi+1).padStart(2,'0')} · BASECAMP</span>
+        <h1>${esc(mountain.n)}</h1>
+        <p>${esc(cs.intro)}</p>
+        <div class="hero-facts"><span>⛰️ ${mountain.elev.toLocaleString('id-ID')} mdpl</span><span>📍 ${esc(mountain.loc)}</span><span>❤️ 3 nyawa awal</span></div>
+      </div>
+    </section>
+    <div class="journey-columns">
+      <section class="learning-card">
+        <div class="section-title-row"><div><span class="section-kicker">BEKAL BAHASA ARAB</span><h2>Mufradat Pendakian</h2></div><span class="word-count">${vocab.length} KOSAKATA</span></div>
+        <p class="hint">Pelajari kata-kata yang akan kamu temui selama ekspedisi. Tekan ikon suara untuk mendengarkan pelafalannya.</p>
+        <div class="vocab-grid">${vocabCards}</div>
+        <div class="vocab-actions"><button class="secondary-btn" onclick="showVocabQuiz()">🧠 Latihan kosakata</button><span class="hint">Opsional · tidak mengurangi nyawa</span></div>
+      </section>
+      <section class="case-brief">
+        <span class="section-kicker">MISI DETEKTIF</span><h2>${esc(mountain.kasus||'Kasus pendakian')}</h2>
+        <p>${esc(cs.intro)}</p>
+        <div class="case-mode"><span class="investigation-label">🕵️ MODE: ${esc(mode.name)}</span><p style="margin:8px 0 0">${esc(mode.desc)}</p></div>
+        <b style="color:#365b41">Orang-orang dalam ekspedisi</b>
+        <div class="sus" style="margin-top:9px">${suspects}</div>
+        <div class="rules-list">
+          <span>❤️ <b>3 nyawa</b> untuk seluruh pendakian.</span>
+          <span>🔎 Selesaikan petunjuk pada setiap pos.</span>
+          <span>⭐ Kumpulkan skor dan bintang terbaik.</span>
+          <span>🏁 Pecahkan kasus di puncak dengan tantangan akhir khusus gunung ini.</span>
+        </div>
+      </section>
+    </div>
+    <section class="climb-panel">
+      <span class="section-kicker">SIAP MEMULAI PETUALANGAN?</span>
+      <h2>Mau mendaki ${esc(mountain.n)}?</h2>
+      <div class="climb-actions"><button class="go" onclick="openClimbConfirm()">⛰️ Ya, aku mau mendaki</button><button class="secondary-btn" onclick="pickMt()">Belum, kembali ke pilihan gunung</button></div>
+    </section>
+    <div class="overlay-modal" id="climbConfirm" hidden><div class="overlay-card">
+      <div class="big-icon">🥾</div><h3>Konfirmasi pendakian</h3>
+      <p>Kamu akan memulai ekspedisi ${esc(mountain.n)}. Pastikan sudah mempelajari mufradat dan siap mengumpulkan bukti.</p>
+      <div class="overlay-actions"><button class="go" onclick="confirmClimb()">Mulai sekarang</button><button class="secondary-btn" onclick="closeClimbConfirm()">Nanti dulu</button></div>
+    </div></div>
+    <section class="vocab-quiz" id="vocabQuiz" hidden></section>
+  </div>`);
+}
+function openClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=false}
+function closeClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=true}
+function confirmClimb(){closeClimbConfirm();startTrip()}
+function showVocabQuiz(){
+  const pool=VOCAB_SETS[mi];
+  const selected=shuffleItems(pool).slice(0,5);
+  vocabQuizState={questions:selected.map(correct=>{
+    const distractors=shuffleItems(pool.filter(x=>x.ar!==correct.ar)).slice(0,3);
+    return {correct,options:shuffleItems([correct,...distractors])};
+  }),index:0,score:0,answered:false};
+  renderVocabQuiz();
+  const e=$('vocabQuiz');if(e){e.hidden=false;e.scrollIntoView({behavior:'smooth',block:'center'})}
+}
+function renderVocabQuiz(){
+  const e=$('vocabQuiz');if(!e||!vocabQuizState)return;
+  const q=vocabQuizState.questions[vocabQuizState.index];
+  if(!q){
+    e.innerHTML=`<div class="section-kicker">LATIHAN SELESAI</div><h2>Hasil Latihan Mufradat</h2><div class="vq-question">${vocabQuizState.score} dari 5 jawaban benar</div><p class="hint">Kamu boleh mengulang materi atau melanjutkan pendakian. Latihan ini tidak mengurangi nyawa.</p><button class="go" onclick="closeVocabQuiz()">Kembali ke basecamp</button>`;
+    return;
+  }
+  const opts=q.options.map((v,i)=>`<button class="vq-option ${vocabQuizState.answered&&v.ar===q.correct.ar?'correct':''} ${vocabQuizState.answered&&v.ar!==q.correct.ar&&vocabQuizState.chosen===i?'wrong':''}" ${vocabQuizState.answered?'disabled':''} onclick="answerVocab(${i})">${esc(v.id)}</button>`).join('');
+  e.innerHTML=`<div class="section-title-row"><div><span class="section-kicker">LATIHAN MUFRADAT</span><h2>Soal ${vocabQuizState.index+1} dari 5</h2></div><span class="word-count">Benar: ${vocabQuizState.score}</span></div>
+    <div class="vq-progress"><i style="width:${(vocabQuizState.index+1)/5*100}%"></i></div>
+    <div class="vq-question">Apa arti kosakata berikut?</div><div class="vq-ar" lang="ar">${q.correct.ar}</div>
+    <div class="vq-options">${opts}</div>
+    ${vocabQuizState.answered?`<div class="vq-feedback">${vocabQuizState.chosen===q.options.findIndex(v=>v.ar===q.correct.ar)?'✓ Tepat!':'Belum tepat.'} Arti yang benar: <b>${esc(q.correct.id)}</b></div><button class="go" onclick="nextVocabQuestion()">${vocabQuizState.index===4?'Lihat hasil':'Soal berikutnya'}</button>`:''}`;
+}
+function answerVocab(i){
+  if(!vocabQuizState||vocabQuizState.answered)return;
+  const q=vocabQuizState.questions[vocabQuizState.index];
+  vocabQuizState.answered=true;vocabQuizState.chosen=i;
+  if(q.options[i]&&q.options[i].ar===q.correct.ar)vocabQuizState.score++;
+  renderVocabQuiz();
+}
+function nextVocabQuestion(){
+  if(!vocabQuizState)return;
+  vocabQuizState.index++;vocabQuizState.answered=false;renderVocabQuiz();
+}
+function closeVocabQuiz(){
+  const e=$('vocabQuiz');if(e)e.hidden=true;
+  const top=$('.learning-card');if(top)top.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function load(){
+  const l=L();T=l.T;streak=0;solved=new Set();open=null;showTxt=false;showTr=false;over=false;
+  failed=new Set();left={};plays={};keyMode=false;keyFail=new Set();finalChallengeState=[];
+  clearInterval(timer);$('panel').innerHTML='';$('end').innerHTML='';
+  $('title').textContent=l.title;$('story').textContent=l.story+' '+CASE_MODES[mi].desc;
+  document.documentElement.style.setProperty('--amber','#d99a36');
+  const img=l.img||POS_IMAGE_FILES[mi][lvi];
+  $('ban').hidden=false;
+  $('ban').innerHTML=`<section class="pos-card">
+    <div class="pos-card-visual"><div class="pos-photo"><img src="${esc(img)}" alt="Pos ${lvi+1} ${esc(MT[mi].n)}" onerror="this.style.display='none';this.parentNode.classList.add('fallback')"><div class="pos-photo-fallback"><span>🏕️</span><b>Foto pos ${lvi+1} belum tersedia</b></div></div></div>
+    <div class="pos-card-copy">
+      <span class="pos-kicker">⛰️ POS ${lvi+1} · ${esc(MT[mi].n)}</span>
+      <h3>${esc(l.title)}</h3><p>${esc(l.story)}</p>
+      <div class="case-mode"><b>Mode investigasi: ${esc(CASE_MODES[mi].name)}</b><p style="margin:5px 0 0">${esc(CASE_MODES[mi].desc)}</p></div>
+      <p class="hint">Selesaikan semua petunjuk untuk membuka pos berikutnya.</p>
+      <button class="go" onclick="showPosQuestions()">Masuk ke tantangan pos →</button>
+    </div>
+  </section>`;
+  $('questionArea').hidden=true;$('posReturn').hidden=false;
+  setBg(lvi);render();window.scrollTo(0,0);
+}
+function startTrip(){
+  if(!mset){mset=1;mtog();syncMu()}
+  showMap(0,1,()=>load());
+}
+function keyCard(){
+  const q=L().key;
+  if(mi===0){
+    $('end').innerHTML=`<div class="end"><h3>Tuduhanmu diterima hakim. Apa alasanmu?</h3><p><b>${q.q}</b></p>
+      ${q.o.map((o,j)=>{const f=keyFail.has(j);return `<button class="opt ${f?'no':''}" ${f?'disabled':''} onclick="keyAns(${j})">${o}</button>`}).join('')}</div>`;
+    $('end').scrollIntoView({behavior:'smooth',block:'center'});return;
+  }
+  finalChallengeState=[];
+  let content='';
+  if(mi===1){
+    const events=['Kamera terakhir terlihat di atas batu dekat dapur.','Hind terlihat berada di dekat batu tersebut.','Kamera ditemukan di dalam tas hitam milik Hind.'];
+    content=`<h3>Susun kronologi kejadian</h3><p>Urutkan tiga peristiwa berikut dari awal sampai bukti terakhir ditemukan.</p>
+      <div class="final-sequence" id="finalSequence"><span>Belum ada urutan dipilih</span></div>
+      ${shuffleItems(events.map((text,i)=>({text,order:i}))).map(item=>`<button class="final-pick" id="order${item.order}" onclick="chooseFinalOrder(${item.order})">${esc(item.text)}</button>`).join('')}
+      <button class="go" onclick="submitFinalOrder()">Periksa urutan</button>`;
+  }else if(mi===2){
+    const choices=['Senter ditemukan di saku Ahmad.','Hind melihat Khalid di dekat tenda kuning.','Maryam minum teh bersama Yusuf.'];
+    content=`<h3>Forensik barang</h3><p>${esc(q.q)} Pilih bukti fisik yang paling kuat, bukan sekadar dugaan.</p>
+      ${choices.map((v,i)=>`<button class="final-pick" onclick="submitFinalEvidence(${i})">${esc(v)}</button>`).join('')}`;
+  }else if(mi===3){
+    const choices=['Jejak sepatu kuning ditemukan dekat tenda Maryam.','Dompet ditemukan di dalam tenda Maryam.','Yusuf menemukan kuncinya sendiri.','Maryam berkata bahwa ia tidak keluar dari tenda.'];
+    content=`<h3>Pilih dua bukti kunci</h3><p>Pilih tepat dua bukti yang paling kuat dan saling menguatkan untuk membuktikan tuduhanmu.</p>
+      ${choices.map((v,i)=>`<button class="final-pick" id="pair${i}" onclick="toggleFinalPair(${i})">${esc(v)}</button>`).join('')}
+      <button class="go" onclick="submitFinalPair()">Kunci dua bukti</button>`;
+  }else{
+    content=`<h3>Kesimpulan dalam Bahasa Arab</h3><p>Kasus ini terungkap karena Khalid mengaku membutuhkan uang. Tuliskan kata <b>“uang”</b> dalam Bahasa Arab.</p>
+      <input class="final-input" id="finalArabic" type="text" lang="ar" dir="rtl" placeholder="اكتب هنا">
+      <button class="go" onclick="submitFinalArabic()">Periksa jawaban</button>`;
+  }
+  $('end').innerHTML=`<div class="end"><span class="investigation-label">🧩 TANTANGAN AKHIR · ${esc(CASE_MODES[mi].name)}</span><p><b>${esc(q.q)}</b></p><div class="final-challenge">${content}</div></div>`;
+  $('end').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function chooseFinalOrder(i){
+  if(finalChallengeState.includes(i))return;
+  finalChallengeState.push(i);
+  const sequence=$('finalSequence');
+  if(sequence)sequence.innerHTML=finalChallengeState.map((n,k)=>`<span>${k+1}. ${['Kamera terakhir terlihat di atas batu dekat dapur.','Hind terlihat berada di dekat batu tersebut.','Kamera ditemukan di dalam tas hitam milik Hind.'][n]}</span>`).join('');
+  const button=$('order'+i);if(button)button.classList.add('selected');
+}
+function submitFinalOrder(){
+  if(finalChallengeState.length!==3){toast('Pilih ketiga peristiwa terlebih dahulu.');return}
+  if(finalChallengeState.join(',')==='0,1,2'){levelClear();return}
+  failFinalChallenge('Urutan kronologi belum tepat.');
+}
+function submitFinalEvidence(i){
+  if(i===0){levelClear();return}
+  failFinalChallenge('Bukti fisik yang dipilih belum paling kuat.');
+}
+function toggleFinalPair(i){
+  const at=finalChallengeState.indexOf(i);
+  if(at>=0)finalChallengeState.splice(at,1);
+  else if(finalChallengeState.length<2)finalChallengeState.push(i);
+  const b=$('pair'+i);if(b)b.classList.toggle('selected',finalChallengeState.includes(i));
+  const info=$('.final-challenge p');if(info)info.textContent='Bukti dipilih: '+finalChallengeState.length+' dari 2.';
+}
+function submitFinalPair(){
+  if(finalChallengeState.length!==2){toast('Pilih tepat dua bukti.');return}
+  if([...finalChallengeState].sort().join(',')==='0,1'){levelClear();return}
+  failFinalChallenge('Kombinasi bukti belum tepat.');
+}
+function submitFinalArabic(){
+  const value=$('finalArabic')?.value||'';
+  if(typeof narm==='function'&&narm(value)==='المال'){levelClear();return}
+  failFinalChallenge('Kata Bahasa Arab belum tepat. Petunjuk: الْمَالَ');
+}
+function failFinalChallenge(message){
+  finalChallengeState=[];streak=0;loseLife(message);
+  if(!over)keyCard();
+}
+function keyAns(j){
+  if(j===L().key.a){levelClear();return}
+  keyFail.add(j);streak=0;loseLife('Alasan salah!');if(!over)keyCard();
+}
+function openClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=false}
+function closeClimbConfirm(){const e=$('climbConfirm');if(e)e.hidden=true}
+
 
 initSupabase();
 </script>
