@@ -1405,6 +1405,377 @@ body {
 }
 </style>
 
+
+<style id="warm-parchment-strong-contrast">
+/* ==========================================================
+   WARM VINTAGE / LIGHT COCOA PALETTE
+   One consistent palette for the dashboard and investigation.
+   ========================================================== */
+:root {
+  --bg: #e8ddca !important;
+  --card: #fbf5e9 !important;
+  --line: #cbb895 !important;
+  --paper: #f8f0e2 !important;
+  --paper2: #eadcc4 !important;
+  --ink: #392f23 !important;
+  --amber: #c28b3d !important;
+  --red: #a94f3d !important;
+  --green: #456447 !important;
+  --mute: #675a46 !important;
+  --text: #392f23 !important;
+  --pr: #54714f !important;
+  --or: #bd8434 !important;
+  --shadow: 0 12px 28px rgba(70, 52, 29, .14) !important;
+}
+html, body {
+  background: #e8ddca !important;
+  color: #392f23 !important;
+}
+body {
+  background-color: #e8ddca !important;
+}
+
+/* Dashboard / login background: parchment with a soft vintage grain feel. */
+#bgx {
+  background: #e8ddca !important;
+}
+#bgx:not(.forest-mode) .bgi {
+  background-image:
+    radial-gradient(ellipse at 12% 16%, rgba(255,250,237,.88), transparent 44%),
+    radial-gradient(ellipse at 88% 78%, rgba(177,145,99,.18), transparent 42%),
+    repeating-linear-gradient(0deg, rgba(105,78,43,.025) 0 1px, transparent 1px 4px),
+    linear-gradient(145deg, #f2e8d7 0%, #e6d8c0 52%, #d8c6a8 100%) !important;
+  filter: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+#bgx:not(.forest-mode) .bgo {
+  background: linear-gradient(180deg, rgba(255,250,238,.08), rgba(113,83,48,.06)) !important;
+  opacity: 1 !important;
+}
+#bgx:not(.forest-mode) .rays {
+  opacity: .025 !important;
+}
+#bgx:not(.forest-mode) .bgf {
+  opacity: .16 !important;
+  background: linear-gradient(transparent, rgba(130,101,64,.13)) !important;
+}
+
+/* Investigation screen: light cocoa forest atmosphere, not dark green. */
+#bgx.forest-mode .bgi {
+  background-image:
+    radial-gradient(ellipse 42% 26% at 0% 3%, rgba(132,145,91,.35) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 28% at 100% 4%, rgba(132,145,91,.32) 0%, transparent 100%),
+    radial-gradient(ellipse 48% 32% at 50% 0%, rgba(255,249,230,.75) 0%, transparent 100%),
+    radial-gradient(ellipse 72% 35% at 50% 100%, rgba(153,128,83,.25) 0%, transparent 100%),
+    linear-gradient(180deg, #e9dfcb 0%, #e4d5bb 48%, #d5c2a1 100%) !important;
+  filter: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+#bgx.forest-mode .bgi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 0% 18%, rgba(82,103,62,.34) 0 13%, transparent 34%),
+    radial-gradient(ellipse at 100% 18%, rgba(82,103,62,.32) 0 14%, transparent 35%),
+    radial-gradient(ellipse at 16% 0%, rgba(116,128,78,.24) 0 13%, transparent 32%),
+    radial-gradient(ellipse at 84% 0%, rgba(116,128,78,.22) 0 13%, transparent 32%),
+    linear-gradient(90deg,
+      rgba(94,78,53,.18) 0 2.4%, transparent 3.2% 13.5%,
+      rgba(94,78,53,.12) 14% 15.2%, transparent 16% 84%,
+      rgba(94,78,53,.12) 84.8% 86%, transparent 86.8% 97.5%,
+      rgba(94,78,53,.18) 98% 100%);
+}
+#bgx.forest-mode .bgi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255,250,237,.10), rgba(126,101,65,.06) 56%, rgba(91,73,46,.20)),
+    radial-gradient(ellipse at 50% 100%, rgba(112,111,67,.18), transparent 58%);
+}
+#bgx.forest-mode .bgo {
+  background: linear-gradient(180deg, rgba(255,250,237,.04), rgba(112,88,54,.12)) !important;
+  opacity: 1 !important;
+}
+#bgx.forest-mode .rays {
+  opacity: .035 !important;
+}
+#bgx.forest-mode .bgf {
+  opacity: .20 !important;
+  background: linear-gradient(transparent, rgba(119,96,60,.20)) !important;
+}
+
+/* Clear, vivid decorative icons across the investigation screen. */
+#bgc span, #bgt span {
+  opacity: 1 !important;
+  filter: saturate(1.85) contrast(1.18) drop-shadow(0 2px 4px rgba(54,39,20,.42)) !important;
+}
+#bgc .pu, #bgc .tw {
+  opacity: 1 !important;
+  filter: saturate(1.9) contrast(1.2) drop-shadow(0 2px 4px rgba(54,39,20,.4)) !important;
+}
+
+/* Story and question panels: stronger borders and warm cocoa surfaces. */
+.story, #questionArea .story {
+  background: #f7eddb !important;
+  color: #382f23 !important;
+  border: 1.5px solid #c4a879 !important;
+  border-left: 6px solid #718052 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 8px 20px rgba(75,55,30,.13) !important;
+}
+#questionArea h2 {
+  color: #36553a !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+}
+#questionArea h2::before {
+  background: #718b5c !important;
+}
+
+/* Clue cards: visible box edges, warm paper, strong readable labels. */
+#questionArea .clue,
+.clues .clue {
+  background: #f5ead6 !important;
+  color: #352c21 !important;
+  border: 2px solid #c8a66f !important;
+  border-left: 6px solid #b78239 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 6px 15px rgba(74,52,27,.13) !important;
+  font-weight: 800 !important;
+}
+#questionArea .clue b,
+.clues .clue b {
+  color: #2f3f2e !important;
+  font-weight: 900 !important;
+  filter: saturate(1.65) contrast(1.12);
+}
+#questionArea .clue small,
+.clues .clue small {
+  color: #554a38 !important;
+  font-weight: 800 !important;
+}
+#questionArea .clue.done,
+.clues .clue.done {
+  background: #e4ead8 !important;
+  border-color: #82966a !important;
+}
+#questionArea .clue.open,
+.clues .clue.open {
+  outline: 3px solid #c58b3e !important;
+  outline-offset: 2px !important;
+}
+#questionArea .clue:disabled,
+.clues .clue:disabled {
+  background: #e7ddca !important;
+  color: #62553f !important;
+  border-color: #bda77f !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+#questionArea .clue:disabled small,
+.clues .clue:disabled small {
+  color: #62553f !important;
+}
+
+/* Suspect cards: stronger frames and saturated icon medallions. */
+#questionArea .s,
+.s {
+  background: #f5ead8 !important;
+  color: #382f23 !important;
+  border: 2px solid #c8ad82 !important;
+  border-radius: 18px !important;
+  box-shadow: 0 7px 17px rgba(74,52,27,.12) !important;
+  opacity: 1 !important;
+}
+#questionArea .s .em,
+.s .em {
+  display: grid !important;
+  place-items: center !important;
+  width: 60px !important;
+  height: 60px !important;
+  margin: 0 auto 6px !important;
+  background: linear-gradient(145deg, #273b32, #435a3e) !important;
+  border: 3px solid #d0a45e !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 9px rgba(48,36,20,.25) !important;
+  font-size: 2.05rem !important;
+  line-height: 1 !important;
+  filter: saturate(1.8) contrast(1.15) !important;
+}
+#questionArea .s .ar,
+.s .ar {
+  color: #365a3d !important;
+  font-weight: 800 !important;
+}
+#questionArea .s .tag,
+.s .tag {
+  color: #5a4d38 !important;
+  font-weight: 750 !important;
+}
+#questionArea .s.clear {
+  background: #e9dfcd !important;
+  border-color: #a99572 !important;
+}
+#questionArea .s.clear .em {
+  filter: saturate(1.35) contrast(1.08) !important;
+}
+#questionArea .s.warn {
+  border-color: #ad5948 !important;
+}
+
+/* Progress and supporting text: darker and easier to read. */
+#questionArea .hint,
+#questionArea #count,
+#questionArea #accHint,
+.hint {
+  color: #4a3e2c !important;
+  font-weight: 800 !important;
+}
+#questionArea .panel,
+#questionArea .end {
+  background: #f7eddd !important;
+  color: #382f23 !important;
+  border-color: #c7ad83 !important;
+}
+#questionArea .panel p,
+#questionArea .panel label,
+#questionArea .end p,
+#questionArea .end label {
+  color: #403626 !important;
+  font-weight: 650 !important;
+}
+#questionArea .opt {
+  background: #fff8ec !important;
+  color: #382f23 !important;
+  border: 2px solid #c6ab7f !important;
+  font-weight: 750 !important;
+}
+#questionArea .opt::before {
+  color: #fff !important;
+  background: #65794f !important;
+  border-color: #536843 !important;
+}
+
+/* Mountain selection dashboard: visibly separate available and locked expeditions. */
+.dashboard-v2 {
+  color: #382f23 !important;
+}
+.dashboard-v2 .dashboard-head h2,
+.dashboard-v2 h2 {
+  color: #31583b !important;
+  font-weight: 900 !important;
+}
+.dashboard-v2 .section-kicker {
+  color: #806239 !important;
+  font-weight: 900 !important;
+}
+.mountain-card {
+  overflow: hidden !important;
+  border-radius: 20px !important;
+  box-shadow: 0 9px 22px rgba(70,52,29,.15) !important;
+  transition: transform .18s ease, box-shadow .18s ease !important;
+}
+.mountain-card:not(.locked) {
+  background: #eaf0df !important;
+  border: 2px solid #789064 !important;
+}
+.mountain-card:not(.locked) .mountain-info {
+  background: linear-gradient(180deg, #edf2e3, #e5ecd9) !important;
+}
+.mountain-card:not(.locked) .mountain-state {
+  color: #fff !important;
+  background: #456b45 !important;
+  border: 1px solid #355a37 !important;
+  font-weight: 900 !important;
+}
+.mountain-card.locked {
+  background: #eee2ce !important;
+  border: 2px solid #b99a6c !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+.mountain-card.locked .mountain-info {
+  background: linear-gradient(180deg, #f1e7d6, #e8dbc5) !important;
+}
+.mountain-card.locked .mountain-state {
+  color: #5b4327 !important;
+  background: #ddc9a7 !important;
+  border: 1px solid #b99a6c !important;
+  font-weight: 900 !important;
+}
+.mountain-card h3 {
+  color: #2d5036 !important;
+  font-weight: 900 !important;
+}
+.mountain-card.locked h3 {
+  color: #61482b !important;
+}
+.mountain-card .mountain-meta {
+  color: #4d5b43 !important;
+  font-weight: 800 !important;
+  line-height: 1.55 !important;
+}
+.mountain-card.locked .mountain-meta {
+  color: #66543b !important;
+}
+.mountain-card .stars {
+  color: #c27d17 !important;
+  font-size: 1.08rem !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 0 rgba(74,47,10,.24) !important;
+}
+.mountain-card:not(.locked) .go {
+  color: #fff !important;
+  background: #52734f !important;
+  border: 1px solid #3d5d3c !important;
+  box-shadow: 0 4px 0 #344d34 !important;
+  font-weight: 900 !important;
+}
+.mountain-card.locked .go:disabled {
+  color: #fff !important;
+  background: #947b59 !important;
+  border: 1px solid #806846 !important;
+  box-shadow: 0 4px 0 #6e583d !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+}
+.mountain-card.locked .mountain-photo img {
+  filter: saturate(.78) sepia(.10) brightness(.96) !important;
+}
+.mountain-card.locked .photo-shade {
+  background: linear-gradient(180deg, rgba(73,54,30,.05), rgba(73,54,30,.20)) !important;
+}
+.mountain-card:not(.locked) .mountain-photo {
+  outline: 0;
+}
+.mountain-card.locked .mountain-photo {
+  background: #d7c6a9 !important;
+}
+.mountain-card:hover {
+  box-shadow: 0 13px 27px rgba(70,52,29,.20) !important;
+}
+
+/* General text and labels on the remaining dashboard surfaces. */
+.dashboard-v2 p,
+.dashboard-v2 .mountain-meta,
+.dashboard-v2 .stat-card,
+.dashboard-v2 .stat-card strong {
+  color: #4c4938 !important;
+  font-weight: 700 !important;
+}
+.dashboard-v2 .stat-card {
+  background: #f5ead8 !important;
+  border: 1px solid #cbb895 !important;
+}
+</style>
+
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
