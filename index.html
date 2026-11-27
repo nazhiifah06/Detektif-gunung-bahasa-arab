@@ -2223,6 +2223,165 @@ button:disabled {
 }
 </style>
 
+
+<style id="expedition-hero-contrast-fix">
+/* EXPEDITION HERO: make the expedition label readable over every mountain photo. */
+#scr .journey-hero::after,
+.journey-hero::after {
+  background: linear-gradient(
+    90deg,
+    rgba(25, 48, 31, .88) 0%,
+    rgba(34, 57, 36, .76) 48%,
+    rgba(48, 63, 39, .40) 78%,
+    rgba(55, 65, 42, .18) 100%
+  ) !important;
+}
+#scr .journey-hero-copy,
+.journey-hero-copy {
+  color: #fffdf4 !important;
+  text-shadow: 0 2px 5px rgba(16, 29, 18, .62) !important;
+}
+#scr .journey-hero-copy .eyebrow,
+.journey-hero-copy .eyebrow {
+  display: inline-flex !important;
+  align-items: center;
+  background: linear-gradient(135deg, #355f3b, #24492f) !important;
+  color: #fff8e8 !important;
+  border: 1.5px solid #e1bd78 !important;
+  border-radius: 999px !important;
+  padding: 7px 13px !important;
+  font-weight: 950 !important;
+  letter-spacing: .12em !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35) !important;
+  box-shadow: 0 3px 10px rgba(19,34,20,.28) !important;
+}
+#scr .journey-hero-copy h1,
+.journey-hero-copy h1 {
+  color: #fffdf4 !important;
+  font-weight: 950 !important;
+  text-shadow: 0 3px 9px rgba(15,27,17,.72) !important;
+}
+#scr .journey-hero-copy p,
+.journey-hero-copy p {
+  color: #fff8e9 !important;
+  font-weight: 750 !important;
+  line-height: 1.65 !important;
+  text-shadow: 0 2px 5px rgba(15,27,17,.78) !important;
+}
+#scr .hero-facts span,
+.hero-facts span {
+  background: rgba(35, 67, 42, .88) !important;
+  color: #fff9e9 !important;
+  border: 1.5px solid #d8b875 !important;
+  border-radius: 999px !important;
+  font-weight: 900 !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35) !important;
+  box-shadow: 0 3px 8px rgba(18,31,18,.2) !important;
+}
+
+/* Improve matching contrast on every expedition's learning and mission panels. */
+#scr .section-kicker,
+.journey-shell .section-kicker {
+  color: #80501f !important;
+  font-weight: 950 !important;
+  text-shadow: none !important;
+}
+#scr .section-title-row h2,
+.journey-shell .section-title-row h2,
+#scr .case-brief h2,
+.journey-shell .case-brief h2 {
+  color: #2f5d3b !important;
+  font-weight: 950 !important;
+}
+#scr .word-count,
+.journey-shell .word-count {
+  background: linear-gradient(135deg, #e2edcf, #cbdcaf) !important;
+  color: #315b35 !important;
+  border: 1.5px solid #78935a !important;
+  font-weight: 950 !important;
+  box-shadow: 0 2px 6px rgba(50,75,39,.12) !important;
+}
+#scr .case-mode,
+.journey-shell .case-mode {
+  background: linear-gradient(135deg, #f5e5c8, #e7d1aa) !important;
+  border: 1.5px solid #bd9255 !important;
+  color: #49371f !important;
+  box-shadow: 0 5px 12px rgba(77,52,24,.10) !important;
+}
+#scr .investigation-label,
+.journey-shell .investigation-label {
+  background: #426b43 !important;
+  color: #fff9e9 !important;
+  border: 1px solid #315633 !important;
+  font-weight: 950 !important;
+}
+#scr .case-brief > b,
+.journey-shell .case-brief > b {
+  color: #315b39 !important;
+  font-weight: 950 !important;
+}
+#scr .case-brief p,
+.journey-shell .case-brief p {
+  color: #453a2b !important;
+  font-weight: 650 !important;
+  line-height: 1.7 !important;
+}
+
+/* Vocabulary cards and audio controls: stronger labels and clear interactive states. */
+#scr .vocab-card,
+.journey-shell .vocab-card {
+  border: 1.5px solid #c7a36d !important;
+  box-shadow: 0 7px 17px rgba(69,48,24,.12) !important;
+}
+#scr .vocab-card .latin,
+.journey-shell .vocab-card .latin {
+  color: #5d503d !important;
+  font-weight: 800 !important;
+}
+#scr .vocab-card .meaning,
+.journey-shell .vocab-card .meaning {
+  color: #365b3c !important;
+  font-weight: 850 !important;
+}
+#scr .vocab-card button,
+.journey-shell .vocab-card button {
+  background: linear-gradient(135deg, #fff4dc, #e5d2ac) !important;
+  color: #315b39 !important;
+  border: 1.5px solid #b88a4b !important;
+  box-shadow: 0 2px 6px rgba(69,48,24,.12) !important;
+}
+#scr .vocab-card button:hover,
+.journey-shell .vocab-card button:hover {
+  background: linear-gradient(135deg, #e3edcf, #c9ddb4) !important;
+  color: #244d30 !important;
+}
+#scr .learning-card,
+#scr .case-brief,
+.journey-shell .learning-card,
+.journey-shell .case-brief {
+  background: #fff8eb !important;
+  border-color: #cdb58d !important;
+  box-shadow: 0 9px 22px rgba(69,48,24,.11) !important;
+}
+#scr .hint,
+.journey-shell .hint {
+  color: #4c412f !important;
+  font-weight: 800 !important;
+}
+#scr .page-nav .brand-mini,
+.journey-shell .page-nav .brand-mini {
+  color: #315e3c !important;
+  font-weight: 950 !important;
+}
+#scr .page-nav .secondary-btn,
+.journey-shell .page-nav .secondary-btn {
+  background: linear-gradient(135deg, #fff4df, #e8d5b5) !important;
+  color: #3c603f !important;
+  border: 1.5px solid #c29d66 !important;
+  font-weight: 900 !important;
+}
+</style>
+
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
