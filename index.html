@@ -1292,6 +1292,119 @@ body {
 }
 </style>
 
+
+<style id="exit-confirm-button-fix">
+#hm .hmc .stay-btn {
+  background: #fff !important;
+  color: #4f654e !important;
+  border: 1px solid #d8c9aa !important;
+  box-shadow: 0 4px 0 #bbb !important;
+  font-weight: 850 !important;
+  min-width: 138px;
+  opacity: 1 !important;
+}
+#hm .hmc .stay-btn:hover,
+#hm .hmc .stay-btn:focus-visible {
+  background: #f3efe4 !important;
+  color: #344b38 !important;
+  outline: 2px solid #9caf91;
+  outline-offset: 2px;
+}
+#hm .hmc .stay-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #bbb !important;
+}
+</style>
+
+
+<style id="forest-background-icon-boost">
+/* Forest atmosphere for the investigation / question screens. */
+#bgx.forest-mode .bgi {
+  filter: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+#bgx.forest-mode .bgi::before,
+#bgx.forest-mode .bgi::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+#bgx.forest-mode .bgi::before {
+  background:
+    radial-gradient(ellipse at 0% 12%, rgba(20,45,27,.88) 0 13%, transparent 34%),
+    radial-gradient(ellipse at 100% 10%, rgba(22,48,28,.88) 0 14%, transparent 35%),
+    radial-gradient(ellipse at 24% 0%, rgba(40,73,39,.55) 0 12%, transparent 32%),
+    radial-gradient(ellipse at 76% 0%, rgba(43,77,40,.55) 0 13%, transparent 34%),
+    linear-gradient(90deg,
+      rgba(18,39,25,.48) 0 2.4%, transparent 3.2% 13.5%,
+      rgba(23,44,27,.28) 14% 15.2%, transparent 16% 84%,
+      rgba(23,44,27,.28) 84.8% 86%, transparent 86.8% 97.5%,
+      rgba(18,39,25,.48) 98% 100%);
+}
+#bgx.forest-mode .bgi::after {
+  background:
+    linear-gradient(180deg, rgba(16,34,22,.04) 0%, rgba(22,43,25,.02) 42%, rgba(18,43,26,.34) 74%, rgba(14,35,22,.62) 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(117,125,73,.25), transparent 58%);
+}
+#bgx.forest-mode .bgo {
+  background: linear-gradient(180deg, rgba(17,35,22,.10), rgba(15,34,21,.34) 58%, rgba(13,30,19,.48)) !important;
+  opacity: 1 !important;
+}
+#bgx.forest-mode .rays {
+  opacity: .025 !important;
+}
+#bgx.forest-mode .bgf {
+  opacity: .38 !important;
+  background: linear-gradient(transparent, rgba(15,37,22,.52)) !important;
+}
+
+/* Restore vivid, full-colour decorative icons and emoji. */
+#bgc span,
+#bgt span {
+  opacity: 1 !important;
+  filter: saturate(1.55) contrast(1.12) drop-shadow(0 2px 4px rgba(0,0,0,.42)) !important;
+}
+#bgc span {
+  animation-duration: 8s !important;
+}
+#bgc .dx {
+  animation: dxm 42s linear infinite, bob 3s ease-in-out infinite alternate !important;
+}
+#bgc .fa {
+  animation: fa 18s linear infinite !important;
+}
+#bgc .wd {
+  animation: wdr 12s ease-in-out infinite alternate !important;
+}
+#bgc .pu,
+#bgc .tw {
+  opacity: 1 !important;
+  filter: saturate(1.65) contrast(1.16) drop-shadow(0 2px 4px rgba(0,0,0,.4)) !important;
+}
+
+/* Keep the lock state visible, but do not wash out the mountain artwork or symbols. */
+.mountain-card.locked {
+  filter: none !important;
+  opacity: 1 !important;
+}
+.mountain-card.locked .mountain-state {
+  color: #665638 !important;
+  background: #eee3ca !important;
+  border: 1px solid #d6c49e !important;
+}
+.mountain-state,
+.mountain-meta {
+  font-weight: 750 !important;
+}
+.stars {
+  color: #d89417 !important;
+  text-shadow: 0 1px 0 rgba(74,47,10,.28) !important;
+}
+</style>
+
 </head>
 <body>
 <div id="bgx"><div class="bgi" id="bgi"></div><div class="bgo"></div><div class="bgm"><i></i><i style="top:55%;animation-duration:38s;animation-delay:-14s"></i></div><div class="bgp" id="bgp"></div><div class="rays"></div><div id="bgc"></div><div class="bgf"></div><div id="bgt"></div></div>
@@ -1323,7 +1436,7 @@ body {
   </section>
 </main>
 <button id="homeBtn" hidden onclick="goHome()" aria-label="Kembali ke pilihan gunung">🏠<small>Gunung</small></button>
-<div id="hm" hidden><div class="hmc"><h3>Kembali ke pilihan gunung?</h3><p>Progres di gunung ini akan hilang.</p><button class="go" onclick="homeYes()">Ya, keluar</button> <button class="go" style="background:#fff;box-shadow:0 4px 0 #bbb" onclick="$('hm').hidden=true">Lanjut main</button></div></div>
+<div id="hm" hidden><div class="hmc"><h3>Kembali ke pilihan gunung?</h3><p>Progres di gunung ini akan hilang.</p><button class="go" onclick="homeYes()">Ya, keluar</button> <button class="go stay-btn" onclick="$('hm').hidden=true">Lanjutkan bermain</button></div></div>
 <div id="pho" hidden></div>
 <div id="scr" hidden></div>
 <script>
@@ -2368,20 +2481,67 @@ function shuffleItems(items){
   return out;
 }
 function setBg(i){
-  const idx=Number.isInteger(i)&&i>=0&&i<BGP.length?i:0;
-  const bg=$('bgx');if(bg)bg.style.display='block';
-  document.body.style.background='transparent';
-  document.body.style.color='#263b2e';
-  const area=$('bgi');
-  if(area){area.style.backgroundImage='url("'+BGP[idx]+'")';area.style.backgroundSize='cover';area.style.backgroundPosition='center';}
-  const overlay=document.querySelector('.bgo');
-  if(overlay)overlay.style.opacity='1';
-  const bgt=$('bgt'),bgc=$('bgc');
-  if(bgt)bgt.innerHTML='';
-  const quiet=['☁️','🌤️','🌙','⭐','✨','🍃','🍂','🌿','🌅','🏔️','☀️'];
-  const accents=(IC[idx]||[]).filter(q=>quiet.includes(q[0])).slice(0,4);
-  if(bgc)bgc.innerHTML=accents.map(q=>'<span class="'+(q[4]||'')+'" style="left:'+q[1]+'%;top:'+q[2]+'%;font-size:'+Math.min(q[3],46)+'px;animation-delay:'+q[5]+'s">'+q[0]+'</span>').join('');
-  if(i>=0&&MT[i])document.documentElement.style.setProperty('--amber','#d99a36');
+  const isForest = Number.isInteger(i) && i >= 0 && i < MT.length;
+  const idx = Number.isInteger(i) && i >= 0 && i < BGP.length ? i : 0;
+  const bg = $('bgx');
+  if(bg){
+    bg.style.display = 'block';
+    bg.classList.toggle('forest-mode', isForest);
+  }
+  document.body.style.background = 'transparent';
+  document.body.style.color = '#263b2e';
+
+  const area = $('bgi');
+  if(area){
+    if(isForest){
+      // Replace the former mountain-silhouette artwork with layered forest depth.
+      area.style.backgroundImage = [
+        'radial-gradient(ellipse 42% 26% at 3% 2%, rgba(116,151,78,.92) 0%, rgba(69,105,54,.52) 48%, transparent 100%)',
+        'radial-gradient(ellipse 40% 28% at 97% 4%, rgba(111,145,75,.88) 0%, rgba(58,94,49,.5) 52%, transparent 100%)',
+        'radial-gradient(ellipse 48% 32% at 50% 8%, rgba(49,82,48,.72) 0%, transparent 100%)',
+        'radial-gradient(ellipse 75% 30% at 50% 100%, rgba(24,55,34,.82) 0%, transparent 100%)',
+        'linear-gradient(180deg, #314b35 0%, #526b43 34%, #6d7950 66%, #344f38 100%)'
+      ].join(',');
+      area.style.backgroundSize = 'cover';
+      area.style.backgroundPosition = 'center';
+    }else{
+      area.style.backgroundImage = 'url("' + BGP[idx] + '")';
+      area.style.backgroundSize = 'cover';
+      area.style.backgroundPosition = 'center';
+    }
+  }
+
+  const overlay = document.querySelector('.bgo');
+  if(overlay) overlay.style.opacity = '1';
+
+  const bgt = $('bgt');
+  const bgc = $('bgc');
+  if(bgt) bgt.innerHTML = '';
+
+  if(bgc){
+    if(isForest){
+      const forestIcons = [
+        ['🌿', 2, 23, 54, '', -1],
+        ['🍃', 15, 8, 34, 'fa', -5],
+        ['🐦', 86, 12, 34, 'dx', -9],
+        ['🦋', 91, 44, 34, 'wd', -2],
+        ['🍀', 3, 76, 38, '', -3],
+        ['🌼', 88, 82, 30, '', -4]
+      ];
+      bgc.innerHTML = forestIcons.map(q =>
+        '<span class="' + q[4] + '" style="left:' + q[1] + '%;top:' + q[2] +
+        '%;font-size:' + q[3] + 'px;animation-delay:' + q[5] + 's">' + q[0] + '</span>'
+      ).join('');
+    }else{
+      const quiet = ['☁️','🌤️','🌙','⭐','✨','🍃','🍂','🌿','🌅','🏔️','☀️'];
+      const accents = (IC[idx] || []).filter(q => quiet.includes(q[0])).slice(0,4);
+      bgc.innerHTML = accents.map(q =>
+        '<span class="' + (q[4] || '') + '" style="left:' + q[1] + '%;top:' + q[2] +
+        '%;font-size:' + Math.min(q[3],46) + 'px;animation-delay:' + q[5] + 's">' + q[0] + '</span>'
+      ).join('');
+    }
+  }
+  if(isForest) document.documentElement.style.setProperty('--amber', '#d99a36');
 }
 function pickMt(){
   if(!currentUser||currentRole!=='student')return login('student-login');
